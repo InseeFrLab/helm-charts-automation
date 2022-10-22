@@ -26,8 +26,8 @@ s3:
   # If not set and create is true, a name is generated using the fullname template
   configMapName: ""
   accessKeyId: ""
-  endpoint: "minio.lab.sspcloud.fr"
-  defaultRegion: "us-east-1"
+  endpoint: ""
+  defaultRegion: ""
   secretAccessKey: ""
   sessionToken: ""
 
