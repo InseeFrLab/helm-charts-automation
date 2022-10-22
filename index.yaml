@@ -51,6 +51,30 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-0.0.1/argo-workflows-0.0.1.tgz
     version: 0.0.1
+  label-studio:
+  - apiVersion: v2
+    appVersion: "1"
+    created: "2022-10-22T22:04:16.096457312Z"
+    dependencies:
+    - enabled: true
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.15
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-datascience-internal
+      version: 1.0.3
+    description: Data Science starts with data. Label Studio removes the pain of labeling
+      it.
+    digest: 7a124a6a4a16f94fdee57ede4b1010f7b194f0f7fe7a648372804d269af46007
+    home: https://labelstud.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/labelStudio.png
+    name: label-studio
+    sources:
+    - https://github.com/heartexlabs/label-studio
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-0.0.1/label-studio-0.0.1.tgz
+    version: 0.0.1
   mlflow:
   - apiVersion: v2
     appVersion: "1"
@@ -76,4 +100,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-0.0.1/mlflow-0.0.1.tgz
     version: 0.0.1
-generated: "2022-10-03T15:24:33.49380411Z"
+generated: "2022-10-22T22:04:16.096469013Z"
