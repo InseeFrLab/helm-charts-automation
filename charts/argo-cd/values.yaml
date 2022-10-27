@@ -5,6 +5,9 @@ nameOverride: ""
 fullnameOverride: "argocd"
 apiserver: "https://kubernetes.default.svc"
 
+crds:
+  install: false
+
 ingress:
   enabled: true
   tls: true
@@ -20,7 +23,7 @@ security:
   allowlist:
     enabled: true
     ip: "0.0.0.0/0"
-  networkPolicy: 
+  networkPolicy:
     enabled: true
     from: []
 
