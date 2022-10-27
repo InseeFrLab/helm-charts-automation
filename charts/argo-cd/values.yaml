@@ -5,9 +5,6 @@ nameOverride: ""
 fullnameOverride: "argocd"
 apiserver: "https://kubernetes.default.svc"
 
-crds:
-  install: false
-
 ingress:
   enabled: true
   tls: true
@@ -33,6 +30,8 @@ global:
     defaultDenyIngress: false
 
 argo-cd:
+  crds:
+    install: false
   notifications:
     enabled: false
   applicationSet:
