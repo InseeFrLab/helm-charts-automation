@@ -12,10 +12,11 @@ replicaCount: 1
 
 service:
   image:
-    repository: "inseefrlab/mlflow"
+    version: ""
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: "main"
+    custom:
+      enabled: false
+      version: ""
   directory: /tmp/mlflow/artifacts/
 
 s3:
