@@ -3,22 +3,69 @@
   "type": "object",
   "properties": {
     "service": {
-      "description": "mlflow artifact repository configuration",
+      "description": "Service specific configuration",
       "type": "object",
       "properties": {
-        "directory": {
-          "description": "directory of artifact root repository",
-          "type": "string",
-          "default": "/tmp/mlflow/artifacts/",
-          "x-form": {
-            "value": "s3://{{s3.AWS_BUCKET_NAME}}/mlflow-artifacts"
+          "image" : {
+              "description": "image docker",
+              "type": "object",  
+              "properties": {
+                "pullPolicy": {
+                  "type": "string",
+                  "description": "option when pulling the docker image",
+                  "default": "IfNotPresent",
+                  "enum": ["IfNotPresent","Always","Never"]
+                },
+                "version": {
+                  "description": "supported versions",
+                  "type": "string",
+                  "enum": [
+                      "inseefrlab/mlflow:v2.0.1"
+                          ],
+                  "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
+                  "hidden": {
+                      "value": true,
+                      "path": "service/image/custom/enabled"
+                  },
+                  "default": "inseefrlab/mlflow:v2.0.1"
+                },
+                "custom" : {
+                  "description": "use a custom docker image",
+                  "type": "object",  
+                  "properties": {
+                    "enabled": {
+                      "title": "custom image",
+                      "type": "boolean",
+                      "description": "use a custom jupyter docker image",
+                      "default": false
+                    },
+                    "version": {
+                      "description": "unsupported version",
+                      "type": "string",
+                      "default": "inseefrlab/mlflow:v2.0.1",
+                      "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
+                      "hidden": {
+                          "value": false,
+                          "path": "service/image/custom/enabled"
+                      }
+                    }
+                  }        
+                }
+              }        
           },
-          "x-onyxia": {
-            "overwriteDefaultWith": "s3://{{s3.AWS_BUCKET_NAME}}/mlflow-artifacts"
+          "directory": {
+            "description": "directory of artifact root repository",
+            "type": "string",
+            "default": "/tmp/mlflow/artifacts/",
+            "x-form": {
+              "value": "s3://{{s3.AWS_BUCKET_NAME}}/mlflow-artifacts"
+            },
+            "x-onyxia": {
+              "overwriteDefaultWith": "s3://{{s3.AWS_BUCKET_NAME}}/mlflow-artifacts"
+            }
           }
-        }
       }
-    },
+  },
     "s3": {
       "description": "Configuration of temporary identity",
       "type": "object",
