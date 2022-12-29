@@ -1,5 +1,8 @@
 {{- if .Values.ingress.enabled }}
 - Start annotate with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
 {{- end }}
+{{- if .Values.route.enabled }}
+- Start annotate with your browser on this [link](https://{{ .Values.route.hostname }})
+{{- end }}
 - Your username is **{{ .Values.security.username }}**
 - Your password is **{{ .Values.security.password }}**
