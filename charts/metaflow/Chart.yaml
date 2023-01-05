@@ -1,0 +1,18 @@
+apiVersion: v2
+name: metaflow
+description: Metaflow is a human-friendly Python/R library that helps scientists and engineers build and manage real-life data science projects.
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/metaflow.png
+keywords:
+- mlops
+home: https://metaflow.org
+sources:
+- https://github.com/Netflix/metaflow
+- https://github.com/outerbounds/metaflow-tools
+type: application
+version: 0.0.1
+
+dependencies:
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.6.15
+  condition: postgresql.enabled

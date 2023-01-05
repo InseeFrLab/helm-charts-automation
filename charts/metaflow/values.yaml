@@ -1,0 +1,143 @@
+global:
+  postgresql:
+    auth:
+      username: "metaflow"
+      password: "metaflow"
+      database: "metaflow"
+
+postgresql:
+  image:
+    tag: "12"
+  fullnameOverride: "metaflow-db"
+
+discoverable:
+  allow: true
+metadatadb:
+  port: 5432
+
+s3:
+  accessKeyId: "example"
+  endpoint: "minio.lab.sspcloud.fr"
+  defaultRegion: "us-east-1"
+  secretAccessKey: "example"
+  sessionToken: "example"
+
+security:
+  networkPolicy: 
+    enabled: false
+    from: 
+    - ipBlock:
+        cidr: 10.233.103.0/32
+    - ipBlock:
+        cidr: 10.233.111.0/32
+  allowlist:
+    enabled: true
+    ip: "0.0.0.0/0" 
+
+replicaCount: 1
+
+service:
+  METAFLOW_DATASTORE_SYSROOT_S3: "s3://user/metaflow"
+  image:
+    repository: netflixoss/metaflow_metadata_service
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v2.3.3"
+
+  uiImage:
+    repository: public.ecr.aws/outerbounds/metaflow_ui
+    pullPolicy: IfNotPresent
+    tag: "v1.1.4"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+env: []
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+networking: 
+  serviceMetadata:
+    type: ClusterIP
+    port: 8080
+    annotations: {}
+
+  serviceBackend:
+    type: ClusterIP
+    port: 8083
+
+  serviceStatic:
+    type: ClusterIP
+    port: 3000
+
+ingress:
+  enabled: true
+  tls: true
+  ingressClassName: ""
+  annotations: []
+    # kubernetes.io/tls-acme: "true"
+  hostname: chart.example
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+envFrom: []
+
+namespace: "default"
+
+dbMigrations:
+  # Set to true to run migrations on every container start
+  runOnStart: true
+  # Set to true to only run them if db is empty. This setting has no effect is
+  # runOnStart is false.
+  #
+  # We recommend setting this to true for production environments with lots
+  # of runs, since running the migrations may lock the database for a while.
+  # For smaller/toy deployments you can set this to false
+  onlyIfDbEmpty: true

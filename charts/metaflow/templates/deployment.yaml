@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "metaflow-service.fullname" . }}
+  labels:
+    {{- include "metaflow-service.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "metaflow-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "metaflow-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "metaflow-service.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.dbMigrations.runOnStart }}
+      initContainers:
+        - name: wait-for-postgresql
+          image: "alpine"
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              until printf "." && nc -z -w 2 {{ .Values.postgresql.fullnameOverride }} 5432; do
+                  sleep 2;
+              done;
+              echo 'PostgreSQL OK ✓' 
+              
+        - name: db-migrations
+          image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
+          command:
+          - "/opt/latest/bin/python3"
+          - "/root/run_goose.py"
+          {{- if .Values.dbMigrations.onlyIfDbEmpty }}
+          - "--only-if-empty-db"
+          {{- end }}
+          env:
+            {{- include "metaflow-service.metadatadbEnvVars" . | nindent 12 }}
+            
+      {{- end }}
+      containers:
+        - name: {{ include "metaflow-service.fullname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
+          command: ["/opt/latest/bin/python3", "-m", "services.metadata_service.server" ]
+          imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            {{- include "metaflow-service.metadatadbEnvVars" . | nindent 12 }}
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "{{ .Values.s3.secretAccessKey }}"
+            - name: AWS_ACCESS_KEY_IDD
+              value: "{{ .Values.s3.accessKeyId }}"
+            - name: AWS_S3_ENDPOINT
+              value: "{{ .Values.s3.endpoint }}"
+            - name: AWS_S3_DEFAULT_REGION
+              value: "{{ .Values.s3.defaultRegion}}"
+            - name: AWS_SESSION_TOKEN 
+              value: "{{ .Values.s3.sessionToken }}"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

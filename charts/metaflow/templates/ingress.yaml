@@ -1,0 +1,74 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "metaflow-ui.fullname" . -}}
+{{- $svcPort := .Values.networking.serviceBackend.port -}}
+{{- $fullNameStatic := include "metaflow-ui.fullname-static" . -}}
+{{- $svcPortStatic := .Values.networking.serviceStatic.port -}}
+{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.ingressClassName}}
+  {{- end }}
+{{- end }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "metaflow-ui.labels" . | nindent 4 }}
+  annotations:
+    {{- include "metaflow-ui.ingress.annotations" . | nindent 4 }}
+spec:
+  {{- if and .Values.ingress.ingressClassName (eq "true" (include "metaflow-ui.ingress.supportsIngressClassname" .)) }}
+  ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+      - {{ .Values.ingress.hostname | quote }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.hostname | quote }}
+      http:
+        paths:
+          - path: "/api"
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+              {{- else }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+              {{- end }}
+          - path: "/"
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullNameStatic }}
+                port:
+                  number: {{ $svcPortStatic }}
+              {{- else }}
+              serviceName: {{ $fullNameStatic }}
+              servicePort: {{ $svcPortStatic }}
+              {{- end }}
+          - path: "/static"
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullNameStatic }}
+                port:
+                  number: {{ $svcPortStatic }}
+              {{- else }}
+              serviceName: {{ $fullNameStatic }}
+              servicePort: {{ $svcPortStatic }}
+              {{- end }}
+{{- end }}
