@@ -342,6 +342,28 @@ entries:
     version: 0.0.1
   metaflow:
   - apiVersion: v2
+    created: "2023-01-10T09:18:32.074050305Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.15
+    description: Metaflow is a human-friendly Python/R library that helps scientists
+      and engineers build and manage real-life data science projects.
+    digest: 4cb290e5acda3f66c2f1d9ebc734f2f4f9f476a33ba3a196672ab15e40741d26
+    home: https://metaflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/metaflow.png
+    keywords:
+    - mlops
+    name: metaflow
+    sources:
+    - https://github.com/Netflix/metaflow
+    - https://github.com/outerbounds/metaflow-tools
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-0.0.3/metaflow-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     created: "2023-01-06T12:56:46.97219737Z"
     dependencies:
     - condition: postgresql.enabled
@@ -507,4 +529,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-0.0.1/mlflow-0.0.1.tgz
     version: 0.0.1
-generated: "2023-01-06T12:56:46.972228971Z"
+generated: "2023-01-10T09:18:32.074101205Z"
