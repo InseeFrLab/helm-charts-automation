@@ -55,6 +55,11 @@ postgresql:
   image:
     tag: "12"
   fullnameOverride: "mlflow-db"
+  primary:
+    resources:
+      limits:
+        cpu: "1000m"
+        memory: "2000Mi"
 
 networking:
   type: ClusterIP
@@ -125,6 +130,8 @@ resources_init:
   limits:
     cpu: "100m"
     memory: "128Mi"
+
+
 
 autoscaling:
   enabled: false
