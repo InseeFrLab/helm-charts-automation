@@ -43,7 +43,6 @@
                       "description": "unsupported version",
                       "type": "string",
                       "default": "inseefrlab/mlflow:v2.0.1",
-                      "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
                       "hidden": {
                           "value": false,
                           "path": "service/image/custom/enabled"
