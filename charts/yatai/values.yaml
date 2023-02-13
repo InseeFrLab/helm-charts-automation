@@ -166,7 +166,7 @@ yataiDeploymentSecurityContext:
 
 layers:
   network:
-    ingressClass: nginx
+    ingressClass: 'nginx'
     ingressAnnotations: {}
 
     ingressPath: /
