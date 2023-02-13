@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "yatai-image-builder.serviceAccountNameInYataiSystemNamespace" . }}
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  resourceNames:
+  - {{ include "yatai-image-builder.yatai-common-envname" . }}
+  - {{ include "yatai-image-builder.shared-envname" . }}
+  verbs:
+  - get
+  - list
+  - watch
