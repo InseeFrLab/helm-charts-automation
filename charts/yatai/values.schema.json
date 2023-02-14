@@ -167,7 +167,7 @@
             "server": {
                 "type": "string",
                 "description": "Docker Hub Server",
-                "default": "https://index.docker.io/v1"
+                "default": "https://index.docker.io/v1/"
             },
             "username": {
                 "type": "string",
