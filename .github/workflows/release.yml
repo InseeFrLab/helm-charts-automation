@@ -22,10 +22,27 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
           version: v3.10.0
+          
+      - name: Install helm-docs
+        run: |
+          cd /tmp
+          wget https://github.com/norwoodj/helm-docs/releases/download/v1.11.0/helm-docs_1.11.0_Linux_x86_64.tar.gz
+          tar -xvf helm-docs_1.11.0_Linux_x86_64.tar.gz
+          sudo mv helm-docs /usr/local/sbin
+
+      - name: Generate Helm docs
+        run: |
+          helm-docs -o README.md
+          if [[ `git status --porcelain` ]]; then
+            git add -A
+            git commit -m "Generate Helm docs"
+            git push
+          fi
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.1
