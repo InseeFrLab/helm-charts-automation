@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "yatai-image-builder.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "yatai-image-builder.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "yatai-image-builder.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "yatai-image-builder.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "yatai-image-builder.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: wait-for-yatai
+          image: "alpine"
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              until printf "." && nc -z -w 2 {{ include "yatai.fullname" . }} 80; do
+                  sleep 2;
+              done;
+              echo 'Yatai OK ✓'
+      containers:
+        - name: manager
+          args:
+            - --health-probe-bind-address=:8081
+            - --metrics-bind-address=127.0.0.1:8080
+            - --leader-elect
+          command:
+            - /manager
+          env:
+            - name: YATAI_DEPLOYMENT_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: YATAI_SYSTEM_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: YATAI_IMAGE_BUILDER_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: "singleNamespace"
+              value: "true"
+            - name: SYSTEM_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            {{- if .Values.dockerRegistry.passwordExistingSecretName }}
+            - name: DOCKER_REGISTRY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.dockerRegistry.passwordExistingSecretName | quote }}
+                  key: {{ .Values.dockerRegistry.passwordExistingSecretKey | quote }}
+            {{- end }}
+            {{- if .Values.aws.secretAccessKeyExistingSecretName }}
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.aws.secretAccessKeyExistingSecretName | quote }}
+                  key: {{ .Values.aws.secretAccessKeyExistingSecretKey | quote }}
+            {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ include "yatai-image-builder.envname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.yataiImageBuilder.repository }}:{{ .Values.image.yataiImageBuilder.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.yataiImageBuilder.pullPolicy }}
+
+          ports:
+          - containerPort: 9443
+            name: webhook-server
+            protocol: TCP
+
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+          volumeMounts:
+          - mountPath: /tmp/k8s-webhook-server/serving-certs
+            name: cert
+            readOnly: true
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: {{ include "yatai-image-builder.fullname" . }}-webhook-server-cert
