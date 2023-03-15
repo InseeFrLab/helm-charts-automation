@@ -18,5 +18,5 @@ dependencies:
   version: 1.x.x
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 11.6.15
+  version: 11.9.13
 
