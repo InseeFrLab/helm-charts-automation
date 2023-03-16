@@ -19,9 +19,10 @@
                 "version": {
                   "description": "supported versions",
                   "type": "string",
-                  "enum": [
+                  "listEnum": [
                       "inseefrlab/mlflow:v2.0.1"
-                          ],
+                  ],
+                  "render": "list",
                   "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
                   "hidden": {
                       "value": true,
