@@ -20,7 +20,8 @@
                   "description": "supported versions",
                   "type": "string",
                   "listEnum": [
-                      "inseefrlab/mlflow:v2.0.1"
+                      "inseefrlab/mlflow:v2.0.1",
+                      "inseefrlab/mlflow:v2.2.2"
                   ],
                   "render": "list",
                   "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
@@ -28,7 +29,7 @@
                       "value": true,
                       "path": "service/image/custom/enabled"
                   },
-                  "default": "inseefrlab/mlflow:v2.0.1"
+                  "default": "inseefrlab/mlflow:v2.2.2"
                 },
                 "custom" : {
                   "description": "use a custom docker image",
@@ -43,7 +44,7 @@
                     "version": {
                       "description": "unsupported version",
                       "type": "string",
-                      "default": "inseefrlab/mlflow:v2.0.1",
+                      "default": "inseefrlab/mlflow:v2.2.2",
                       "hidden": {
                           "value": false,
                           "path": "service/image/custom/enabled"
@@ -377,50 +378,66 @@
           }
       }
     },
-    "global": {
+    "postgresql": {
       "description": "postgres specific configuration",
       "type": "object",
       "title": "Database",
       "properties": {
-        "postgresql": {
+        "image": {
+          "description": "image specific configuration",
+          "type": "object",
+          "properties": {
+            "tag": {
+              "description": "postgresql major version",
+              "type": "string",
+              "enum": ["12", "13", "14", "15"],
+              "default": "15"
+            }
+          }
+        },
+        "auth": {
           "description": "postgres specific configuration",
           "type": "object",
-          "title": "Database",
+          "title": "Authentification",
           "properties": {
-            "auth": {
-              "description": "postgres specific configuration",
-              "type": "object",
-              "title": "Authentification",
-              "properties": {
-                "username": {
-                  "type": "string",
-                  "title": "Admin user",
-                  "default": "admin",
-                  "x-form": {
-                    "value": "{{project.id}}"
-                  },
-                  "x-onyxia": {
-                    "overwriteDefaultWith": "{{project.id}}"
-                  }
-                },
-                "password": {
-                  "type": "string",
-                  "title": "Password",
-                  "default": "changeme",
-                  "x-form": {
-                    "value": "{{project.password}}"
-                  },
-                  "x-onyxia": {
-                    "overwriteDefaultWith": "{{project.password}}"
-                  }
-                },
-                "database": {
-                  "description": "Name for the default database that is created when the image is first started.",
-                  "type": "string",
-                  "title": "Database",
-                  "default": "mlflow"
-                }
+            "username": {
+              "type": "string",
+              "title": "User",
+              "default": "user",
+              "x-form": {
+                "value": "{{project.id}}"
+              },
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.id}}"
               }
+            },
+            "password": {
+              "type": "string",
+              "title": "User Password",
+              "default": "changeme",
+              "x-form": {
+                "value": "{{project.password}}"
+              },
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.password}}"
+              }
+            },
+            "postgresPassword": {
+              "type": "string",
+              "title": "Admin Password",
+              "default": "changeme",
+              "x-form": {
+                "value": "{{project.password}}"
+              },
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.password}}"
+              }
+            },
+            "database": {
+              "description": "Name for the default database that is created when the image is first started.",
+              "type": "string",
+              "title": "Database",
+              "default": "mlflow"
             }
           }
         }
