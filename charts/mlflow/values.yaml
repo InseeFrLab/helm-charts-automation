@@ -4,6 +4,12 @@
   
 replicaCount: 1
 
+command:
+  proxyArtifact:
+    enabled : false
+  customArgs:
+    - --workers=2
+
 service:
   image:
     version: ""
@@ -47,7 +53,7 @@ security:
 
 postgresql:
   image:
-    tag: "12"
+    tag: "15"
   auth:
     username: "admin"
     password: "changeme"
