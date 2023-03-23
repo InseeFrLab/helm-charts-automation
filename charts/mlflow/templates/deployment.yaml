@@ -36,13 +36,13 @@ spec:
           args:
             - --host=0.0.0.0
             - --port=8000
-            - --backend-store-uri=postgresql://{{ .Values.global.postgresql.auth.username }}:{{ .Values.global.postgresql.auth.password }}@{{ .Values.postgresql.fullnameOverride }}:5432/{{ .Values.global.postgresql.auth.database}}
-            {{ if .Values.command.proxyArtifact -}}
+            - --backend-store-uri=postgresql://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ .Values.postgresql.fullnameOverride }}:5432/{{ .Values.postgresql.auth.database}}
+            {{ if .Values.service.proxyArtifact.enabled -}}
             - --artifacts-destination={{ .Values.service.directory }}
             {{- else -}}
             - --default-artifact-root={{ .Values.service.directory }}
             {{- end -}}
-            {{  range .Values.command.customArgs }}
+            {{  range .Values.service.customArgs }}
             - {{ . }}
             {{- end }}
           imagePullPolicy: {{ .Values.service.image.pullPolicy }}
