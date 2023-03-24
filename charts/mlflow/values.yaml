@@ -6,12 +6,16 @@ replicaCount: 1
 
 service:
   image:
-    version: ""
+    version: "inseefrlab/mlflow:v2.2.2"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
       version: ""
   directory: /tmp/mlflow/artifacts/
+  proxyArtifact:
+    enabled : false
+  customArgs: #[]
+    - --workers=2
 
 s3:
   # Specifies whether a config map should be created
@@ -47,7 +51,7 @@ security:
 
 postgresql:
   image:
-    tag: "12"
+    tag: "15"
   auth:
     username: "admin"
     password: "changeme"
