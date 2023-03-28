@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -49,8 +49,12 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | postgresql.auth.username | string | `"admin"` |  |
 | postgresql.fullnameOverride | string | `"mlflow-db"` |  |
 | postgresql.image.tag | string | `"15"` |  |
+| postgresql.primary.persistence.enabled | bool | `true` |  |
+| postgresql.primary.persistence.size | string | `"8Gi"` |  |
 | postgresql.primary.resources.limits.cpu | string | `"1000m"` |  |
 | postgresql.primary.resources.limits.memory | string | `"2000Mi"` |  |
+| postgresql.primary.resources.requests.cpu | string | `"250m"` |  |
+| postgresql.primary.resources.requests.memory | string | `"256Mi"` |  |
 | readiness.enabled | string | `"true"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
