@@ -63,6 +63,12 @@ postgresql:
       limits:
         cpu: "1000m"
         memory: "2000Mi"
+      requests:
+        memory: 256Mi
+        cpu: 250m
+    persistence:
+      enabled: true
+      size: 8Gi
 
 networking:
   type: ClusterIP
