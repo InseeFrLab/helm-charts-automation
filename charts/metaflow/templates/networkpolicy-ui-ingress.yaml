@@ -3,7 +3,7 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ include "metaflow-ui.fullname" . }}
+  name: {{ include "metaflow-ui.fullname" . }}-static-ingress
 spec:
   podSelector:
     matchLabels:
