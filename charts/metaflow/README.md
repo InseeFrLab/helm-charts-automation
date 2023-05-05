@@ -1,6 +1,6 @@
 # metaflow
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Metaflow is a human-friendly Python/R library that helps scientists and engineers build and manage real-life data science projects.
 
@@ -75,7 +75,7 @@ Metaflow is a human-friendly Python/R library that helps scientists and engineer
 | service.image.tag | string | `"v2.3.7"` |  |
 | service.uiImage.pullPolicy | string | `"IfNotPresent"` |  |
 | service.uiImage.repository | string | `"public.ecr.aws/outerbounds/metaflow_ui"` |  |
-| service.uiImage.tag | string | `"v2.2.4"` |  |
+| service.uiImage.tag | string | `"v1.1.4"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
