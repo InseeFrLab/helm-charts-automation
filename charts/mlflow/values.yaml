@@ -13,7 +13,7 @@ service:
       version: ""
   directory: /tmp/mlflow/artifacts/
   proxyArtifact:
-    enabled : false
+    enabled : true
   customArgs: #[]
     - --workers=2
 
