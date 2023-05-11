@@ -55,7 +55,7 @@ spec:
             - name: MLFLOW_S3_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
             - name: GUNICORN_CMD_ARGS
-              value: "--timeout {{ .Values.s3.gunicornTimeout }}"
+              value: "--timeout {{ .Values.service.gunicornTimeout }}"
           ports:
             - name: http
               containerPort: 8000
