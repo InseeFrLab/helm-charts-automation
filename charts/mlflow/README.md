@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 1.3.1](https://img.shields.io/badge/Version-1.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -15,8 +15,8 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 12.2.3 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.3.14 |
+| https://charts.bitnami.com/bitnami | postgresql | 12.6.6 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.3.15 |
 
 ## Values
 
@@ -84,7 +84,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | service.image.custom.enabled | bool | `false` |  |
 | service.image.custom.version | string | `""` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
-| service.image.version | string | `"inseefrlab/mlflow:v2.2.2"` |  |
+| service.image.version | string | `""` |  |
 | service.proxyArtifact.enabled | bool | `true` |  |
 | tolerations | list | `[]` |  |
 
