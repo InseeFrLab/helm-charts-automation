@@ -20,7 +20,7 @@
                   "description": "supported versions",
                   "type": "string",
                   "listEnum": [
-                      "inseefrlab/mlflow:v2.0.1",
+                      "inseefrlab/mlflow:v2.5.0",
                       "inseefrlab/mlflow:v2.2.2"
                   ],
                   "render": "list",
