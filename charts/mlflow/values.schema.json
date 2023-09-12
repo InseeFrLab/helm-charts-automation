@@ -171,11 +171,11 @@
           "form": true,
           "title": "Hostname",
           "x-form": {
-            "hidden": true,
+            "hidden": false,
             "value": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
           },
           "x-onyxia": {
-            "hidden": true,
+            "hidden": false,
             "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
           }
         },
