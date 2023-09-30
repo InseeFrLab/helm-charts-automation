@@ -22,6 +22,12 @@ spec:
       labels:
         {{- include "library-chart.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if .Values.security.auth.basic.enabled }}
+      volumes:
+      - name: configmap-auth-ini-volume
+        configMap:
+          name: {{ .Release.Name }}-configmap-mlflow-auth
+      {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -41,7 +47,10 @@ spec:
             - --artifacts-destination={{ .Values.service.directory }}
             {{- else -}}
             - --default-artifact-root={{ .Values.service.directory }}
-            {{- end -}}
+            {{- end }}
+            {{ if .Values.security.auth.basic.enabled -}}
+            - --app-name=basic-auth
+            {{- end }}
             {{  range .Values.service.customArgs }}
             - {{ . }}
             {{- end }}
@@ -51,9 +60,19 @@ spec:
             - configMapRef:
                 name: {{ include "library-chart.configMapNameS3" . }}
             {{- end }}
+          {{- if .Values.security.auth.basic.enabled }}
+          volumeMounts:
+          - name: configmap-auth-ini-volume
+            mountPath: /home/oyxia/work/basic_auth.ini
+            subPath: basic_auth.ini 
+          {{- end }}
           env:
             - name: MLFLOW_S3_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
+            {{- if .Values.security.auth.basic.enabled }}
+            - name: MLFLOW_AUTH_CONFIG_PATH
+              value: /home/oyxia/work/basic_auth.ini
+            {{- end }}
             - name: GUNICORN_CMD_ARGS
               value: "--timeout {{ .Values.service.gunicornTimeout }}"
           ports:

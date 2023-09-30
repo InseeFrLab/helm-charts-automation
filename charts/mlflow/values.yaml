@@ -6,7 +6,7 @@ replicaCount: 1
 
 service:
   image:
-    version: ""
+    version: "inseefrlab/mlflow:v2.5.0"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
@@ -37,6 +37,13 @@ liveness:
   enabled : "true"
 
 security:
+  # should be configured https://mlflow.org/docs/latest/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access
+  # with proxyArtifact.enabled:true
+  auth:
+    basic:
+      enabled: false
+      username: "admin"
+      password: "changeme"
   networkPolicy: 
     enabled: false
     from: 
