@@ -1,0 +1,14 @@
+{{- if .Values.security.auth.basic.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-mlflow-auth
+data:
+  basic_auth.ini: |
+    [mlflow]
+    default_permission = READ
+    database_uri = sqlite:///basic_auth.db
+    admin_username = {{ .Values.security.auth.basic.username }}
+    admin_password = {{ .Values.security.auth.basic.password }}
+    authorization_function = mlflow.server.auth:authenticate_request_basic_auth
+{{- end -}}
