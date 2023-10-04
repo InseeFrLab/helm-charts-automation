@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 1.5.0](https://img.shields.io/badge/Version-1.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.5.1](https://img.shields.io/badge/Version-1.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -74,12 +74,12 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | s3.sessionToken | string | `""` |  |
 | security.allowlist.enabled | bool | `true` |  |
 | security.allowlist.ip | string | `"0.0.0.0/0"` |  |
-| security.auth.basic.enabled | bool | `false` |  |
-| security.auth.basic.password | string | `"changeme"` |  |
-| security.auth.basic.username | string | `"admin"` |  |
+| security.enabled | bool | `false` |  |
 | security.networkPolicy.enabled | bool | `false` |  |
 | security.networkPolicy.from[0].ipBlock.cidr | string | `"10.233.103.0/32"` |  |
 | security.networkPolicy.from[1].ipBlock.cidr | string | `"10.233.111.0/32"` |  |
+| security.password | string | `"changeme"` |  |
+| security.username | string | `"admin"` |  |
 | securityContext | object | `{}` |  |
 | service.customArgs[0] | string | `"--workers=2"` |  |
 | service.directory | string | `"/tmp/mlflow/artifacts/"` |  |
