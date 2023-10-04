@@ -8,7 +8,7 @@ data:
     [mlflow]
     default_permission = READ
     database_uri = sqlite:///basic_auth.db
-    admin_username = {{ .Values.security.auth.basic.username }}
-    admin_password = {{ .Values.security.auth.basic.password }}
+    admin_username = {{ .Values.security.username }}
+    admin_password = {{ .Values.security.password }}
     authorization_function = mlflow.server.auth:authenticate_request_basic_auth
 {{- end -}}
