@@ -1,6 +1,6 @@
 # argo-cd
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
@@ -16,7 +16,7 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | Repository | Name | Version |
 |------------|------|---------|
 | https://argoproj.github.io/argo-helm | argo-cd | 5.46.4 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.4.3 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.13 |
 
 ## Values
 
