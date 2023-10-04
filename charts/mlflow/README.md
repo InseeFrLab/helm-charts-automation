@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.5.0](https://img.shields.io/badge/Version-1.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -74,6 +74,9 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | s3.sessionToken | string | `""` |  |
 | security.allowlist.enabled | bool | `true` |  |
 | security.allowlist.ip | string | `"0.0.0.0/0"` |  |
+| security.auth.basic.enabled | bool | `false` |  |
+| security.auth.basic.password | string | `"changeme"` |  |
+| security.auth.basic.username | string | `"admin"` |  |
 | security.networkPolicy.enabled | bool | `false` |  |
 | security.networkPolicy.from[0].ipBlock.cidr | string | `"10.233.103.0/32"` |  |
 | security.networkPolicy.from[1].ipBlock.cidr | string | `"10.233.111.0/32"` |  |
@@ -84,7 +87,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | service.image.custom.enabled | bool | `false` |  |
 | service.image.custom.version | string | `""` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
-| service.image.version | string | `""` |  |
+| service.image.version | string | `"inseefrlab/mlflow:v2.5.0"` |  |
 | service.proxyArtifact.enabled | bool | `true` |  |
 | tolerations | list | `[]` |  |
 
