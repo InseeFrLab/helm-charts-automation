@@ -22,7 +22,7 @@ spec:
       labels:
         {{- include "library-chart.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.security.auth.basic.enabled }}
+      {{- if .Values.security.enabled }}
       volumes:
       - name: configmap-auth-ini-volume
         configMap:
@@ -48,7 +48,7 @@ spec:
             {{- else -}}
             - --default-artifact-root={{ .Values.service.directory }}
             {{- end }}
-            {{ if .Values.security.auth.basic.enabled -}}
+            {{ if .Values.security.enabled -}}
             - --app-name=basic-auth
             {{- end }}
             {{  range .Values.service.customArgs }}
@@ -60,7 +60,7 @@ spec:
             - configMapRef:
                 name: {{ include "library-chart.configMapNameS3" . }}
             {{- end }}
-          {{- if .Values.security.auth.basic.enabled }}
+          {{- if .Values.security.enabled }}
           volumeMounts:
           - name: configmap-auth-ini-volume
             mountPath: /home/oyxia/work/basic_auth.ini
@@ -69,7 +69,7 @@ spec:
           env:
             - name: MLFLOW_S3_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
-            {{- if .Values.security.auth.basic.enabled }}
+            {{- if .Values.security.enabled }}
             - name: MLFLOW_AUTH_CONFIG_PATH
               value: /home/oyxia/work/basic_auth.ini
             {{- end }}

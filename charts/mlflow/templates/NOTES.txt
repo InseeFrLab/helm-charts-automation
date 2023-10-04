@@ -4,12 +4,10 @@
 {{- if .Values.route.enabled }}
 - You can connect to the mlflow UI with your browser on this [link](https://{{ .Values.route.hostname }})
 {{- end }}
+{{- if .Values.security.enabled }}
+- You can connect with username {{ .Values.security.username }} and password {{ .Values.security.password }}
 
-{{- if  .Values.security.auth.basic.enabled }}
-- You can connect with  username {{ .Values.security.auth.basic.username }} and password {{ .Values.security.auth.basic.password }}
-
-For your client use MLFLOW_TRACKING_USERNAME and MLFLOW_TRACKING_PASSWORD
-
+- For your client, use `MLFLOW_TRACKING_USERNAME` and `MLFLOW_TRACKING_PASSWORD`
 {{- end }}
 
 *NOTES about deletion :*

@@ -202,6 +202,7 @@
           "type": "string",
           "description": "Password",
           "default": "changeme",
+          "render": "password",
           "x-onyxia": {
             "overwriteDefaultWith": "{{project.password}}"
           }
