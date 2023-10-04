@@ -1,7 +1,7 @@
 # Default values for postgres.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-  
+
 replicaCount: 1
 
 service:
@@ -13,7 +13,7 @@ service:
       version: ""
   directory: /tmp/mlflow/artifacts/
   proxyArtifact:
-    enabled : true
+    enabled: true
   gunicornTimeout: "600"
   customArgs: #[]
     - --workers=2
@@ -34,26 +34,24 @@ discoverable:
   allow: true
 
 liveness:
-  enabled : "true"
+  enabled: "true"
 
 security:
   # should be configured https://mlflow.org/docs/latest/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access
   # with proxyArtifact.enabled:true
-  auth:
-    basic:
-      enabled: false
-      username: "admin"
-      password: "changeme"
-  networkPolicy: 
+  enabled: false
+  username: "admin"
+  password: "changeme"
+  networkPolicy:
     enabled: false
-    from: 
-    - ipBlock:
-        cidr: 10.233.103.0/32
-    - ipBlock:
-        cidr: 10.233.111.0/32
+    from:
+      - ipBlock:
+          cidr: 10.233.103.0/32
+      - ipBlock:
+          cidr: 10.233.111.0/32
   allowlist:
     enabled: true
-    ip: "0.0.0.0/0"  
+    ip: "0.0.0.0/0"
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -87,7 +85,8 @@ ingress:
   enabled: true
   tls: true
   ingressClassName: ""
-  annotations: []
+  annotations:
+    []
     # kubernetes.io/tls-acme: "true"
   hostname: chart-example.local
   #  - secretName: chart-example-tls
@@ -96,7 +95,8 @@ ingress:
 
 route:
   enabled: false
-  annotations: []
+  annotations:
+    []
     # route.openshift.io/termination: "reencrypt"
   hostname: chart-example.local
   tls:
@@ -110,7 +110,6 @@ route:
 readiness:
   enabled: "true"
 
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -120,10 +119,12 @@ networkPolicy:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -147,8 +148,6 @@ resources_init:
   limits:
     cpu: "100m"
     memory: "128Mi"
-
-
 
 autoscaling:
   enabled: false
