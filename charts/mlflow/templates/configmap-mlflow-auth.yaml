@@ -1,4 +1,4 @@
-{{- if .Values.security.auth.basic.enabled }}
+{{- if .Values.security.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
