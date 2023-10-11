@@ -74,6 +74,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | s3.sessionToken | string | `""` |  |
 | security.allowlist.enabled | bool | `true` |  |
 | security.allowlist.ip | string | `"0.0.0.0/0"` |  |
+| security.default_permission | string | `"READ"` |  |
 | security.enabled | bool | `false` |  |
 | security.networkPolicy.enabled | bool | `false` |  |
 | security.networkPolicy.from[0].ipBlock.cidr | string | `"10.233.103.0/32"` |  |
