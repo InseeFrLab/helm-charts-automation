@@ -42,6 +42,8 @@ security:
   enabled: false
   username: "admin"
   password: "changeme"
+  # see https://www.mlflow.org/docs/latest/auth/index.html#permissions for default_permission possibilities
+  default_permission: READ
   networkPolicy:
     enabled: false
     from:
