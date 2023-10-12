@@ -15,7 +15,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 12.12.10 |
+| https://charts.bitnami.com/bitnami | postgresql | 13.1.2 |
 | https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.14 |
 
 ## Values

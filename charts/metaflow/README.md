@@ -1,6 +1,6 @@
 # metaflow
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Metaflow is a human-friendly Python/R library that helps scientists and engineers build and manage real-life data science projects.
 
@@ -15,7 +15,7 @@ Metaflow is a human-friendly Python/R library that helps scientists and engineer
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 12.12.10 |
+| https://charts.bitnami.com/bitnami | postgresql | 13.1.2 |
 
 ## Values
 
