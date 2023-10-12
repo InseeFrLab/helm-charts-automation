@@ -207,20 +207,6 @@
             "overwriteDefaultWith": "{{project.password}}"
           }
         },
-        "default_permission": {
-          "type": "string",
-          "description": "Permissions for each user's resources, see https://www.mlflow.org/docs/latest/auth/index.html#permissions",
-          "default": "READ",
-          "enum": [
-            "READ",
-            "EDIT",
-            "MANAGE",
-            "NO_PERMISSIONS"
-          ],
-          "hidden": {
-            "value": true
-          }
-        },
         "allowlist": {
           "type": "object",
           "description": "IP protection",
