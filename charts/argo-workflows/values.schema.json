@@ -73,7 +73,10 @@
               "type": "boolean",
               "title": "Enable IP protection",
               "description": "Only the configured set of IPs will be able to reach the service",
-              "default": true
+              "default": true,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultIpProtection"
+              }
             },
             "ip": {
               "type": "string",
