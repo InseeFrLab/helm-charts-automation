@@ -22,11 +22,11 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 
-version: 1.6.4
+version: 1.7.1
 
 dependencies:
   - name: postgresql
-    version: 13.1.2
+    version: 13.1.4
     repository: https://charts.bitnami.com/bitnami
   - name: library-chart
     version: 1.5.14

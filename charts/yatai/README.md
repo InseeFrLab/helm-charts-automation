@@ -1,6 +1,6 @@
 # yatai
 
-![Version: 1.3.2](https://img.shields.io/badge/Version-1.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.3.3](https://img.shields.io/badge/Version-1.3.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes.
 
@@ -17,7 +17,7 @@ Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | common | 2.x |
-| https://charts.bitnami.com/bitnami | postgresql | 13.1.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 13.1.4 |
 
 ## Values
 
