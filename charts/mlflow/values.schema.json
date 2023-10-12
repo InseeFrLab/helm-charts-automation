@@ -113,6 +113,7 @@
         "secretAccessKey": {
           "description": "AWS S3 secret access key",
           "type": "string",
+          "render": "password",
           "x-onyxia": {
             "overwriteDefaultWith": "{{s3.AWS_SECRET_ACCESS_KEY}}"
           },
@@ -124,6 +125,7 @@
         "sessionToken": {
           "description": "AWS S3 session Token",
           "type": "string",
+          "render": "password",
           "x-onyxia": {
             "overwriteDefaultWith": "{{s3.AWS_SESSION_TOKEN}}"
           },
