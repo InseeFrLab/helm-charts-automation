@@ -3,6 +3,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: "1"
+    created: "2023-10-12T13:29:31.512738466Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 5.46.4
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.13
+    description: Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
+    digest: 9000a297ec0617c1a6cc642ccb3c6458386dea345c864050fbeddd8aac9a5d39
+    home: https://argo-cd.readthedocs.io/en/stable/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - gitops
+    - deployment
+    - delivery
+    name: argo-cd
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-datascience/tree/master/charts/argo-cd
+    - https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-cd-0.5.2/argo-cd-0.5.2.tgz
+    version: 0.5.2
+  - apiVersion: v2
+    appVersion: "1"
     created: "2023-10-04T13:59:41.002240213Z"
     dependencies:
     - name: argo-cd
@@ -262,6 +288,33 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-cd-0.0.2/argo-cd-0.0.2.tgz
     version: 0.0.2
   argo-workflows:
+  - apiVersion: v2
+    appVersion: "1"
+    created: "2023-10-12T13:29:31.818829006Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.22.13
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.13
+    description: Argo Workflows is an open source container-native workflow engine
+      for orchestrating parallel jobs on Kubernetes.
+    digest: 3416c7b11e4b054070fed8eaa3b146ca8c060bfd099314ab893022b69037c5f3
+    home: https://argoproj.github.io/argo-workflows/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - Worklow
+    - Job
+    - Task
+    name: argo-workflows
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-datascience/tree/master/charts/argo-workflows
+    - https://github.com/argoproj/argo-helm/tree/master/charts/argo-workflows
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-0.3.2/argo-workflows-0.3.2.tgz
+    version: 0.3.2
   - apiVersion: v2
     appVersion: "1"
     created: "2023-10-04T13:59:41.198268957Z"
@@ -1542,4 +1595,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2023-10-12T07:25:17.836348501Z"
+generated: "2023-10-12T13:29:31.818980622Z"
