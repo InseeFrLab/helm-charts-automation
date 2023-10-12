@@ -15,7 +15,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 12.12.10 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.13 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.14 |
 
 ## Values
 
