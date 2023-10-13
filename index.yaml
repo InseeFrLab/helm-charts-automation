@@ -570,6 +570,29 @@ entries:
     version: 0.0.1
   label-studio:
   - apiVersion: v2
+    created: "2023-10-13T12:12:01.521727482Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.14
+    description: Data Science starts with data. Label Studio removes the pain of labeling
+      it.
+    digest: 34c3594a813812a2a8d950530c1bb3aaca43ef5e76f3d606da436f49d708a4ae
+    home: https://labelstud.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/labelStudio.png
+    keywords:
+    - ML
+    name: label-studio
+    sources:
+    - https://github.com/heartexlabs/label-studio
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-0.3.5/label-studio-0.3.5.tgz
+    version: 0.3.5
+  - apiVersion: v2
     created: "2023-10-12T17:01:54.179046587Z"
     dependencies:
     - name: postgresql
@@ -800,6 +823,28 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-0.0.1/label-studio-0.0.1.tgz
     version: 0.0.1
   metaflow:
+  - apiVersion: v2
+    created: "2023-10-13T12:12:01.681065557Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Metaflow is a human-friendly Python/R library that helps scientists
+      and engineers build and manage real-life data science projects.
+    digest: 0d9fbcd0df2ea88fc2ebd59ddf902d11fdc6942d5320e520bb504fdb49581fb5
+    home: https://metaflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/metaflow.png
+    keywords:
+    - mlops
+    name: metaflow
+    sources:
+    - https://github.com/Netflix/metaflow
+    - https://github.com/outerbounds/metaflow-tools
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-0.2.4/metaflow-0.2.4.tgz
+    version: 0.2.4
   - apiVersion: v2
     created: "2023-10-12T17:01:54.379681255Z"
     dependencies:
@@ -1043,6 +1088,30 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-0.0.1/metaflow-0.0.1.tgz
     version: 0.0.1
   mlflow:
+  - apiVersion: v2
+    created: "2023-10-13T12:12:01.887903942Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.14
+    description: MLflow is an open source platform to manage the ML lifecycle, including
+      experimentation, reproducibility, deployment, and a central model registry.
+    digest: 5d563fca7cad2c34556d93d52665e45d1f13e68524655d77a0d2462d28d5fddc
+    home: https://mlflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/mlflow.png
+    keywords:
+    - ML
+    name: mlflow
+    sources:
+    - https://github.com/InseeFrLab/mlflow
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/mlflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-1.7.3/mlflow-1.7.3.tgz
+    version: 1.7.3
   - apiVersion: v2
     created: "2023-10-12T17:07:29.506857851Z"
     dependencies:
@@ -1790,6 +1859,30 @@ entries:
     version: 0.0.1
   yatai:
   - apiVersion: v2
+    created: "2023-10-13T12:12:02.110649465Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Yatai lets you deploy, operate and scale Machine Learning services
+      on Kubernetes.
+    digest: f5b9206e7cfea686fb887c40e242d32941ed218127401d5d41b133794fce6739
+    home: https://github.com/bentoml/yatai
+    name: yatai
+    sources:
+    - https://github.com/bentoml/yatai
+    - https://github.com/bentoml/yatai-deployment
+    - https://github.com/bentoml/yatai-image-builder
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.3.4/yatai-1.3.4.tgz
+    version: 1.3.4
+  - apiVersion: v2
     created: "2023-10-12T17:01:54.860240382Z"
     dependencies:
     - name: common
@@ -1933,4 +2026,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2023-10-12T17:07:29.507392851Z"
+generated: "2023-10-13T12:12:02.112159878Z"
