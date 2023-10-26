@@ -57,8 +57,8 @@ spec:
           imagePullPolicy: {{ .Values.service.image.pullPolicy }}
           envFrom: 
             {{- if .Values.s3.enabled }}
-            - configMapRef:
-                name: {{ include "library-chart.configMapNameS3" . }}
+            - secretRef:
+                name: {{ include "library-chart.secretNameS3" . }}
             {{- end }}
           {{- if .Values.security.enabled }}
           volumeMounts:
