@@ -162,7 +162,7 @@
           "title": "Hostname",
           "x-onyxia": {
               "hidden": true,
-              "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+              "overwriteDefaultWith": "{{project.id}}-label-studio.{{k8s.domain}}"
           }
         },
         "ingressClassName": {
