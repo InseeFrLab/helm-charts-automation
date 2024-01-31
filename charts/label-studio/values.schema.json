@@ -141,10 +141,9 @@
               }
           }
       }
-  },
+    },
     "ingress": {
       "type": "object",
-      "form": true,
       "title": "Ingress Details",
       "properties": {
         "enabled": {
@@ -158,16 +157,14 @@
         },
         "hostname": {
           "type": "string",
-          "form": true,
           "title": "Hostname",
           "x-onyxia": {
-              "hidden": true,
+              "hidden": false,
               "overwriteDefaultWith": "{{project.id}}-label-studio.{{k8s.domain}}"
           }
         },
         "ingressClassName": {
           "type": "string",
-          "form": true,
           "title": "ingressClassName",
           "default": "",
           "x-onyxia": {
@@ -179,7 +176,6 @@
     },
     "route": {
         "type": "object",
-        "form": true,
         "title": "Route details",
         "properties": {
             "enabled": {
@@ -193,7 +189,6 @@
             },
             "hostname": {
                 "type": "string",
-                "form": true,
                 "title": "Hostname",
                 "x-onyxia": {
                     "hidden": true,
