@@ -1,6 +1,6 @@
 # argo-workflows
 
-![Version: 0.3.5](https://img.shields.io/badge/Version-0.3.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 0.3.6](https://img.shields.io/badge/Version-0.3.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes.
 
@@ -16,7 +16,7 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 | Repository | Name | Version |
 |------------|------|---------|
 | https://argoproj.github.io/argo-helm | argo-workflows | 0.34.0 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.14 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.19 |
 
 ## Values
 
@@ -36,10 +36,12 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 | argo-workflows.workflow.serviceAccount.create | bool | `true` |  |
 | argo-workflows.workflow.serviceAccount.name | string | `"argo-workflows"` |  |
 | ingress.annotations | list | `[]` |  |
+| ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
 | ingress.hostname | string | `"chart-example.local"` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.tls | bool | `true` |  |
+| ingress.useCertManager | bool | `false` |  |
 | route.annotations | list | `[]` |  |
 | route.enabled | bool | `false` |  |
 | route.hostname | string | `"chart-example.local"` |  |
