@@ -16,7 +16,7 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | Repository | Name | Version |
 |------------|------|---------|
 | https://argoproj.github.io/argo-helm | argo-cd | 5.51.4 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.14 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
 
 ## Values
 
