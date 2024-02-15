@@ -3,6 +3,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: "1"
+    created: "2024-02-15T10:38:16.454790901Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 5.51.4
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.21
+    description: Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
+    digest: e51e3da671714009a401761c17f28708ad6075ae513b6b2bf8e33d21d30516fb
+    home: https://argo-cd.readthedocs.io/en/stable/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - gitops
+    - deployment
+    - delivery
+    name: argo-cd
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-datascience/tree/master/charts/argo-cd
+    - https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-cd-0.5.5/argo-cd-0.5.5.tgz
+    version: 0.5.5
+  - apiVersion: v2
+    appVersion: "1"
     created: "2023-11-28T13:22:25.255315402Z"
     dependencies:
     - name: argo-cd
@@ -622,6 +648,29 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-0.0.1/argo-workflows-0.0.1.tgz
     version: 0.0.1
   label-studio:
+  - apiVersion: v2
+    created: "2024-02-15T10:38:16.583356757Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.15
+    description: Data Science starts with data. Label Studio removes the pain of labeling
+      it.
+    digest: 4234d52c0a7364d1eee1634d63b842a5ecffd90fdced3816d2aed7ce3517651b
+    home: https://labelstud.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/labelStudio.png
+    keywords:
+    - ML
+    name: label-studio
+    sources:
+    - https://github.com/heartexlabs/label-studio
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-0.5.2/label-studio-0.5.2.tgz
+    version: 0.5.2
   - apiVersion: v2
     created: "2024-02-01T09:09:43.371017514Z"
     dependencies:
@@ -2196,4 +2245,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2024-02-09T13:37:39.838192558Z"
+generated: "2024-02-15T10:38:16.583638311Z"
