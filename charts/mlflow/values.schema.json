@@ -156,7 +156,7 @@
           "title": "Hostname",
           "x-onyxia": {
             "hidden": false,
-            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+            "overwriteDefaultWith": "{{project.id}}-mlflow.{{k8s.domain}}"
           }
         },
         "ingressClassName": {
@@ -191,7 +191,7 @@
           "title": "Hostname",
           "x-onyxia": {
             "hidden": false,
-            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+            "overwriteDefaultWith": "{{project.id}}-mlflow.{{k8s.domain}}"
           }
         }
       }

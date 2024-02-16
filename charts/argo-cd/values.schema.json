@@ -22,7 +22,7 @@
           "title": "Hostname",
           "default": "chart-example.local",
           "x-onyxia": {
-            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+            "overwriteDefaultWith": "{{project.id}}-argo-cd.{{k8s.domain}}"
           }
         },
         "ingressClassName": {
@@ -57,7 +57,7 @@
           "title": "Hostname",
           "x-onyxia": {
             "hidden": true,
-            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-0.{{k8s.domain}}"
+            "overwriteDefaultWith": "{{project.id}}-argo-cd.{{k8s.domain}}"
           }
         }
       }
