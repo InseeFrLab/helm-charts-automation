@@ -16,7 +16,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 13.1.5 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.15 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.19 |
 
 ## Values
 
@@ -31,10 +31,12 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
+| ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
 | ingress.hostname | string | `"chart-example.local"` |  |
 | ingress.ingressClassName | string | `""` |  |
 | ingress.tls | bool | `true` |  |
+| ingress.useCertManager | bool | `false` |  |
 | liveness.enabled | string | `"true"` |  |
 | nameOverride | string | `""` |  |
 | networkPolicy.enabled | bool | `false` |  |
