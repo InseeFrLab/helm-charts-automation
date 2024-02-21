@@ -16,7 +16,7 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 | Repository | Name | Version |
 |------------|------|---------|
 | https://argoproj.github.io/argo-helm | argo-workflows | 0.40.11 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.19 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
 
 ## Values
 
