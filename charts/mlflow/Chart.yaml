@@ -29,5 +29,5 @@ dependencies:
     version: 13.1.5
     repository: https://charts.bitnami.com/bitnami
   - name: library-chart
-    version: 1.5.15
+    version: 1.5.19
     repository: https://inseefrlab.github.io/helm-charts-interactive-services
