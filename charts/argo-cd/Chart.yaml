@@ -8,7 +8,7 @@ keywords:
   - delivery
 home: https://argo-cd.readthedocs.io/en/stable/
 sources:
-  - https://github.com/InseeFrLab/helm-charts-datascience/tree/master/charts/argo-cd
+  - https://github.com/InseeFrLab/helm-charts-automation/blob/master/charts/argo-cd
   - https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
 
 # A chart can be either an 'application' or a 'library' chart.
