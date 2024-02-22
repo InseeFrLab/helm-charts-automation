@@ -50,6 +50,7 @@ argo-cd:
   applicationSet:
     enabled: false
   createAggregateRoles: false
+  createClusterRoles: false
   fullnameOverride: "argocd"
   controller:
     name: application-controller
