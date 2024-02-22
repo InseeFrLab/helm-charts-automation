@@ -1,6 +1,6 @@
 # argo-cd
 
-![Version: 0.5.9](https://img.shields.io/badge/Version-0.5.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 0.5.10](https://img.shields.io/badge/Version-0.5.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
@@ -25,11 +25,6 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | apiserver | string | `"https://kubernetes.default.svc"` |  |
 | argo-cd.applicationSet.enabled | bool | `false` |  |
 | argo-cd.configs.secret.createSecret | bool | `false` |  |
-| argo-cd.controller.args.appResyncPeriod | string | `"180"` |  |
-| argo-cd.controller.args.operationProcessors | string | `"10"` |  |
-| argo-cd.controller.args.repoServerTimeoutSeconds | string | `"60"` |  |
-| argo-cd.controller.args.selfHealTimeout | string | `"5"` |  |
-| argo-cd.controller.args.statusProcessors | string | `"20"` |  |
 | argo-cd.controller.clusterAdminAccess.enabled | bool | `false` |  |
 | argo-cd.controller.clusterRoleRules.enabled | bool | `false` |  |
 | argo-cd.controller.clusterRoleRules.rules | list | `[]` |  |
