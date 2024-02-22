@@ -60,12 +60,6 @@ argo-cd:
       imagePullPolicy: # IfNotPresent
     replicas: 1
     enableStatefulSet: true
-    args:
-      statusProcessors: "20"
-      operationProcessors: "10"
-      appResyncPeriod: "180"
-      selfHealTimeout: "5"
-      repoServerTimeoutSeconds: "60"
     extraArgs:
       - --namespace
       - $(KUBERNETES_NAMESPACE)
