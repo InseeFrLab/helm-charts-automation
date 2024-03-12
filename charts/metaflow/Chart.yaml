@@ -9,10 +9,10 @@ sources:
 - https://github.com/Netflix/metaflow
 - https://github.com/outerbounds/metaflow-tools
 type: application
-version: 0.2.4
+version: 0.2.5
 
 dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 13.1.5
+  version: 14.3.3
   condition: postgresql.enabled
