@@ -1411,6 +1411,30 @@ entries:
     version: 0.0.1
   mlflow:
   - apiVersion: v2
+    created: "2024-04-09T09:38:18.363710689Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.21
+    description: MLflow is an open source platform to manage the ML lifecycle, including
+      experimentation, reproducibility, deployment, and a central model registry.
+    digest: 3a8c4ab72ebaa486e37435a0f8e708458a9cc3cb66b964b51c5bbd29d7f9f8c0
+    home: https://mlflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/mlflow.png
+    keywords:
+    - ML
+    name: mlflow
+    sources:
+    - https://github.com/InseeFrLab/mlflow
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/mlflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-1.7.8/mlflow-1.7.8.tgz
+    version: 1.7.8
+  - apiVersion: v2
     created: "2024-02-21T17:43:56.503078196Z"
     dependencies:
     - name: postgresql
@@ -2444,4 +2468,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2024-02-22T11:07:51.076549413Z"
+generated: "2024-04-09T09:38:18.364042621Z"
