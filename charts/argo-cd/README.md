@@ -1,6 +1,6 @@
 # argo-cd
 
-![Version: 0.5.9](https://img.shields.io/badge/Version-0.5.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 0.5.10](https://img.shields.io/badge/Version-0.5.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
@@ -15,7 +15,7 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://argoproj.github.io/argo-helm | argo-cd | 6.2.3 |
+| https://argoproj.github.io/argo-helm | argo-cd | 6.11.1 |
 | https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
 
 ## Values
@@ -23,7 +23,7 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | apiserver | string | `"https://kubernetes.default.svc"` |  |
-| argo-cd.applicationSet.enabled | bool | `false` |  |
+| argo-cd.applicationSet.replicas | int | `0` |  |
 | argo-cd.configs.secret.createSecret | bool | `false` |  |
 | argo-cd.controller.args.appResyncPeriod | string | `"180"` |  |
 | argo-cd.controller.args.operationProcessors | string | `"10"` |  |
