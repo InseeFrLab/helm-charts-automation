@@ -48,7 +48,7 @@ argo-cd:
   notifications:
     enabled: false
   applicationSet:
-    enabled: false
+    replicas: 0
   createAggregateRoles: false
   createClusterRoles: false
   fullnameOverride: "argocd"
