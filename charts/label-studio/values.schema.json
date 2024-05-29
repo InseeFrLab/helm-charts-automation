@@ -306,6 +306,17 @@
           }
         }
       }
+    },
+    "postgresql": {
+      "description": "Other postgres configuration",
+      "type": "object",
+      "title": "Database",
+      "properties": {
+        "fullnameOverride": {
+          "type": "string",
+          "title": "Id for the database",
+          "default": "label-studio-db"
+      }
     }
   }
 }
