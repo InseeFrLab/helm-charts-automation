@@ -316,6 +316,7 @@
           "type": "string",
           "title": "Id for the database",
           "default": "label-studio-db"
+        }
       }
     }
   }
