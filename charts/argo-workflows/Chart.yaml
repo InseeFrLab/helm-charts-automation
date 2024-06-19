@@ -8,8 +8,8 @@ keywords:
   - Task
 home: https://argoproj.github.io/argo-workflows/
 sources:
-  - https://github.com/InseeFrLab/helm-charts-datascience/tree/master/charts/argo-workflows
-  - https://github.com/argoproj/argo-helm/tree/master/charts/argo-workflows
+  - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -24,7 +24,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.8
+version: 0.3.9
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to

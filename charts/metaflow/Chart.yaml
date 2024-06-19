@@ -6,10 +6,11 @@ keywords:
 - mlops
 home: https://metaflow.org
 sources:
+- https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/metaflow
 - https://github.com/Netflix/metaflow
 - https://github.com/outerbounds/metaflow-tools
 type: application
-version: 0.2.4
+version: 0.2.5
 
 dependencies:
 - name: postgresql
