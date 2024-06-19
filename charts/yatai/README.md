@@ -1,6 +1,6 @@
 # yatai
 
-![Version: 1.3.4](https://img.shields.io/badge/Version-1.3.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.3.5](https://img.shields.io/badge/Version-1.3.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes.
 
@@ -8,6 +8,7 @@ Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes
 
 ## Source Code
 
+* <https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows>
 * <https://github.com/bentoml/yatai>
 * <https://github.com/bentoml/yatai-deployment>
 * <https://github.com/bentoml/yatai-image-builder>

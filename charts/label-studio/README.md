@@ -1,6 +1,6 @@
 # label-studio
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.6.1](https://img.shields.io/badge/Version-0.6.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Data Science starts with data. Label Studio removes the pain of labeling it.
 
@@ -8,7 +8,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 
 ## Source Code
 
-* <https://github.com/heartexlabs/label-studio>
+* <https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/label-studio>
 
 ## Requirements
 
