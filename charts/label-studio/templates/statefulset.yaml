@@ -83,7 +83,7 @@ spec:
   - metadata:
       name: data
     spec:
-      accessModes: "{{ .Values.persistence.accessMode }}"
+      accessModes: ["{{ .Values.persistence.accessMode }}"]
       {{- if .Values.persistence.storageClass }}
       {{- if (eq "-" .Values.persistence.storageClass) }}
       storageClassName: ""

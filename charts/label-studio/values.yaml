@@ -88,8 +88,8 @@ networkPolicy:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 1001
 
 securityContext: {}
   # capabilities:
