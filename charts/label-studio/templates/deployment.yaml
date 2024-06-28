@@ -52,7 +52,7 @@ spec:
             - name: POSTGRE_NAME
               value: postgres
             - name: POSTGRE_USER
-              value: {{ .Values.postgresql.username }}
+              value: postgres
             - name: POSTGRE_PASSWORD
               value: {{ .Values.postgresql.password }}
             - name: POSTGRE_PORT
