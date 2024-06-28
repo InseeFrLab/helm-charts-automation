@@ -47,6 +47,18 @@ spec:
               value: "https://{{ .Values.s3.endpoint }}"
             - name: S3-region
               value: {{ .Values.s3.defaultRegion }}
+            - name: DJANGO_DB
+              value: default
+            - name: POSTGRE_NAME
+              value: postgres
+            - name: POSTGRE_USER
+              value: {{ .Values.postgresql.username }}
+            - name: POSTGRE_PASSWORD
+              value: {{ .Values.postgresql.password }}
+            - name: POSTGRE_PORT
+              value: 5432
+            - name: POSTGRE_HOST
+              value: {{ .Values.postgresql.fullnameOverride }}
           ports:
             - name: http
               containerPort: 8080
