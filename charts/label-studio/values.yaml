@@ -1,20 +1,11 @@
-# Default values for postgres.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-global:
-  postgresql:
-    postgresqlDatabase: "studio"
-    postgresqlUser: "admin"
-    postgresqlPassword: "changeme"
-  
-replicaCount: 1
-
 service:
   image:
     repository: "heartexlabs/label-studio"
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: "latest"
+
+replicaCount: 1
 
 liveness:
   enabled : "true"
@@ -45,8 +36,24 @@ security:
 
 postgresql:
   image:
-    tag: "12"
+    tag: "15"
+  auth:
+    username: "admin"
+    password: "changeme"
+    postgresPassword: "changeme"
+    database: "labelstudio"
   fullnameOverride: "label-studio-db"
+  primary:
+    resources:
+      limits:
+        cpu: "1000m"
+        memory: "2000Mi"
+      requests:
+        memory: 256Mi
+        cpu: 250m
+    persistence:
+      enabled: true
+      size: 5Gi
 
 networking:
   type: ClusterIP
