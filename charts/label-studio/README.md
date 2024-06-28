@@ -1,6 +1,6 @@
 # label-studio
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Data Science starts with data. Label Studio removes the pain of labeling it.
 
@@ -14,7 +14,6 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 13.1.5 |
 | https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
 
 ## Values
@@ -39,20 +38,11 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | networking.service.port | int | `80` |  |
 | networking.type | string | `"ClusterIP"` |  |
 | nodeSelector | object | `{}` |  |
+| persistence.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.enabled | bool | `true` |  |
+| persistence.size | string | `"10Gi"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| postgresql.auth.database | string | `"labelstudio"` |  |
-| postgresql.auth.password | string | `"changeme"` |  |
-| postgresql.auth.postgresPassword | string | `"changeme"` |  |
-| postgresql.auth.username | string | `"admin"` |  |
-| postgresql.fullnameOverride | string | `"label-studio-db"` |  |
-| postgresql.image.tag | string | `"15"` |  |
-| postgresql.primary.persistence.enabled | bool | `true` |  |
-| postgresql.primary.persistence.size | string | `"5Gi"` |  |
-| postgresql.primary.resources.limits.cpu | string | `"1000m"` |  |
-| postgresql.primary.resources.limits.memory | string | `"2000Mi"` |  |
-| postgresql.primary.resources.requests.cpu | string | `"250m"` |  |
-| postgresql.primary.resources.requests.memory | string | `"256Mi"` |  |
 | readiness.enabled | string | `"true"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
