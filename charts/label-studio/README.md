@@ -1,6 +1,6 @@
 # label-studio
 
-![Version: 0.6.1](https://img.shields.io/badge/Version-0.6.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Data Science starts with data. Label Studio removes the pain of labeling it.
 
@@ -27,9 +27,6 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
-| global.postgresql.postgresqlDatabase | string | `"studio"` |  |
-| global.postgresql.postgresqlPassword | string | `"changeme"` |  |
-| global.postgresql.postgresqlUser | string | `"admin"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.enabled | bool | `true` |  |
@@ -44,8 +41,18 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| postgresql.auth.database | string | `"labelstudio"` |  |
+| postgresql.auth.password | string | `"changeme"` |  |
+| postgresql.auth.postgresPassword | string | `"changeme"` |  |
+| postgresql.auth.username | string | `"admin"` |  |
 | postgresql.fullnameOverride | string | `"label-studio-db"` |  |
-| postgresql.image.tag | string | `"12"` |  |
+| postgresql.image.tag | string | `"15"` |  |
+| postgresql.primary.persistence.enabled | bool | `true` |  |
+| postgresql.primary.persistence.size | string | `"5Gi"` |  |
+| postgresql.primary.resources.limits.cpu | string | `"1000m"` |  |
+| postgresql.primary.resources.limits.memory | string | `"2000Mi"` |  |
+| postgresql.primary.resources.requests.cpu | string | `"250m"` |  |
+| postgresql.primary.resources.requests.memory | string | `"256Mi"` |  |
 | readiness.enabled | string | `"true"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
