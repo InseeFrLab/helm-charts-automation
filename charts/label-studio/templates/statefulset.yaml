@@ -29,9 +29,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          {{- if .Values.persistence.enabled }}
           volumeMounts:
             - name: data
               mountPath: /label-studio/data
+          {{- end }}
           envFrom: 
             {{- if .Values.s3.enabled }}
             - secretRef:
@@ -76,7 +78,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if not .Values.persistence.enabled }}
+  {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
   - metadata:
       name: data
