@@ -34,26 +34,19 @@ security:
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-postgresql:
-  image:
-    tag: "15"
-  auth:
-    username: "admin"
-    password: "changeme"
-    postgresPassword: "changeme"
-    database: "labelstudio"
-  fullnameOverride: "label-studio-db"
-  primary:
-    resources:
-      limits:
-        cpu: "1000m"
-        memory: "2000Mi"
-      requests:
-        memory: 256Mi
-        cpu: 250m
-    persistence:
-      enabled: true
-      size: 5Gi
+persistence:
+  enabled: true
+  ## database data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 10Gi
+  # existingClaim: ""
 
 networking:
   type: ClusterIP

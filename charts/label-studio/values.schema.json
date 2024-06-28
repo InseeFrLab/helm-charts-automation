@@ -2,6 +2,11 @@
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
   "properties": {
+    "fullnameOverride": {
+          "type": "string",
+          "title": "Name of the mysql database",
+          "default": "label-studio-db"
+    },
     "security": {
       "description": "security specific configuration",
       "type": "object",
@@ -266,67 +271,6 @@
               "sliderExtremity": "up",
               "sliderExtremitySemantic": "Maximum",
               "sliderRangeId": "memory"
-            }
-          }
-        }
-      }
-    },
-    "postgresql": {
-      "description": "postgres specific configuration",
-      "type": "object",
-      "title": "Database",
-      "properties": {
-        "image": {
-          "description": "image specific configuration",
-          "type": "object",
-          "properties": {
-            "tag": {
-              "description": "postgresql major version",
-              "type": "string",
-              "enum": [
-                "12",
-                "13",
-                "14",
-                "15"
-              ],
-              "default": "15"
-            }
-          }
-        },
-        "auth": {
-          "description": "postgres specific configuration",
-          "type": "object",
-          "title": "Authentification",
-          "properties": {
-            "username": {
-              "type": "string",
-              "title": "User",
-              "default": "user",
-              "x-onyxia": {
-                "overwriteDefaultWith": "{{project.id}}"
-              }
-            },
-            "password": {
-              "type": "string",
-              "title": "User Password",
-              "default": "changeme",
-              "x-onyxia": {
-                "overwriteDefaultWith": "{{project.password}}"
-              }
-            },
-            "postgresPassword": {
-              "type": "string",
-              "title": "Admin Password",
-              "default": "changeme",
-              "x-onyxia": {
-                "overwriteDefaultWith": "{{project.password}}"
-              }
-            },
-            "database": {
-              "description": "Name for the default database that is created when the image is first started.",
-              "type": "string",
-              "title": "Database",
-              "default": "labelstudio"
             }
           }
         }
