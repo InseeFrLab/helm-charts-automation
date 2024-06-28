@@ -46,10 +46,8 @@ spec:
               value: {{ .Values.security.username }}
             - name: LABEL_STUDIO_PASSWORD
               value: {{ .Values.security.password }}
-            - name: S3_ENDPOINT
+            - name: AWS_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
-            - name: S3-region
-              value: {{ .Values.s3.defaultRegion }}
           ports:
             - name: http
               containerPort: 8080
