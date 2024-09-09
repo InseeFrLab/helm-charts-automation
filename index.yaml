@@ -2713,6 +2713,31 @@ entries:
     version: 0.0.1
   yatai:
   - apiVersion: v2
+    created: "2024-09-09T14:41:54.689283701Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Yatai lets you deploy, operate and scale Machine Learning services
+      on Kubernetes.
+    digest: be36dc1958da2a2a0c4fc62cfc9e47f012cb5cd27f27a912cb011df95fc8374c
+    home: https://github.com/bentoml/yatai
+    name: yatai
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+    - https://github.com/bentoml/yatai
+    - https://github.com/bentoml/yatai-deployment
+    - https://github.com/bentoml/yatai-image-builder
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-2.0.0/yatai-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     created: "2024-06-19T18:22:12.527774727Z"
     dependencies:
     - name: common
@@ -2905,4 +2930,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2024-09-09T14:40:28.95118674Z"
+generated: "2024-09-09T14:41:54.689638472Z"
