@@ -66,63 +66,32 @@
       "description": "security specific configuration",
       "type": "object",
       "properties": {
-        "allowlist": {
-          "type": "object",
-          "description": "IP protection",
-          "properties": {
-            "enabled": {
-              "type": "boolean",
-              "title": "Enable IP protection",
-              "description": "Only the configured set of IPs will be able to reach the service",
-              "default": true,
-              "x-onyxia": {
-                "overwriteDefaultWith": "region.defaultIpProtection"
-              }
-            },
-            "ip": {
-              "type": "string",
-              "description": "the white list of IP is whitespace",
-              "title": "Whitelist of IP",
-              "x-onyxia": {
-                "overwriteDefaultWith": "{{user.ip}}"
-              },
-              "hidden": {
-                "value": false,
-                "path": "security/allowlist/enabled"
-              }
-            }
-          }
-        },
         "networkPolicy": {
-          "type": "object",
-          "description": "Define access policy to the service",
-          "properties": {
-            "enabled": {
-              "type": "boolean",
-              "title": "Enable network policy",
-              "description": "Only pod from the same namespace will be allowed",
-              "default": true,
-              "x-onyxia": {
-                "overwriteDefaultWith": "region.defaultNetworkPolicy"
-              }
+            "type": "object",
+            "description": "Define access policy to the service",
+            "x-onyxia": {
+                "overwriteSchemaWith": "network-policy.json"
             },
-            "from": {
-              "type": "array",
-              "description": "Array of source allowed to have network access to your service",
-              "default": [
-                {
-                  "namespaceSelector": {
-                    "matchLabels": {
-                      "kubernetes.io/metadata.name": "ingress"
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "Enable network policy",
+                    "description": "Only pod from the same namespace will be allowed",
+                    "default": false,
+                    "x-onyxia": {
+                        "overwriteDefaultWith": "region.defaultNetworkPolicy"
                     }
-                  }
+                },
+                "from": {
+                    "type": "array",
+                    "description": "Array of source allowed to have network access to your service",
+                    "default": [],
+                    "x-onyxia": {
+                        "hidden": true,
+                        "overwriteDefaultWith": "region.from"
+                    }
                 }
-              ],
-              "x-onyxia": {
-                "overwriteDefaultWith": "region.from"
-              }
             }
-          }
         }
       }
     },
@@ -154,7 +123,9 @@
               "description": "Array of tolerations",
               "default": [],
               "x-onyxia": {
-                "overwriteDefaultWith": "region.tolerations"
+                "hidden": true,
+                "overwriteDefaultWith": "region.tolerations",
+                "overwriteSchemaWith": "tolerations.json"
               }
             },
             "nodeSelector": {
@@ -162,7 +133,9 @@
               "description": "NodeSelector",
               "default": {},
               "x-onyxia": {
-                "overwriteDefaultWith": "region.nodeSelector"
+                "hidden": true,
+                "overwriteDefaultWith": "region.nodeSelector",
+                "overwriteSchemaWith": "nodeSelector.json"
               }
             }
           }
@@ -176,7 +149,9 @@
               "description": "Array of tolerations",
               "default": [],
               "x-onyxia": {
-                "overwriteDefaultWith": "region.tolerations"
+                "hidden": true,
+                "overwriteDefaultWith": "region.tolerations",
+                "overwriteSchemaWith": "tolerations.json"
               }
             },
             "nodeSelector": {
@@ -184,7 +159,9 @@
               "description": "NodeSelector",
               "default": {},
               "x-onyxia": {
-                "overwriteDefaultWith": "region.nodeSelector"
+                "hidden": true,
+                "overwriteDefaultWith": "region.nodeSelector",
+                "overwriteSchemaWith": "nodeSelector.json"
               }
             }
           }
@@ -198,7 +175,9 @@
               "description": "Array of tolerations",
               "default": [],
               "x-onyxia": {
-                "overwriteDefaultWith": "region.tolerations"
+                "hidden": true,
+                "overwriteDefaultWith": "region.tolerations",
+                "overwriteSchemaWith": "tolerations.json"
               }
             },
             "nodeSelector": {
@@ -206,7 +185,9 @@
               "description": "NodeSelector",
               "default": {},
               "x-onyxia": {
-                "overwriteDefaultWith": "region.nodeSelector"
+                "hidden": true,
+                "overwriteDefaultWith": "region.nodeSelector",
+                "overwriteSchemaWith": "nodeSelector.json"
               }
             }
           }
@@ -220,7 +201,9 @@
               "description": "Array of tolerations",
               "default": [],
               "x-onyxia": {
-                "overwriteDefaultWith": "region.tolerations"
+                "hidden": true,
+                "overwriteDefaultWith": "region.tolerations",
+                "overwriteSchemaWith": "tolerations.json"
               }
             },
             "nodeSelector": {
@@ -228,7 +211,9 @@
               "description": "NodeSelector",
               "default": {},
               "x-onyxia": {
-                "overwriteDefaultWith": "region.nodeSelector"
+                "hidden": true,
+                "overwriteDefaultWith": "region.nodeSelector",
+                "overwriteSchemaWith": "nodeSelector.json"
               }
             }
           }
