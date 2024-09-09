@@ -10,7 +10,7 @@ sources:
 - https://github.com/Netflix/metaflow
 - https://github.com/outerbounds/metaflow-tools
 type: application
-version: 0.2.5
+version: 1.0.0
 
 dependencies:
 - name: postgresql
