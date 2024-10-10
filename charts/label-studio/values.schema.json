@@ -4,7 +4,7 @@
   "properties": {
     "fullnameOverride": {
           "type": "string",
-          "title": "Name of the mysql database",
+          "title": "Name of the Label-studio helm service",
           "default": "label-studio-db"
     },
     "persistence": {
@@ -48,7 +48,7 @@
           },
           "username": {
             "type": "string",
-            "title": "username",
+            "title": "User name",
             "default": "username",
             "x-onyxia": {
               "overwriteDefaultWith": "{{user.email}}"
