@@ -1,6 +1,6 @@
 # label-studio
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 3.0.2](https://img.shields.io/badge/Version-3.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Data Science starts with data. Label Studio removes the pain of labeling it.
 
@@ -65,7 +65,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | security.password | string | `"changeme"` |  |
 | security.username | string | `"username"` |  |
 | securityContext | object | `{}` |  |
-| service.image.pullPolicy | string | `"IfNotPresent"` |  |
+| service.image.pullPolicy | string | `"Always"` |  |
 | service.image.repository | string | `"heartexlabs/label-studio"` |  |
 | service.image.tag | string | `"latest"` |  |
 | tolerations | list | `[]` |  |
