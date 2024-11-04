@@ -1,7 +1,7 @@
 service:
   image:
     repository: "heartexlabs/label-studio"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: "latest"
 
