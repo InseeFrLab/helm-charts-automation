@@ -34,11 +34,11 @@ spec:
             - name: data
               mountPath: /label-studio/data
           {{- end }}
-          envFrom: 
+          envFrom:
             {{- if .Values.s3.enabled }}
             - secretRef:
                 name: {{ include "library-chart.secretNameS3" . }}
-            {{- end }}        
+            {{- end }}
           env:
             - name: LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK
               value: "true"
@@ -48,6 +48,8 @@ spec:
               value: {{ .Values.security.password }}
             - name: AWS_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
+            - name: CSRF_TRUSTED_ORIGINS
+              value: "http{{ if .Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }}"
           ports:
             - name: http
               containerPort: 8080
@@ -63,7 +65,7 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 20
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}         
+            {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
