@@ -14,7 +14,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.30 |
 
 ## Values
 
