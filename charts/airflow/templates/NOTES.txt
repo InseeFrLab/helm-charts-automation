@@ -11,19 +11,18 @@
 
 {{- if eq .Values.userPreferences.language "fr" -}}
 
+**Informations de connexion :**
 {{- with index .Values.airflow.airflow.users 0 }}
 - Votre nom d'utilisateur est **{{ .username }}**
 - Votre mot de passe est **{{ .password }}**
-{{ end -}}
-
+{{- end -}}
 {{- if .Values.ingress.enabled }}
 - Vous pouvez vous connecter à Apache Airflow avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
-{{- end }}
+{{- end -}}
 
 {{- if not (empty $pvcList) }}
 
 **NOTES sur la suppression :**
-
 - **Vous pouvez supprimer ce chart en toute sécurité et en recréer un plus tard**
 - Les volumes de données ne seront pas supprimés
 - Si vous démarrez un nouveau {{ .Chart.Name }}, il réutilisera automatiquement ces volumes.
@@ -36,19 +35,18 @@
 
   {{ end -}}
 
+**Connection information:**
 {{- with index .Values.airflow.airflow.users 0 }}
 - Your username is **{{ .username }}**
 - Your password is **{{ .password }}**
-{{ end -}}
-
+{{- end -}}
 {{- if .Values.ingress.enabled }}
 - You can connect to Apache Airflow with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
 {{- end -}}
 
 {{- if not (empty $pvcList) }}
 
-*NOTES about deletion:*
-
+**NOTES about deletion:**
 - **You can safely delete this chart and recreate one later**
 - The underlying data volumes will not be deleted
 - If you start a new Airflow service, it will automatically reuse those volumes
