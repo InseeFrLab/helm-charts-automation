@@ -69,27 +69,27 @@
           "type": "object",
           "description": "Define access policy to the service",
           "x-onyxia": {
-              "overwriteSchemaWith": "network-policy.json"
+            "overwriteSchemaWith": "network-policy.json"
           },
           "properties": {
-              "enabled": {
-                  "type": "boolean",
-                  "title": "Enable network policy",
-                  "description": "Only pod from the same namespace will be allowed",
-                  "default": false,
-                  "x-onyxia": {
-                      "overwriteDefaultWith": "region.defaultNetworkPolicy"
-                  }
-              },
-              "from": {
-                  "type": "array",
-                  "description": "Array of source allowed to have network access to your service",
-                  "default": [],
-                  "x-onyxia": {
-                      "hidden": true,
-                      "overwriteDefaultWith": "region.from"
-                  }
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
               }
+            },
+            "from": {
+              "type": "array",
+              "description": "Array of source allowed to have network access to your service",
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
           }
         }
       }
@@ -115,6 +115,13 @@
           "type": "object",
           "title": "controller",
           "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "x-onyxia": {
+                "overwriteSchemaWith": "ide/resources.json"
+              }
+            },
             "tolerations": {
               "type": "array",
               "description": "Array of tolerations",
@@ -141,6 +148,13 @@
           "type": "object",
           "title": "controller",
           "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "x-onyxia": {
+                "overwriteSchemaWith": "ide/resources.json"
+              }
+            },
             "tolerations": {
               "type": "array",
               "description": "Array of tolerations",

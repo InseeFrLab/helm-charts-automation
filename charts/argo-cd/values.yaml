@@ -59,6 +59,7 @@ argo-cd:
       tag: # defaults to global.image.tag
       imagePullPolicy: # IfNotPresent
     replicas: 1
+    resources: {}
     enableStatefulSet: true
     args:
       statusProcessors: "20"
@@ -101,6 +102,7 @@ argo-cd:
   server:
     name: server
     replicas: 1
+    resources: {}
     extraArgs:
       - --namespace
       - $(KUBERNETES_NAMESPACE)
