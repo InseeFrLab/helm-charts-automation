@@ -1,0 +1,692 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "airflow": {
+      "type": "object",
+      "properties": {
+        "airflow": {
+          "type": "object",
+          "properties": {
+            "webserverSecretKey": {
+              "type": "string",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{service.oneTimePassword}}"
+              }
+            },
+            "users": {
+              "type": "array",
+              "default": [
+                {
+                  "username": "admin",
+                  "password": "admin",
+                  "role": "Admin",
+                  "email": "admin@example.com",
+                  "firstName": "admin",
+                  "lastName": "admin"
+                }
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "default": "username"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "password"
+                  },
+                  "role": {
+                    "type": "string",
+                    "default": "Public",
+                    "enum": [
+                      "Admin",
+                      "User",
+                      "Op",
+                      "Viewer",
+                      "Public"
+                    ]
+                  },
+                  "email": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "web": {
+          "title": "Web interface specific configuration",
+          "type": "object",
+          "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "500m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "1Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                },
+                "limits": {
+                  "description": "Max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "1000m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "scheduler": {
+          "title": "Scheduler specific configuration",
+          "type": "object",
+          "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "500m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "1Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                },
+                "limits": {
+                  "description": "Max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "1000m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "workers": {
+          "title": "Workers specific configuration",
+          "type": "object",
+          "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "500m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "1Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                },
+                "limits": {
+                  "description": "Max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "1000m",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 2000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 20,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "postgresql": {
+          "title": "Backend database specific configuration",
+          "type": "object",
+          "properties": {
+            "postgresqlDatabase": {
+              "type": "string",
+              "default": "airflow"
+            },
+            "postgresqlUsername": {
+              "type": "string",
+              "default": "postgres"
+            },
+            "postgresqlPassword": {
+              "type": "string",
+              "default": "airflow",
+              "render": "password"
+            },
+            "persistence": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Use persistent volumes to store essential data",
+                  "default": true
+                },
+                "size": {
+                  "type": "string",
+                  "title": "Volume disk size",
+                  "description": "Disk size of the persistent volume",
+                  "default": "5Gi",
+                  "form": true,
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 100,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/postgresql/persistence/enabled"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "dags": {
+          "title": "DAG specific configuration",
+          "type": "object",
+          "properties": {
+            "gitSync": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "description": "Use GitSync to synchronize DAGs with a git repository",
+                  "type": "boolean",
+                  "default": true
+                },
+                "resources": {
+                  "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+                  "type": "object",
+                  "properties": {
+                    "requests": {
+                      "description": "Guaranteed resources",
+                      "type": "object",
+                      "properties": {
+                        "cpu": {
+                          "description": "The amount of cpu guaranteed",
+                          "title": "CPU",
+                          "type": "string",
+                          "default": "200m",
+                          "render": "slider",
+                          "sliderMin": 100,
+                          "sliderMax": 1000,
+                          "sliderStep": 100,
+                          "sliderUnit": "m",
+                          "sliderExtremity": "down",
+                          "sliderExtremitySemantic": "guaranteed",
+                          "sliderRangeId": "cpu",
+                          "x-onyxia": {
+                            "useRegionSliderConfig": "cpu"
+                          }
+                        },
+                        "memory": {
+                          "description": "The amount of memory guaranteed",
+                          "title": "memory",
+                          "type": "string",
+                          "default": "1Gi",
+                          "render": "slider",
+                          "sliderMin": 1,
+                          "sliderMax": 5,
+                          "sliderStep": 1,
+                          "sliderUnit": "Gi",
+                          "sliderExtremity": "down",
+                          "sliderExtremitySemantic": "guaranteed",
+                          "sliderRangeId": "memory",
+                          "x-onyxia": {
+                            "useRegionSliderConfig": "memory"
+                          }
+                        }
+                      }
+                    },
+                    "limits": {
+                      "description": "Max resources",
+                      "type": "object",
+                      "properties": {
+                        "cpu": {
+                          "description": "The maximum amount of cpu",
+                          "title": "CPU",
+                          "type": "string",
+                          "default": "500m",
+                          "render": "slider",
+                          "sliderMin": 100,
+                          "sliderMax": 1000,
+                          "sliderStep": 100,
+                          "sliderUnit": "m",
+                          "sliderExtremity": "up",
+                          "sliderExtremitySemantic": "Maximum",
+                          "sliderRangeId": "cpu",
+                          "x-onyxia": {
+                            "useRegionSliderConfig": "cpu"
+                          }
+                        },
+                        "memory": {
+                          "description": "The maximum amount of memory",
+                          "title": "Memory",
+                          "type": "string",
+                          "default": "1Gi",
+                          "render": "slider",
+                          "sliderMin": 1,
+                          "sliderMax": 5,
+                          "sliderStep": 1,
+                          "sliderUnit": "Gi",
+                          "sliderExtremity": "up",
+                          "sliderExtremitySemantic": "Maximum",
+                          "sliderRangeId": "memory",
+                          "x-onyxia": {
+                            "useRegionSliderConfig": "memory"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                },
+                "repo": {
+                  "description": "the url of the git repo",
+                  "type": "string",
+                  "default": "https://github.com/USERNAME/REPOSITORY.git",
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  },
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{git.project}}"
+                  }
+                },
+                "repoSubPath": {
+                  "description": "the sub-path within your repo where dags are located",
+                  "type": "string",
+                  "default": "",
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                },
+                "branch": {
+                  "description": "the git branch to check out",
+                  "type": "string",
+                  "default": "main",
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                },
+                "revision": {
+                  "description": "the git revision (tag or hash) to check out",
+                  "type": "string",
+                  "default": "HEAD",
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                },
+                "httpSecretUsernameKey": {
+                  "description": "user name for git",
+                  "type": "string",
+                  "default": "",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{git.name}}"
+                  },
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                },
+                "httpSecretPasswordKey": {
+                  "description": "the key with your git password/token",
+                  "type": "string",
+                  "render": "password",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{git.token}}"
+                  },
+                  "hidden": {
+                    "value": false,
+                    "path": "airflow/dags/gitSync/enabled"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "form": true,
+      "title": "Ingress Details",
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-airflow-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        },
+        "useCertManager": {
+          "type": "boolean",
+          "description": "Whether CertManager should be used to generate a certificate",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.useCertManager"
+          }
+        },
+        "certManagerClusterIssuer": {
+          "type": "string",
+          "description": "certManager cluster issuer",
+          "title": "CertManager Cluster Issuer",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.certManagerClusterIssuer"
+          }
+        }
+      }
+    },
+    "security": {
+      "description": "security specific configuration",
+      "type": "object",
+      "properties": {
+        "allowlist": {
+          "type": "object",
+          "description": "IP protection",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable IP protection",
+              "description": "Only the configured set of IPs will be able to reach the service",
+              "default": true,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultIpProtection"
+              }
+            },
+            "ip": {
+              "type": "string",
+              "description": "the white list of IP is whitespace",
+              "title": "Whitelist of IP",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{user.ip}}"
+              },
+              "hidden": {
+                "value": false,
+                "path": "security/allowlist/enabled"
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "description": "Define access policy to the service",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
+            },
+            "from": {
+              "type": "array",
+              "description": "Array of source allowed to have network access to your service",
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userPreferences": {
+      "description": "User Preferences",
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Preferred language",
+          "default": "en",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "user.lang"
+          }
+        }
+      }
+    }
+  }
+}

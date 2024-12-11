@@ -1,0 +1,102 @@
+airflow:
+  airflow:
+    executor: CeleryExecutor
+    webserverSecretKey: "THIS IS UNSAFE!"
+    users:
+    - username: admin
+      password: admin
+      role: Admin
+      email: admin@example.com
+      firstName: admin
+      lastName: admin
+  web:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+  scheduler:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+  workers:
+    replicas: 1
+    autoscaling:
+      enabled: false
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+  postgresql:
+    enabled: true
+    postgresqlDatabase: airflow
+    postgresqlUsername: postgres
+    postgresqlPassword: airflow
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 8Gi
+  redis:
+    enabled: true
+    master:
+      persistence:
+        enabled: false
+  ingress:
+    enabled: false
+  dags:
+    persistence:
+      enabled: false
+    gitSync:
+      enabled: true
+      resources:
+        requests:
+          cpu: 200m
+          memory: 500Mi
+        limits:
+          cpu: 500m
+          memory: 1Gi
+      repo: ""
+      repoSubPath: ""
+      branch: "main"
+
+ingress:
+  host: "chart-example.local"
+  ingressClassName: ""
+  usecertManager: false
+  certManagerClusterIssuer: ""
+  tls: true
+  annotations: []
+
+route:
+  enabled: false
+    # route.openshift.io/termination: "reencrypt"
+  hostname: chart-example.local
+  tls:
+    termination: edge
+    # key:
+    # certificate:
+    # caCertificate:
+    # destinationCACertificate:
+  wildcardPolicy: None
+  annotations: []
+
+security:
+  allowlist:
+    enabled: false
+  networkPolicy:
+    enabled: false
+    from: []
+
+userPreferences:
+  language: "en"

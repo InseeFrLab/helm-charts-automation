@@ -1,0 +1,58 @@
+{{- $pvcList := list -}}
+{{- if and (.Values.airflow.dags.persistence.enabled) (not .Values.airflow.dags.persistence.existingClaim) -}}
+{{- $pvcList = append $pvcList (printf "%s-dags" (include "airflow.fullname" .Subcharts.airflow | trunc 58)) -}}
+{{- end -}}
+{{- if and (.Values.airflow.logs.persistence.enabled) (not .Values.airflow.logs.persistence.existingClaim) -}}
+{{- $pvcList = append $pvcList (printf "%s-logs" (include "airflow.fullname" .Subcharts.airflow | trunc 58)) -}}
+{{- end -}}
+{{- if .Values.airflow.postgresql.enabled }}
+{{- $pvcList = append $pvcList (printf "data-%s-0" (include "postgresql.fullname" .Subcharts.airflow.Subcharts.postgresql)) -}}
+{{- end -}}
+
+{{- if eq .Values.userPreferences.language "fr" -}}
+
+{{- with index .Values.airflow.airflow.users 0 }}
+- Votre nom d'utilisateur est **{{ .username }}**
+- Votre mot de passe est **{{ .password }}**
+{{ end -}}
+
+{{- if .Values.ingress.enabled }}
+- Vous pouvez vous connecter à Apache Airflow avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end }}
+
+{{- if not (empty $pvcList) }}
+
+**NOTES sur la suppression :**
+
+- **Vous pouvez supprimer ce chart en toute sécurité et en recréer un plus tard**
+- Les volumes de données ne seront pas supprimés
+- Si vous démarrez un nouveau {{ .Chart.Name }}, il réutilisera automatiquement ces volumes.
+- Si vous souhaitez supprimer définitivement ces volumes : `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+
+{{- else -}}
+  {{- if ne .Values.userPreferences.language "en" -}}
+    *NOTES are not supported for language `{{ .Values.userPreferences.language }}`... Defaulting to english.*
+
+  {{ end -}}
+
+{{- with index .Values.airflow.airflow.users 0 }}
+- Your username is **{{ .username }}**
+- Your password is **{{ .password }}**
+{{ end -}}
+
+{{- if .Values.ingress.enabled }}
+- You can connect to Apache Airflow with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end -}}
+
+{{- if not (empty $pvcList) }}
+
+*NOTES about deletion:*
+
+- **You can safely delete this chart and recreate one later**
+- The underlying data volumes will not be deleted
+- If you start a new Airflow service, it will automatically reuse those volumes
+- If you want to delete those volumes definitely: `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+
+{{- end -}}
