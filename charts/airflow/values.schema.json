@@ -398,7 +398,7 @@
                 "enabled": {
                   "description": "Use GitSync to synchronize DAGs with a git repository",
                   "type": "boolean",
-                  "default": true
+                  "default": false
                 },
                 "resources": {
                   "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",

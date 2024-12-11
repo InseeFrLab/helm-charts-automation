@@ -58,7 +58,7 @@ airflow:
     persistence:
       enabled: false
     gitSync:
-      enabled: true
+      enabled: false
       resources:
         requests:
           cpu: 200m
