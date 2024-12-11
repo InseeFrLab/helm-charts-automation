@@ -50,6 +50,7 @@ argo-workflows:
       annotations: {}
       name: "argo-workflows" # Service account which is used to run workflows
   controller:
+    resources: {}
     workflowNamespaces: []
     replicas: 1
     #containerRuntimeExecutor: k8sapi
@@ -57,6 +58,7 @@ argo-workflows:
       enabled: false
 
   server:
+    resources: {}
     enabled: true
     clusterWorkflowTemplates:
       enabled: false
