@@ -33,7 +33,7 @@
                 "overwriteDefaultWith": "{{project.password}}",
                 "overwriteSchemaWith": "ide/password"
               }
-                },
+            },
             "secretKey": {
               "title": "Secret key",
               "description": "Secret key to run your flask app",
@@ -51,9 +51,17 @@
           "type": "object",
           "properties": {
             "resourcesPreset": {
-              "title": "Web resources preset",
+              "title": "Web interface resources preset",
               "default": "medium",
-              "enum": ["nano", "micro", "small", "medium", "large", "xlarge", "2xlarge"]
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
             }
           }
         },
@@ -63,19 +71,37 @@
           "properties": {
             "resourcesPreset": {
               "title": "Scheduler resources preset",
+              "type": "string",
               "default": "small",
-              "enum": ["nano", "micro", "small", "medium", "large", "xlarge", "2xlarge"]
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
             }
           }
         },
         "dagProcessor": {
-          "title": "Workers specific configuration",
+          "title": "DAG Processor specific configuration",
           "type": "object",
           "properties": {
             "resourcesPreset": {
-              "title": "Workers resources preset",
-              "default": "large",
-              "enum": ["nano", "micro", "small", "medium", "large", "xlarge", "2xlarge"]
+              "title": "DAG Processor resources preset",
+              "type": "string",
+              "default": "small",
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
             }
           }
         },
@@ -85,51 +111,65 @@
           "properties": {
             "resourcesPreset": {
               "title": "Worker resources preset",
+              "type": "string",
               "default": "large",
-              "enum": ["nano", "micro", "small", "medium", "large", "xlarge", "2xlarge"]
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
             }
           }
         },
         "postgresql": {
-          "title": "Backend database specific configuration",
+          "title": "Backend PostgreSQL database specific configuration",
           "type": "object",
           "properties": {
-            "postgresqlDatabase": {
-              "type": "string",
-              "default": "airflow"
-            },
-            "postgresqlUsername": {
-              "type": "string",
-              "default": "postgres"
-            },
-            "postgresqlPassword": {
-              "type": "string",
-              "default": "airflow",
-              "render": "password"
-            },
-            "persistence": {
+            "primary": {
               "type": "object",
               "properties": {
-                "enabled": {
-                  "type": "boolean",
-                  "description": "Use persistent volumes to store essential data",
-                  "default": true
-                },
-                "size": {
+                "resourcesPreset": {
+                  "title": "Backend PostgreSQL database resources preset",
                   "type": "string",
-                  "title": "Volume disk size",
-                  "description": "Disk size of the persistent volume",
-                  "default": "5Gi",
-                  "form": true,
-                  "render": "slider",
-                  "sliderMin": 1,
-                  "sliderMax": 100,
-                  "sliderStep": 1,
-                  "sliderUnit": "Gi",
-                  "hidden": {
-                    "value": false,
-                    "path": "airflow/postgresql/persistence/enabled"
-                  }
+                  "default": "nano",
+                  "enum": [
+                    "nano",
+                    "micro",
+                    "small",
+                    "medium",
+                    "large",
+                    "xlarge",
+                    "2xlarge"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "redis": {
+          "title": "Backend Redis database specific configuration",
+          "type": "object",
+          "properties": {
+            "master": {
+              "type": "object",
+              "properties": {
+                "resourcesPreset": {
+                  "title": "Backend Redis database resources preset",
+                  "type": "string",
+                  "default": "nano",
+                  "enum": [
+                    "nano",
+                    "micro",
+                    "small",
+                    "medium",
+                    "large",
+                    "xlarge",
+                    "2xlarge"
+                  ]
                 }
               }
             }
@@ -195,10 +235,13 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "default": "ENV_VAR_NAME",
+                        "pattern": "^[a-zA-Z0-9_]+$"
                       },
                       "value": {
-                        "type": "string"
+                        "type": "string",
+                        "default": ""
                       }
                     }
                   },
