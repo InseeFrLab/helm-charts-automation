@@ -32,10 +32,10 @@
 
 {{- if not (empty $pvcList) }}
 
-**NOTES sur la suppression :**
-- Vous pouvez supprimer ce chart en toute sécurité et en recréer un plus tard
-- Les volumes de données ne seront pas supprimés
-- Si vous démarrez un nouveau Apache Airflow, il réutilisera automatiquement ces volumes
+**REMARQUES concernant la suppression :**
+- Les données de ce Chart ne sont pas effacées automatiquement, vous pouvez le supprimer sans risque.
+- Si vous souhaitez afficher le volume de données créé : `get pvc -l app=postgresql,release={{ .Release.Name }}`
+- Un nouveau service Airflow pourra réutiliser ce volume en indiquant son nom dans la configuration du service
 - Si vous souhaitez supprimer définitivement ces volumes : `kubectl delete pvc {{ join " " $pvcList }}`
 {{- end -}}
 
@@ -67,9 +67,9 @@
 {{- if not (empty $pvcList) }}
 
 **NOTES about deletion:**
-- You can safely delete this chart and recreate one later
-- The underlying data volumes will not be deleted
-- If you start a new Apache Airflow service, it will automatically reuse those volumes
+- The data of this Chart is not automatically erased; you can safely delete it
+- To display the created data volume: `get pvc -l app=postgresql,release={{ .Release.Name }}`
+- A new Airflow service can reuse this volume by specifying its name in the service configuration
 - If you want to delete those volumes definitely: `kubectl delete pvc {{ join " " $pvcList }}`
 {{- end -}}
 
