@@ -8,7 +8,9 @@ metadata:
   annotations:
     {{- include "library-chart.ingress.annotations" . | nindent 4 }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
+{{- if .Values.ingress.ingressClassName }}
+   ingressClassName: {{ .Values.ingress.ingressClassName | quote }}
+{{- end }}
 {{- if .Values.ingress.tls }}
   tls:
     - hosts:
