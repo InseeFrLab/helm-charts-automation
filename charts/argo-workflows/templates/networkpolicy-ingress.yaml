@@ -10,7 +10,7 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   ingress:
   {{- with .Values.security.networkPolicy.from }}
-   - from:
+  - from:
   {{- toYaml . | nindent 4 }}
   {{- end }}
   policyTypes:
