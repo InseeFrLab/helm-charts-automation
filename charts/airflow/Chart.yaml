@@ -1,6 +1,6 @@
 apiVersion: v2
 name: airflow
-description: Apache Airflow is an open-source tool for orchestrating workflows. It allows users to define, schedule, and monitor workflows in Python, making it ideal for automating data pipelines and integrating with various systems.
+description: Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
 icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/airflow.svg
 keywords:
   - airflow

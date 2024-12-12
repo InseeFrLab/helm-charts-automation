@@ -18,13 +18,13 @@
 {{- end -}}
 {{- if .Values.ingress.enabled }}
 - Vous pouvez vous connecter à Apache Airflow avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
-{{- end -}}
+{{- end }}
 
 **Git-Sync :**
 {{- if not .Values.airflow.dags.gitSync.enabled }}
 - **Git-Sync est désactivé !**
-  Pour une utilisation optimale de ce service, il est recommandé d'activer Git-Sync depuis la page de configuration de votre service
-  et de spécifier des identifiants et un dépôt git qui sera utilisé comme repertoire de travail.
+  Pour une utilisation optimale de ce service, il est recommandé d'activer Git-Sync depuis la page de configuration de votre service,
+  de renseigner des identifiants git et de lister des dépôts git qui seront utilisés pour alimenter le dossier de DAG.
 {{- else }}
 - Git-Sync est configuré pour synchroniser le repertoire de DAG avec la branche `{{ .Values.airflow.dags.gitSync.branch }}`
   du dépôt git `{{ .Values.airflow.dags.gitSync.repo }}{{ .Values.airflow.dags.gitSync.repoSubPath }}`.
@@ -52,13 +52,13 @@
 {{- end -}}
 {{- if .Values.ingress.enabled }}
 - You can connect to Apache Airflow with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
-{{- end -}}
+{{- end }}
 
 **Git-Sync :**
 {{- if not .Values.airflow.dags.gitSync.enabled }}
 - **Git-Sync is disabled!**
-  For optimal use of this service, it is recommended to enable Git-Sync from the configuration page of your service
-  and to specify credentials and a Git repository that will be used as the working directory.
+  For optimal use of this service, it is recommended to enable Git-Sync from the configuration page of your service,
+  to specify git credentials and to list repositories that will be used to fill in the DAG folder.
 {{- else }}
 - Git-Sync is configured to synchronize the DAG directory with the branch `{{ .Values.airflow.dags.gitSync.branch }}`
   of the Git repository `{{ .Values.airflow.dags.gitSync.repo }}{{ .Values.airflow.dags.gitSync.repoSubPath }}`.
