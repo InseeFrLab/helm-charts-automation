@@ -145,30 +145,34 @@
               "default": false
             },
             "repositories": {
+              "description": "List of git repositories to synchronize DAGs with",
               "type": "array",
               "items": {
-                "repository": {
-                  "description": "the url of the git repo",
-                  "type": "string",
-                  "default": "https://github.com/USERNAME/REPOSITORY.git",
-                  "x-onyxia": {
-                    "overwriteDefaultWith": "{{git.project}}"
+                "type": "object",
+                "properties": {
+                  "repository": {
+                    "description": "the url of the git repo",
+                    "type": "string",
+                    "default": "https://github.com/USERNAME/REPOSITORY.git",
+                    "x-onyxia": {
+                      "overwriteDefaultWith": "{{git.project}}"
+                    }
+                  },
+                  "path": {
+                    "description": "the sub-path within your repo where dags are located",
+                    "type": "string",
+                    "default": "/"
+                  },
+                  "branch": {
+                    "description": "the git branch to check out",
+                    "type": "string",
+                    "default": "main"
+                  },
+                  "name": {
+                    "description": "custom dag folder",
+                    "type": "string",
+                    "default": ""
                   }
-                },
-                "path": {
-                  "description": "the sub-path within your repo where dags are located",
-                  "type": "string",
-                  "default": "/"
-                },
-                "branch": {
-                  "description": "the git branch to check out",
-                  "type": "string",
-                  "default": "main"
-                },
-                "name": {
-                  "description": "custom dag folder",
-                  "type": "string",
-                  "default": ""
                 }
               },
               "hidden": {
