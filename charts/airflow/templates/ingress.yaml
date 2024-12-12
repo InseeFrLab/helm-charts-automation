@@ -27,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "airflow.fullname" .Subcharts.airflow }}-web
+                name: {{ include "common.names.fullname" .Subcharts.airflow }}
                 port:
-                  number: {{ .Values.airflow.web.service.externalPort | default 8080 }}
+                  number: {{ .Values.airflow.service.ports.http }}
 {{- end }}

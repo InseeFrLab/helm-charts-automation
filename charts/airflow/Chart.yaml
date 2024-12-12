@@ -3,36 +3,20 @@ name: airflow
 description: Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
 icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/airflow.svg
 keywords:
+  - apache
   - airflow
-  - dag
   - workflow
+  - dag
 home: https://airflow.apache.org/
 sources:
-  - https://github.com/airflow-helm/charts/tree/main/charts/airflow
-  - https://github.com/airflow-helm/charts
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+  - https://github.com/bitnami/charts/tree/main/bitnami/airflow
 type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 0.0.1
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: "2.8.4"
+appVersion: "2.10.3"
 dependencies:
 - name: airflow
-  version: 8.9.0
-  repository:  https://airflow-helm.github.io/charts
+  version: 22.4.1
+  repository:  https://charts.bitnami.com/bitnami
 - name: library-chart
-  version: 1.5.31
+  version: 1.5.34
   repository: https://inseefrlab.github.io/helm-charts-interactive-services

@@ -1,41 +1,37 @@
 {{- $pvcList := list -}}
-{{- if and (.Values.airflow.dags.persistence.enabled) (not .Values.airflow.dags.persistence.existingClaim) -}}
-{{- $pvcList = append $pvcList (printf "%s-dags" (include "airflow.fullname" .Subcharts.airflow | trunc 58)) -}}
-{{- end -}}
-{{- if and (.Values.airflow.logs.persistence.enabled) (not .Values.airflow.logs.persistence.existingClaim) -}}
-{{- $pvcList = append $pvcList (printf "%s-logs" (include "airflow.fullname" .Subcharts.airflow | trunc 58)) -}}
-{{- end -}}
 {{- if .Values.airflow.postgresql.enabled }}
-{{- $pvcList = append $pvcList (printf "data-%s-0" (include "postgresql.fullname" .Subcharts.airflow.Subcharts.postgresql)) -}}
+{{- $pvcList = append $pvcList (printf "%s-%s-0" .Values.airflow.postgresql.primary.persistence.volumeName (include "postgresql.v1.primary.fullname" .Subcharts.airflow.Subcharts.postgresql)) -}}
+{{- end -}}
+{{- if .Values.airflow.redis.enabled }}
+{{- $pvcList = append $pvcList (printf "redis-data-%s-master-0" (include "common.names.fullname" .Subcharts.airflow.Subcharts.redis)) -}}
 {{- end -}}
 
 {{- if eq .Values.userPreferences.language "fr" -}}
 
 **Informations de connexion :**
-{{- with index .Values.airflow.airflow.users 0 }}
-- Votre nom d'utilisateur: **{{ .username }}**
-- Votre password: **{{ .password }}**
-{{- end -}}
+- Votre nom d'utilisateur: **{{ .Values.airflow.auth.username }}**
+- Votre password: **{{ .Values.airflow.auth.password }}**
 {{- if .Values.ingress.enabled }}
 - Vous pouvez vous connecter à Apache Airflow avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
 {{- end }}
 
-**Git-Sync :**
-{{- if not .Values.airflow.dags.gitSync.enabled }}
-- **Git-Sync est désactivé !**
-  Pour une utilisation optimale de ce service, il est recommandé d'activer Git-Sync depuis la page de configuration de votre service,
-  de renseigner des identifiants git et de lister des dépôts git qui seront utilisés pour alimenter le dossier de DAG.
+**Synchronisation git des DAGs :**
+{{- if not (and .Values.airflow.dags.enabled .Values.airflow.dags.repositories) }}
+- **La synchronisation git est désactivée !**
+  Pour une utilisation optimale de ce service, il est recommandé d'activer la synchronisation git de dossiers de DAG.
+  Depuis la page de configuration de votre service, vous pouvez renseigner des identifiants git (si nécessaire) et lister des dépôts git à utiliser pour alimenter des dossiers de DAG.
 {{- else }}
-- Git-Sync est configuré pour synchroniser le repertoire de DAG avec la branche `{{ .Values.airflow.dags.gitSync.branch }}`
-  du dépôt git `{{ .Values.airflow.dags.gitSync.repo }}{{ .Values.airflow.dags.gitSync.repoSubPath }}`.
+- La synchronisation git est configurée pour synchroniser les repertoires de DAGs suivants:
+  {{- range .Values.airflow.dags.repositories }}
+  - `{{ .repository }}{{ .path }}` (branche `{{ .branch }}`){{ with .name }} dans le dossier `{{ . }}`{{ end }}
+  {{- end -}}
 {{- end -}}
 
 {{- if not (empty $pvcList) }}
 
 **REMARQUES concernant la suppression :**
-- Les données de ce Chart ne sont pas effacées automatiquement, vous pouvez le supprimer sans risque.
-- Si vous souhaitez afficher le volume de données créé : `get pvc -l app=postgresql,release={{ .Release.Name }}`
-- Un nouveau service Airflow pourra réutiliser ce volume en indiquant son nom dans la configuration du service
+- Vous pouvez supprimer ce service sans risque, ses volumes de données ne sont pas effacées automatiquement
+- Un nouveau service Airflow pourra les réutiliser en indiquant leurs noms (`{{ join "`, `" $pvcList }}`) dans la configuration du service
 - Si vous souhaitez supprimer définitivement ces volumes : `kubectl delete pvc {{ join " " $pvcList }}`
 {{- end -}}
 
@@ -46,30 +42,29 @@
   {{ end -}}
 
 **Connection information:**
-{{- with index .Values.airflow.airflow.users 0 }}
-- Your username: **{{ .username }}**
-- Your password: **{{ .password }}**
-{{- end -}}
+- Your username: **{{ .Values.airflow.auth.username }}**
+- Your password: **{{ .Values.airflow.auth.password }}**
 {{- if .Values.ingress.enabled }}
 - You can connect to Apache Airflow with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
 {{- end }}
 
-**Git-Sync :**
-{{- if not .Values.airflow.dags.gitSync.enabled }}
-- **Git-Sync is disabled!**
-  For optimal use of this service, it is recommended to enable Git-Sync from the configuration page of your service,
-  to specify git credentials and to list repositories that will be used to fill in the DAG folder.
+**DAG git sync:**
+{{- if not (and .Values.airflow.dags.enabled .Values.airflow.dags.repositories) }}
+- **git sync is disabled!**
+  For optimal use of this service, it is recommended to synchronize DAG folders using git.
+  In the configuration page of your service you can specify git credentials and list repositories that will be used to fill in the DAG folders.
 {{- else }}
-- Git-Sync is configured to synchronize the DAG directory with the branch `{{ .Values.airflow.dags.gitSync.branch }}`
-  of the Git repository `{{ .Values.airflow.dags.gitSync.repo }}{{ .Values.airflow.dags.gitSync.repoSubPath }}`.
+- git synchronizaton is configured to synchronize the following DAG directories:
+  {{- range .Values.airflow.dags.repositories }}
+  - `{{ .repository }}{{ .path }}` (branch `{{ .branch }}`){{ with .name }} in folder `{{ . }}`{{ end }}
+  {{- end -}}
 {{- end -}}
 
 {{- if not (empty $pvcList) }}
 
 **NOTES about deletion:**
-- The data of this Chart is not automatically erased; you can safely delete it
-- To display the created data volume: `get pvc -l app=postgresql,release={{ .Release.Name }}`
-- A new Airflow service can reuse this volume by specifying its name in the service configuration
+- You can safely delete this service, its data volumes are not automatically erased
+- A new Airflow service can reuse them by specifying their names (`{{ join "`, `" $pvcList }}`) in the service configuration
 - If you want to delete those volumes definitely: `kubectl delete pvc {{ join " " $pvcList }}`
 {{- end -}}
 

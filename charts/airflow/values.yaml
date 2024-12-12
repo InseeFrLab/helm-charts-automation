@@ -1,74 +1,40 @@
 airflow:
-  airflow:
-    executor: CeleryExecutor
-    webserverSecretKey: "THIS IS UNSAFE!"
-    users:
-    - username: admin
-      password: admin
-      role: Admin
-      email: admin@example.com
-      firstName: admin
-      lastName: admin
+  auth:
+    username: "admin"
+    password: "changeme"
+    secretKey: "THIS IS UNSAFE!"
+  dags:
+    enabled: false
+    repositories: []
+    ## - repository: https://github.com/myuser/myrepo
+    ##   branch: main
+    ##   name: my-dags
+    ##   path: /
+  ##defaultSidecars:
+  ##  syncDAGsPlugins:
+  ##    extraEnvVars:
+  ##      - name: GIT_PERSONAL_ACCESS_TOKEN
+  ##        value: ""
+  ##      - name: GIT_USER_NAME
+  ##        value: ""
+  ##      - name: GIT_USER_MAIL
+  ##        value: ""
   web:
-    replicas: 1
-    resources:
-      requests:
-        cpu: 500m
-        memory: 1Gi
-      limits:
-        cpu: 1000m
-        memory: 2Gi
+    resourcesPreset: "medium"
   scheduler:
-    replicas: 1
-    resources:
-      requests:
-        cpu: 500m
-        memory: 1Gi
-      limits:
-        cpu: 1000m
-        memory: 2Gi
-  workers:
-    replicas: 1
-    autoscaling:
-      enabled: false
-    resources:
-      requests:
-        cpu: 500m
-        memory: 1Gi
-      limits:
-        cpu: 1000m
-        memory: 2Gi
+    resourcesPreset: "small"
+  dagProcessor:
+    resourcesPreset: "small"
+  worker:
+    resourcesPreset: "large"
   postgresql:
-    enabled: true
-    postgresqlDatabase: airflow
-    postgresqlUsername: postgres
-    postgresqlPassword: airflow
-    persistence:
-      enabled: true
-      storageClass: ""
-      size: 8Gi
+    primary:
+      resourcesPreset: "nano"
   redis:
-    enabled: true
     master:
-      persistence:
-        enabled: false
+      resourcesPreset: "nano"
   ingress:
     enabled: false
-  dags:
-    persistence:
-      enabled: false
-    gitSync:
-      enabled: false
-      resources:
-        requests:
-          cpu: 200m
-          memory: 500Mi
-        limits:
-          cpu: 500m
-          memory: 1Gi
-      repo: ""
-      repoSubPath: ""
-      branch: "main"
 
 ingress:
   host: "chart-example.local"
