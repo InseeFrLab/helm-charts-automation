@@ -1,6 +1,6 @@
 # argo-cd
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
@@ -64,6 +64,10 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | argo-cd.openshift.enabled | bool | `false` |  |
 | argo-cd.redis-ha.enabled | bool | `false` |  |
 | argo-cd.redis.enabled | bool | `true` |  |
+| argo-cd.redisSecretInit.resources.limits.cpu | string | `"200m"` |  |
+| argo-cd.redisSecretInit.resources.limits.memory | string | `"128Mi"` |  |
+| argo-cd.redisSecretInit.resources.requests.cpu | string | `"100m"` |  |
+| argo-cd.redisSecretInit.resources.requests.memory | string | `"64Mi"` |  |
 | argo-cd.repoServer.clusterAdminAccess.enabled | bool | `false` |  |
 | argo-cd.repoServer.clusterRoleRules.enabled | bool | `false` |  |
 | argo-cd.repoServer.name | string | `"repo-server"` |  |
