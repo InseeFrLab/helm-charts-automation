@@ -1,0 +1,74 @@
+{{- $pvcList := list -}}
+{{- if .Values.argilla.persistence.enabled -}}
+{{- $pvcList = append $pvcList (printf "data-%s-0" (include "library-chart.fullname" .)) -}}
+{{- end -}}
+{{- if .Values.redis.master.persistence.enabled -}}
+{{- $pvcList = append $pvcList (printf "redis-data-%s-master-0" (include "common.names.fullname" .Subcharts.redis)) -}}
+{{- end -}}
+{{- if .Values.postgresql.primary.persistence.enabled -}}
+{{- $pvcList = append $pvcList (printf "%s-%s-0" (.Values.postgresql.primary.persistence.volumeName) (include "postgresql.v1.primary.fullname" .Subcharts.postgresql)) -}}
+{{- end -}}
+{{- if .Values.elasticsearch.master.persistence.enabled -}}
+{{- $pvcList = append $pvcList (printf "data-%s-0" (include "elasticsearch.master.fullname" .Subcharts.elasticsearch)) -}}
+{{- end -}}
+{{- if eq .Values.userPreferences.language "fr" -}}
+- Votre nom d'utilisateur est **{{ .Values.argilla.auth.username }}**
+- Votre mot de passe est **{{ .Values.argilla.auth.password }}**
+- Votre clef API est **{{ .Values.argilla.auth.apikey }}**
+
+{{- if .Values.ingress.enabled }}
+- Vous pouvez vous connecter à Argilla avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end }}
+{{- if .Values.route.enabled }}
+- Vous pouvez vous connecter à Argilla avec votre navigateur à ce [lien](https://{{ .Values.route.hostname }})
+{{- end }}
+- Vous pouvez vous connectez à Argilla depuis l'intérieur du datalab à cette URL : **http://{{ include "library-chart.fullname" . }}:6900**
+- Example using the Python client API :
+
+```
+import argilla as rg
+client = rg.Argilla(api_url="http://{{ include "library-chart.fullname" . }}:6900", api_key="{{ .Values.argilla.auth.apikey }}")
+rg.Workspace(name="my_workspace", client=client).create()
+```
+{{- if not (empty $pvcList) }}
+
+**NOTES sur la suppression :**
+
+- **Vous pouvez supprimer ce chart en toute sécurité et en recréer un plus tard**
+- Les volumes de données ne seront pas supprimés
+- Si vous démarrez un nouveau {{ .Chart.Name }}, il réutilisera automatiquement ces volumes.
+- Si vous souhaitez supprimer définitivement ces volumes : `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+{{- else -}}
+  {{- if ne .Values.userPreferences.language "en" -}}
+    *NOTES are not supported for language `{{ .Values.userPreferences.language }}`... Defaulting to english.*
+
+  {{ end -}}
+- Your username is **{{ .Values.argilla.auth.username }}**
+- Your password is **{{ .Values.argilla.auth.password }}**
+- Your API key is **{{ .Values.argilla.auth.apikey }}**
+
+{{- if .Values.ingress.enabled }}
+- You can connect to Argilla with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end }}
+{{- if .Values.route.enabled }}
+- You can connect to Argilla with your browser on this [link](https://{{ .Values.route.hostname }})
+{{- end }}
+- You can connect to Argilla from inside the datalab at this url : **http://{{ include "library-chart.fullname" . }}:6900**
+- Example using the Python client API :
+
+```
+import argilla as rg
+client = rg.Argilla(api_url="http://{{ include "library-chart.fullname" . }}:6900", api_key="{{ .Values.argilla.auth.apikey }}")
+rg.Workspace(name="my_workspace", client=client).create()
+```
+{{- if not (empty $pvcList) }}
+
+*NOTES about deletion:*
+
+- **You can safely delete this chart and recreate one later**
+- The underlying data volumes will not be deleted
+- If you start a new Argilla service, it will automatically reuse those volumes
+- If you want to delete those volumes definitely: `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+{{- end -}}

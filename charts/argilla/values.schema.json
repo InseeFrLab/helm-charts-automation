@@ -1,0 +1,804 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "global": {
+      "description": "Global configuration",
+      "type": "object",
+      "properties": {
+        "postgresql": {
+          "type": "object",
+          "properties": {
+            "auth": {
+              "title": "Postgres authentification configuration",
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "title": "Argilla's postgres user",
+                  "default": "postgres"
+                },
+                "password": {
+                  "type": "string",
+                  "title": "Password for Argilla's postgres user",
+                  "default": "changeme",
+                  "render": "password",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                },
+                "database": {
+                  "type": "string",
+                  "title": "Database",
+                  "description": "Name for Argilla's default database to create.",
+                  "default": "argilla",
+                  "x-onyxia": {
+                    "hidden": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "argilla": {
+      "description": "Argilla configuration",
+      "type": "object",
+      "properties": {
+        "image": {
+          "description": "Argilla image",
+          "type": "object",
+          "properties": {
+            "registry": {
+              "description": "registry",
+              "type": "string",
+              "default": "docker.io",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "repository": {
+              "description": "repository",
+              "type": "string",
+              "default": "argilla/argilla-server",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "tag": {
+              "description": "Elasticsearch version",
+              "type": "string",
+              "default": "v2.3.0",
+              "enum": [
+                "v2.3.0",
+                "v2.2.0"
+              ]
+            },
+            "pullPolicy": {
+              "type": "string",
+              "description": "Option when pulling the docker image",
+              "default": "IfNotPresent",
+              "enum": [
+                "IfNotPresent",
+                "Always",
+                "Never"
+              ]
+            }
+          }
+        },
+        "resources": {
+          "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+          "type": "object",
+          "x-onyxia": {
+            "overwriteSchemaWith": "ide/resources.json"
+          },
+          "properties": {
+            "requests": {
+              "description": "Guaranteed resources",
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "description": "The amount of cpu guaranteed",
+                  "title": "CPU",
+                  "type": "string",
+                  "default": "500m",
+                  "render": "slider",
+                  "sliderMin": 100,
+                  "sliderMax": 40000,
+                  "sliderStep": 100,
+                  "sliderUnit": "m",
+                  "sliderExtremity": "down",
+                  "sliderExtremitySemantic": "guaranteed",
+                  "sliderRangeId": "cpu",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "region.resources.cpuRequest",
+                    "useRegionSliderConfig": "cpu"
+                  }
+                },
+                "memory": {
+                  "description": "The amount of memory guaranteed",
+                  "title": "memory",
+                  "type": "string",
+                  "default": "1Gi",
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 200,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "sliderExtremity": "down",
+                  "sliderExtremitySemantic": "guaranteed",
+                  "sliderRangeId": "memory",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "region.resources.memoryRequest",
+                    "useRegionSliderConfig": "memory"
+                  }
+                }
+              }
+            },
+            "limits": {
+              "description": "Max resources",
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "description": "The maximum amount of cpu",
+                  "title": "CPU",
+                  "type": "string",
+                  "default": "1000m",
+                  "render": "slider",
+                  "sliderMin": 100,
+                  "sliderMax": 40000,
+                  "sliderStep": 100,
+                  "sliderUnit": "m",
+                  "sliderExtremity": "up",
+                  "sliderExtremitySemantic": "Maximum",
+                  "sliderRangeId": "cpu",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "region.resources.cpuLimit",
+                    "useRegionSliderConfig": "cpu"
+                  }
+                },
+                "memory": {
+                  "description": "The maximum amount of memory",
+                  "title": "Memory",
+                  "type": "string",
+                  "default": "2Gi",
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 200,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "sliderExtremity": "up",
+                  "sliderExtremitySemantic": "Maximum",
+                  "sliderRangeId": "memory",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "region.resources.memoryLimit",
+                    "useRegionSliderConfig": "memory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "persistence": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Use persistent volumes to store essential data",
+              "default": true
+            },
+            "size": {
+              "type": "string",
+              "title": "Volume disk size",
+              "description": "Disk size of the persistent volume",
+              "default": "5Gi",
+              "form": true,
+              "render": "slider",
+              "sliderMin": 1,
+              "sliderMax": 100,
+              "sliderStep": 1,
+              "sliderUnit": "Gi",
+              "hidden": {
+                "value": false,
+                "path": "argilla/persistence/enabled"
+              }
+            }
+          }
+        },
+        "auth": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "title": "User name",
+              "default": "argilla"
+            },
+            "password": {
+              "type": "string",
+              "description": "Password",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.password}}"
+              }
+            },
+            "apikey": {
+              "type": "string",
+              "description": "API Key",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{service.oneTimePassword}}"
+              }
+            },
+            "secretkey": {
+              "type": "string",
+              "description": "Secret key",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{service.oneTimePassword}}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "elasticsearch": {
+      "description": "ElasticSearch configuration",
+      "type": "object",
+      "properties": {
+        "image": {
+          "description": "Elasticsearch image",
+          "type": "object",
+          "properties": {
+            "registry": {
+              "description": "registry",
+              "type": "string",
+              "default": "docker.io",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "repository": {
+              "description": "repository",
+              "type": "string",
+              "default": "bitnami/elasticsearch",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "tag": {
+              "description": "Elasticsearch version",
+              "type": "string",
+              "default": "8.15.2-debian-12-r4",
+              "enum": [
+                "8.15.2-debian-12-r4"
+              ]
+            },
+            "pullPolicy": {
+              "type": "string",
+              "description": "Option when pulling the docker image",
+              "default": "IfNotPresent",
+              "enum": [
+                "IfNotPresent",
+                "Always",
+                "Never"
+              ]
+            }
+          }
+        },
+        "master": {
+          "type": "object",
+          "description": "ElasticSearch master service",
+          "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "x-onyxia": {
+                "overwriteSchemaWith": "ide/resources.json"
+              },
+              "properties": {
+                "requests": {
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "1000m",
+                      "render": "slider",
+                      "sliderMin": 1000,
+                      "sliderMax": 40000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "overwriteDefaultWith": "region.resources.cpuRequest",
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "1Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 200,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "overwriteDefaultWith": "region.resources.memoryRequest",
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                },
+                "limits": {
+                  "description": "Max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "2000m",
+                      "render": "slider",
+                      "sliderMin": 1000,
+                      "sliderMax": 40000,
+                      "sliderStep": 100,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu",
+                      "x-onyxia": {
+                        "overwriteDefaultWith": "region.resources.cpuLimit",
+                        "useRegionSliderConfig": "cpu"
+                      }
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 200,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory",
+                      "x-onyxia": {
+                        "overwriteDefaultWith": "region.resources.memoryLimit",
+                        "useRegionSliderConfig": "memory"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "persistence": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Use persistent volumes to store essential data",
+                  "default": true
+                },
+                "size": {
+                  "type": "string",
+                  "title": "Volume disk size",
+                  "description": "Disk size of the persistent volume",
+                  "default": "5Gi",
+                  "form": true,
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 100,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "hidden": {
+                    "value": false,
+                    "path": "elasticsearch/master/persistence/enabled"
+                  }
+                }
+              }
+            },
+            "networkPolicy": {
+              "type": "object",
+              "description": "Network policy",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Enable network policy",
+                  "default": true
+                },
+                "allowExternal": {
+                  "type": "boolean",
+                  "description": "Allows direct access to Argilla's backend ElasticSearch instance",
+                  "default": false,
+                  "hidden": {
+                    "value": false,
+                    "path": "elasticsearch/master/networkPolicy/enabled"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "redis": {
+      "title": "Redis specific configuration",
+      "description": "Redis specific configuration",
+      "type": "object",
+      "properties": {
+        "master": {
+          "type": "object",
+          "properties": {
+            "persistence": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Use persistent volumes to store essential data",
+                  "default": true
+                },
+                "size": {
+                  "type": "string",
+                  "title": "Volume disk size",
+                  "description": "Disk size of the persistent volume",
+                  "default": "5Gi",
+                  "form": true,
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 100,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "hidden": {
+                    "value": false,
+                    "path": "redis/master/persistence/enabled"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "description": "Network policy",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable network policy",
+              "default": true
+            },
+            "allowExternal": {
+              "type": "boolean",
+              "description": "Allows direct access to Argilla's backend Redis instance",
+              "default": false,
+              "hidden": {
+                "value": false,
+                "path": "redis/networkPolicy/enabled"
+              }
+            }
+          }
+        }
+      }
+    },
+    "postgresql": {
+      "title": "PostgreSQL specific configuration",
+      "description": "PostgreSQL specific configuration",
+      "type": "object",
+      "properties": {
+        "image": {
+          "description": "Image configuration",
+          "type": "object",
+          "properties": {
+            "registry": {
+              "description": "registry",
+              "type": "string",
+              "default": "docker.io",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "repository": {
+              "description": "repository",
+              "type": "string",
+              "default": "bitnami/postgresql",
+              "x-onyxia": {
+                "hidden": true
+              }
+            },
+            "tag": {
+              "description": "PostgreSQL major version",
+              "type": "string",
+              "default": "16",
+              "enum": [
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16"
+              ]
+            },
+            "pullPolicy": {
+              "type": "string",
+              "description": "Option when pulling the docker image",
+              "default": "IfNotPresent",
+              "enum": [
+                "IfNotPresent",
+                "Always",
+                "Never"
+              ]
+            }
+          }
+        },
+        "primary": {
+          "type": "object",
+          "properties": {
+            "resources": {
+              "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "500m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 40000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "2Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 200,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory"
+                    }
+                  }
+                },
+                "limits": {
+                  "description": "max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "5000m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 40000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "20Gi",
+                      "render": "slider",
+                      "sliderMin": 1,
+                      "sliderMax": 200,
+                      "sliderStep": 1,
+                      "sliderUnit": "Gi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory"
+                    }
+                  }
+                }
+              }
+            },
+            "persistence": {
+              "description": "PostgreSQL persistence configuration",
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Use persistent volumes to store essential data",
+                  "default": true
+                },
+                "size": {
+                  "type": "string",
+                  "title": "Volume disk size",
+                  "description": "Disk size of the persistent volume",
+                  "default": "20Gi",
+                  "form": true,
+                  "render": "slider",
+                  "sliderMin": 1,
+                  "sliderMax": 100,
+                  "sliderStep": 1,
+                  "sliderUnit": "Gi",
+                  "hidden": {
+                    "value": false,
+                    "path": "postgresql/primary/persistence/enabled"
+                  }
+                }
+              }
+            },
+            "networkPolicy": {
+              "type": "object",
+              "description": "Network policy",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Enable network policy",
+                  "default": true
+                },
+                "allowExternal": {
+                  "type": "boolean",
+                  "description": "Allows direct access to Argilla's backend PostgreSQL instance",
+                  "default": false,
+                  "hidden": {
+                    "value": false,
+                    "path": "postgresql/primary/networkPolicy/enabled"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "form": true,
+      "title": "Ingress Details",
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-argilla-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        },
+        "useCertManager": {
+          "type": "boolean",
+          "description": "Whether CertManager should be used to generate a certificate",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.useCertManager"
+          }
+        },
+        "certManagerClusterIssuer": {
+          "type": "string",
+          "description": "certManager cluster issuer",
+          "title": "CertManager Cluster Issuer",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.certManagerClusterIssuer"
+          }
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "form": true,
+      "title": "Route details",
+      "properties": {
+        "enabled": {
+          "description": "Enable route",
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.route"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-elasticsearch-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        }
+      }
+    },
+    "security": {
+      "description": "security specific configuration",
+      "type": "object",
+      "properties": {
+        "networkPolicy": {
+          "type": "object",
+          "description": "Define access policy to the service",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
+            },
+            "from": {
+              "type": "array",
+              "description": "Array of source allowed to have network access to your service",
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userPreferences": {
+      "description": "User Preferences",
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Preferred language",
+          "default": "en",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "user.lang"
+          }
+        }
+      }
+    }
+  }
+}

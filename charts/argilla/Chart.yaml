@@ -1,0 +1,29 @@
+apiVersion: v2
+name: argilla
+description: Argilla is a data annotation and curation platform designed to streamline the process of creating, managing, and labeling datasets for machine learning and natural language processing (NLP) tasks
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argilla.svg
+keywords:
+  - Data Annotation
+  - Data Curation
+  - Machine Learning
+  - NLP
+home: https://argilla.io/
+sources:
+  - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
+  - https://github.com/argilla-io/argilla/
+type: application
+version: 1.0.0
+appVersion: "2.3.0"
+dependencies:
+- name: redis
+  version: 20.2.0
+  repository:  https://charts.bitnami.com/bitnami
+- name: postgresql
+  version: 16.0.1
+  repository:  https://charts.bitnami.com/bitnami
+- name: elasticsearch
+  version: 21.3.21
+  repository: https://charts.bitnami.com/bitnami
+- name: library-chart
+  version: 1.5.25
+  repository: https://inseefrlab.github.io/helm-charts-interactive-services
