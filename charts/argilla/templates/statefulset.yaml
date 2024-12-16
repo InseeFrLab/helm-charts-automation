@@ -1,0 +1,167 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "library-chart.fullname" . }}
+  labels:
+    {{- include "library-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: server
+spec:
+  replicas: {{ .Values.argilla.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "library-chart.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: server
+  template:
+    metadata:
+      labels:
+        {{- include "library-chart.labels" . | nindent 8 }}
+        {{ template "postgresql.v1.primary.fullname" .Subcharts.postgresql }}-client: "true"
+        {{ template "common.names.fullname" .Subcharts.elasticsearch }}-client: "true"
+        {{ template "common.names.fullname" .Subcharts.redis }}-client: "true"
+        app.kubernetes.io/component: server
+    spec:
+      initContainers:
+        - name: permissions-fixer
+          image: alpine
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          command: [ "sh", "-c"]
+          args:
+            - |
+              chown -R 1000:1000 /data
+              chmod -R a+w /data
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+        - name: wait-for-postgresql
+          image: alpine/curl:latest
+          imagePullPolicy: IfNotPresent
+          command: [ "sh", "-c"]
+          args:
+            - |
+              until echo PING | nc $POSTGRES_HOST $POSTGRES_PORT
+              do
+                echo Postgres not ready. Sleeping...
+                sleep 5
+              done
+              echo Postgres up!
+          env:
+            - name: POSTGRES_HOST
+              value: {{ include "postgresql.v1.primary.fullname" .Subcharts.postgresql | quote }}
+            - name: POSTGRES_PORT
+              value: {{ include "postgresql.v1.service.port" .Subcharts.postgresql | quote }}
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+        - name: wait-for-redis
+          image: alpine/curl:latest
+          imagePullPolicy: IfNotPresent
+          command: [ "sh", "-c"]
+          args:
+            - |
+              until echo PING | nc $REDIS_HOST 6379
+              do
+                echo Redis not ready. Sleeping...
+                sleep 5
+              done
+              echo Redis up!
+          env:
+            - name: REDIS_HOST
+              value: {{ printf "%s-master" (include "common.names.fullname" .Subcharts.redis) | quote }}
+        - name: wait-for-elasticsearch
+          image: alpine/curl:latest
+          imagePullPolicy: IfNotPresent
+          command: [ "sh", "-c"]
+          args:
+            - |
+              status_code=$(curl -s -o /dev/null -w '%{http_code}' $ELASTICSEARCH_URL)
+              while [ $status_code -ne 200 ]
+              do
+                echo Elasticsearch not ready. Sleeping...
+                sleep 5
+                status_code=$(curl -s -o /dev/null -w '%{http_code}' $ELASTICSEARCH_URL)
+              done
+              echo Elasticsearch up!
+          env:
+            - name: ELASTICSEARCH_URL
+              value: "http://{{ include "elasticsearch.service.name" .Subcharts.elasticsearch }}:9200"
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+      containers:
+        - name: argilla-server
+          image: {{ printf "%s/%s:%s" .Values.argilla.image.registry .Values.argilla.image.repository .Values.argilla.image.tag }}
+          imagePullPolicy: {{ .Values.argilla.image.pullPolicy | quote }}
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "library-chart.fullname" . }}
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "library-chart.fullname" . }}
+                  key: password
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "library-chart.fullname" . }}
+                  key: apikey
+            - name: ARGILLA_AUTH_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "library-chart.fullname" . }}
+                  key: secretkey
+            - name: ARGILLA_HOME_PATH
+              value: "/data"
+            - name: ARGILLA_ELASTICSEARCH
+              value: {{ printf "http://%s:9200" (include "elasticsearch.service.name" .Subcharts.elasticsearch) | quote }}
+            - name: ARGILLA_REDIS_URL
+              value: {{ printf "redis://%s-master:6379/0" (include "common.names.fullname" .Subcharts.redis) | quote }}
+            - name: ARGILLA_DATABASE_URL
+              value: {{ include "argilla.postgresql.connexionstring" . | quote }}
+          ports:
+            - containerPort: 6900
+          volumeMounts:
+            - name: hosts-file
+              mountPath: /etc/hosts
+              subPath: hosts
+            - name: data
+              mountPath: /data
+          resources:
+            {{- toYaml .Values.argilla.resources | nindent 12 }}
+      volumes:
+        - name: hosts-file
+          configMap:
+            name: hosts-file
+        - name: data
+{{- if not .Values.argilla.persistence.enabled }}
+          emptyDir:
+            sizeLimit: {{ .Values.argilla.persistence.size | quote }}
+{{- else }}
+          persistentVolumeClaim:
+            claimName: data-{{ include "library-chart.fullname" . }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+        - "ReadWriteOnce"
+      resources:
+        requests:
+          storage: {{ .Values.argilla.persistence.size | quote }}
+    {{- if .Values.global.defaultStorageClass }}
+      {{- if (eq "-" .Values.global.defaultStorageClass) }}
+      storageClassName: ""
+      {{- else }}
+      storageClassName: "{{ .Values.global.defaultStorageClass }}"
+      {{- end }}
+    {{- end }}
+{{- end }}

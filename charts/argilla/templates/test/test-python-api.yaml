@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "library-chart.fullname" . }}-test-python-client"
+  labels:
+    {{- include "library-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: test
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  containers:
+  - name: test-python-client
+    image: "inseefrlab/onyxia-python-minimal"
+    command: ["/bin/sh","-c"]
+    args:
+    - |
+      pip3 install argilla && timeout 2m python3 <<EOF
+      import argilla as rg
+      client = rg.Argilla(api_url="http://{{ include "library-chart.fullname" . }}:6900", api_key="{{ .Values.security.password }}")
+      print("Found workspaces:", list(client.workspaces))
+      print("Test ok!")
+      exit(0)
+      EOF
+  restartPolicy: Never

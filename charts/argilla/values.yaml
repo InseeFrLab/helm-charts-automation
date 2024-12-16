@@ -1,0 +1,151 @@
+
+global:
+  #defaultStorageClass: "rook-ceph-block"
+  kibanaEnabled: false
+  postgresql:
+    auth:
+      username: "postgres"
+      password: "changeme"
+      database: "argilla"
+
+argilla:
+  image:
+    registry: docker.io
+    repository: argilla/argilla-server
+    tag: v2.3.0
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  persistence:
+    enabled: true
+    size: 5Gi
+  auth:
+    username: "argilla"
+    password: "changeme"
+    apikey: "argilla.apikey"
+    secretkey: "changeme"
+  hpa:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+
+elasticsearch:
+  fullnameOverride: argilla-elasticsearch
+  image:
+    registry: docker.io
+    repository: bitnami/elasticsearch
+    tag: 8.15.2-debian-12-r4
+    pullPolicy: IfNotPresent
+  master:
+    masterOnly: false
+    replicaCount: 1
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+    heapSize: 1g
+    persistence:
+      enabled: true
+      size: 5Gi
+    networkPolicy:
+      enabled: true
+      allowExternal: false
+  data:
+    replicaCount: 0
+  coordinating:
+    replicaCount: 0
+  ingest:
+    replicaCount: 0
+  ingress:
+    enabled: false
+  sysctlImage:
+    enabled: false
+  extraEnvVars:
+    - name: cluster.routing.allocation.disk.threshold_enabled
+      value: "false"
+    - name: xpack.security.enabled
+      value: "false"
+    - name: xpack.security.transport.ssl.enabled
+      value: "false"
+    - name: xpack.security.http.ssl.enabled
+      value: "false"
+
+redis:
+  fullnameOverride: argilla-redis
+  architecture: standalone
+  replica:
+    replicaCount: 1
+  master:
+    persistence:
+      enabled: true
+      size: 2Gi
+  auth:
+    enabled: false
+  networkPolicy:
+    enabled: true
+    allowExternal: false
+
+postgresql:
+  fullnameOverride: argilla-postgresql
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: "14"
+    pullPolicy: IfNotPresent
+  primary:
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2Gi
+      limits:
+        cpu: 5000m
+        memory: 20Gi
+    persistence:
+      enabled: true
+      size: 20Gi
+    networkPolicy:
+      enabled: true
+      allowExternal: false
+
+ingress:
+  enabled: true
+  hostname: "chart-example.local"
+  ingressClassName: ""
+  usecertManager: false
+  certManagerClusterIssuer: ""
+  tls: true
+  annotations: []
+
+route:
+  enabled: false
+    # route.openshift.io/termination: "reencrypt"
+  hostname: chart-example.local
+  tls:
+    termination: edge
+    # key:
+    # certificate:
+    # caCertificate:
+    # destinationCACertificate:
+  wildcardPolicy: None
+  annotations: []
+
+security:
+  allowlist:
+    enabled: false
+  networkPolicy:
+    enabled: false
+    from: []
+
+fullnameOverride: "argilla"
+
+userPreferences:
+  language: "en"
