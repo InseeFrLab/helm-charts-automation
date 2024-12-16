@@ -59,6 +59,13 @@ argo-cd:
       tag: # defaults to global.image.tag
       imagePullPolicy: # IfNotPresent
     replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 2000m
+        memory: 2000Mi
     enableStatefulSet: true
     args:
       statusProcessors: "20"
@@ -81,7 +88,6 @@ argo-cd:
     service:
       port: 443
       portName: https-controller
-    resources: {}
     serviceAccount:
       create: true
       name: argocd-application-controller
@@ -95,12 +101,28 @@ argo-cd:
   redis:
     enabled: true
 
+  redisSecretInit:
+    resources:
+      limits:
+        cpu: 200m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+  
   redis-ha:
     enabled: false
 
   server:
     name: server
     replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 2000m
+        memory: 2000Mi
     extraArgs:
       - --namespace
       - $(KUBERNETES_NAMESPACE)

@@ -1,6 +1,6 @@
 # argo-cd
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
@@ -47,7 +47,10 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | argo-cd.controller.logLevel | string | `"info"` |  |
 | argo-cd.controller.name | string | `"application-controller"` |  |
 | argo-cd.controller.replicas | int | `1` |  |
-| argo-cd.controller.resources | object | `{}` |  |
+| argo-cd.controller.resources.limits.cpu | string | `"2000m"` |  |
+| argo-cd.controller.resources.limits.memory | string | `"2000Mi"` |  |
+| argo-cd.controller.resources.requests.cpu | string | `"100m"` |  |
+| argo-cd.controller.resources.requests.memory | string | `"200Mi"` |  |
 | argo-cd.controller.service.port | int | `443` |  |
 | argo-cd.controller.service.portName | string | `"https-controller"` |  |
 | argo-cd.controller.serviceAccount.automountServiceAccountToken | bool | `true` |  |
@@ -61,6 +64,10 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | argo-cd.openshift.enabled | bool | `false` |  |
 | argo-cd.redis-ha.enabled | bool | `false` |  |
 | argo-cd.redis.enabled | bool | `true` |  |
+| argo-cd.redisSecretInit.resources.limits.cpu | string | `"200m"` |  |
+| argo-cd.redisSecretInit.resources.limits.memory | string | `"128Mi"` |  |
+| argo-cd.redisSecretInit.resources.requests.cpu | string | `"100m"` |  |
+| argo-cd.redisSecretInit.resources.requests.memory | string | `"64Mi"` |  |
 | argo-cd.repoServer.clusterAdminAccess.enabled | bool | `false` |  |
 | argo-cd.repoServer.clusterRoleRules.enabled | bool | `false` |  |
 | argo-cd.repoServer.name | string | `"repo-server"` |  |
@@ -76,6 +83,10 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 | argo-cd.server.logLevel | string | `"info"` |  |
 | argo-cd.server.name | string | `"server"` |  |
 | argo-cd.server.replicas | int | `1` |  |
+| argo-cd.server.resources.limits.cpu | string | `"2000m"` |  |
+| argo-cd.server.resources.limits.memory | string | `"2000Mi"` |  |
+| argo-cd.server.resources.requests.cpu | string | `"100m"` |  |
+| argo-cd.server.resources.requests.memory | string | `"200Mi"` |  |
 | argo-cd.server.serviceAccount.automountServiceAccountToken | bool | `true` |  |
 | argo-cd.server.serviceAccount.create | bool | `true` |  |
 | argo-cd.server.serviceAccount.name | string | `"argocd-server"` |  |

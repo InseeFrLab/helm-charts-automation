@@ -50,6 +50,13 @@ argo-workflows:
       annotations: {}
       name: "argo-workflows" # Service account which is used to run workflows
   controller:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 2000m
+        memory: 2000Mi   
     workflowNamespaces: []
     replicas: 1
     #containerRuntimeExecutor: k8sapi
@@ -57,6 +64,13 @@ argo-workflows:
       enabled: false
 
   server:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 2000m
+        memory: 2000Mi 
     enabled: true
     clusterWorkflowTemplates:
       enabled: false

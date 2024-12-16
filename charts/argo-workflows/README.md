@@ -1,6 +1,6 @@
 # argo-workflows
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes.
 
@@ -23,6 +23,10 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 |-----|------|---------|-------------|
 | argo-workflows.controller.clusterWorkflowTemplates.enabled | bool | `false` |  |
 | argo-workflows.controller.replicas | int | `1` |  |
+| argo-workflows.controller.resources.limits.cpu | string | `"2000m"` |  |
+| argo-workflows.controller.resources.limits.memory | string | `"2000Mi"` |  |
+| argo-workflows.controller.resources.requests.cpu | string | `"100m"` |  |
+| argo-workflows.controller.resources.requests.memory | string | `"200Mi"` |  |
 | argo-workflows.controller.workflowNamespaces | list | `[]` |  |
 | argo-workflows.crds.install | bool | `false` |  |
 | argo-workflows.createAggregateRoles | bool | `false` |  |
@@ -30,6 +34,10 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 | argo-workflows.server.enabled | bool | `true` |  |
 | argo-workflows.server.extraArgs[0] | string | `"--auth-mode=server"` |  |
 | argo-workflows.server.ingress.enabled | bool | `false` |  |
+| argo-workflows.server.resources.limits.cpu | string | `"2000m"` |  |
+| argo-workflows.server.resources.limits.memory | string | `"2000Mi"` |  |
+| argo-workflows.server.resources.requests.cpu | string | `"100m"` |  |
+| argo-workflows.server.resources.requests.memory | string | `"200Mi"` |  |
 | argo-workflows.singleNamespace | bool | `true` |  |
 | argo-workflows.workflow.serviceAccount.annotations | object | `{}` |  |
 | argo-workflows.workflow.serviceAccount.create | bool | `true` |  |
