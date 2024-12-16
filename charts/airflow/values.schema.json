@@ -6,6 +6,8 @@
       "type": "object",
       "properties": {
         "auth": {
+          "title": "Authentication",
+          "description": "Credentials to access the Airflow ",
           "type": "object",
           "properties": {
             "username": {
@@ -52,6 +54,7 @@
           "properties": {
             "resourcesPreset": {
               "title": "Web interface resources preset",
+              "type": "string",
               "default": "medium",
               "enum": [
                 "nano",
@@ -224,6 +227,8 @@
         },
         "defaultSidecars": {
           "type": "object",
+          "title": "DAGs git sync",
+          "description": "Synchronization of DAGs git repositories",
           "properties": {
             "syncDAGsPlugins": {
               "type": "object",
@@ -270,9 +275,9 @@
       }
     },
     "ingress": {
+      "title": "Ingress Details",
       "type": "object",
       "form": true,
-      "title": "Ingress Details",
       "properties": {
         "enabled": {
           "description": "Enable Ingress",
@@ -352,7 +357,8 @@
                 "path": "security/allowlist/enabled"
               }
             }
-          }
+          },
+          "hidden": true
         },
         "networkPolicy": {
           "type": "object",
