@@ -1,0 +1,408 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "airflow": {
+      "type": "object",
+      "properties": {
+        "auth": {
+          "title": "Authentication",
+          "description": "Credentials to access the Airflow ",
+          "type": "object",
+          "properties": {
+            "username": {
+              "title": "User name",
+              "description": "Name of the admin user for the web interface",
+              "type": "string",
+              "default": "admin",
+              "x-form": {
+                "value": "{{project.id}}"
+              },
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.id}}"
+              }
+            },
+            "password": {
+              "title": "Password",
+              "description": "Password for the web interface",
+              "type": "string",
+              "default": "changeme",
+              "render": "password",
+              "x-form": {
+                "value": "{{project.password}}"
+              },
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{project.password}}",
+                "overwriteSchemaWith": "ide/password"
+              }
+            },
+            "secretKey": {
+              "title": "Secret key",
+              "description": "Secret key to run your flask app",
+              "type": "string",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{service.oneTimePassword}}"
+              }
+            }
+          }
+        },
+        "web": {
+          "title": "Web interface specific configuration",
+          "type": "object",
+          "properties": {
+            "resourcesPreset": {
+              "title": "Web interface resources preset",
+              "type": "string",
+              "default": "medium",
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
+            }
+          }
+        },
+        "scheduler": {
+          "title": "Scheduler specific configuration",
+          "type": "object",
+          "properties": {
+            "resourcesPreset": {
+              "title": "Scheduler resources preset",
+              "type": "string",
+              "default": "small",
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
+            }
+          }
+        },
+        "dagProcessor": {
+          "title": "DAG Processor specific configuration",
+          "type": "object",
+          "properties": {
+            "resourcesPreset": {
+              "title": "DAG Processor resources preset",
+              "type": "string",
+              "default": "small",
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
+            }
+          }
+        },
+        "worker": {
+          "title": "Worker specific configuration",
+          "type": "object",
+          "properties": {
+            "resourcesPreset": {
+              "title": "Worker resources preset",
+              "type": "string",
+              "default": "large",
+              "enum": [
+                "nano",
+                "micro",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
+                "2xlarge"
+              ]
+            }
+          }
+        },
+        "postgresql": {
+          "title": "Backend PostgreSQL database specific configuration",
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "object",
+              "properties": {
+                "resourcesPreset": {
+                  "title": "Backend PostgreSQL database resources preset",
+                  "type": "string",
+                  "default": "nano",
+                  "enum": [
+                    "nano",
+                    "micro",
+                    "small",
+                    "medium",
+                    "large",
+                    "xlarge",
+                    "2xlarge"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "redis": {
+          "title": "Backend Redis database specific configuration",
+          "type": "object",
+          "properties": {
+            "master": {
+              "type": "object",
+              "properties": {
+                "resourcesPreset": {
+                  "title": "Backend Redis database resources preset",
+                  "type": "string",
+                  "default": "nano",
+                  "enum": [
+                    "nano",
+                    "micro",
+                    "small",
+                    "medium",
+                    "large",
+                    "xlarge",
+                    "2xlarge"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "dags": {
+          "title": "DAG specific configuration",
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "Synchronize DAGs with git repositories",
+              "type": "boolean",
+              "default": false
+            },
+            "repositories": {
+              "description": "List of git repositories to synchronize DAGs with",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "repository": {
+                    "description": "the url of the git repo",
+                    "type": "string",
+                    "default": "https://github.com/USERNAME/REPOSITORY.git",
+                    "x-onyxia": {
+                      "overwriteDefaultWith": "{{git.project}}"
+                    }
+                  },
+                  "path": {
+                    "description": "the sub-path within your repo where dags are located",
+                    "type": "string",
+                    "default": "/"
+                  },
+                  "branch": {
+                    "description": "the git branch to check out",
+                    "type": "string",
+                    "default": "main"
+                  },
+                  "name": {
+                    "description": "custom dag folder",
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              },
+              "hidden": {
+                "value": false,
+                "path": "airflow/dags/enabled"
+              }
+            }
+          }
+        },
+        "defaultSidecars": {
+          "type": "object",
+          "title": "DAGs git sync",
+          "description": "Synchronization of DAGs git repositories",
+          "properties": {
+            "syncDAGsPlugins": {
+              "type": "object",
+              "properties": {
+                "extraEnvVars": {
+                  "description": "Env variable for git sync",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "default": "ENV_VAR_NAME",
+                        "pattern": "^[a-zA-Z0-9_]+$"
+                      },
+                      "value": {
+                        "type": "string",
+                        "default": ""
+                      }
+                    }
+                  },
+                  "default": [],
+                  "x-onyxia": {
+                    "overwriteDefaultWith": [
+                      {
+                        "name": "GIT_PERSONAL_ACCESS_TOKEN",
+                        "value": "{{git.token}}"
+                      },
+                      {
+                        "name": "GIT_USER_NAME",
+                        "value": "{{git.name}}"
+                      },
+                      {
+                        "name": "GIT_USER_MAIL",
+                        "value": "{{git.email}}"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ingress": {
+      "title": "Ingress Details",
+      "type": "object",
+      "form": true,
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-airflow-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        },
+        "useCertManager": {
+          "type": "boolean",
+          "description": "Whether CertManager should be used to generate a certificate",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.useCertManager"
+          }
+        },
+        "certManagerClusterIssuer": {
+          "type": "string",
+          "description": "certManager cluster issuer",
+          "title": "CertManager Cluster Issuer",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.certManagerClusterIssuer"
+          }
+        }
+      }
+    },
+    "security": {
+      "description": "security specific configuration",
+      "type": "object",
+      "properties": {
+        "allowlist": {
+          "type": "object",
+          "description": "IP protection",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable IP protection",
+              "description": "Only the configured set of IPs will be able to reach the service",
+              "default": true,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultIpProtection"
+              }
+            },
+            "ip": {
+              "type": "string",
+              "description": "the white list of IP is whitespace",
+              "title": "Whitelist of IP",
+              "x-onyxia": {
+                "overwriteDefaultWith": "{{user.ip}}"
+              },
+              "hidden": {
+                "value": false,
+                "path": "security/allowlist/enabled"
+              }
+            }
+          },
+          "hidden": true
+        },
+        "networkPolicy": {
+          "type": "object",
+          "description": "Define access policy to the service",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
+            },
+            "from": {
+              "type": "array",
+              "description": "Array of source allowed to have network access to your service",
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userPreferences": {
+      "description": "User Preferences",
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Preferred language",
+          "default": "en",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "user.lang"
+          }
+        }
+      }
+    }
+  }
+}

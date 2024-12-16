@@ -1,0 +1,22 @@
+apiVersion: v2
+name: airflow
+description: Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/airflow.svg
+keywords:
+  - apache
+  - airflow
+  - workflow
+  - dag
+home: https://airflow.apache.org/
+sources:
+  - https://github.com/bitnami/charts/tree/main/bitnami/airflow
+type: application
+version: 0.0.1
+appVersion: "2.10.3"
+dependencies:
+- name: airflow
+  version: 22.4.1
+  repository:  https://charts.bitnami.com/bitnami
+- name: library-chart
+  version: 1.5.34
+  repository: https://inseefrlab.github.io/helm-charts-interactive-services

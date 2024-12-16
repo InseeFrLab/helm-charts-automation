@@ -1,0 +1,68 @@
+airflow:
+  auth:
+    username: "admin"
+    password: "changeme"
+    secretKey: "THIS IS UNSAFE!"
+  dags:
+    enabled: false
+    repositories: []
+    ## - repository: https://github.com/myuser/myrepo
+    ##   branch: main
+    ##   name: my-dags
+    ##   path: /
+  ##defaultSidecars:
+  ##  syncDAGsPlugins:
+  ##    extraEnvVars:
+  ##      - name: GIT_PERSONAL_ACCESS_TOKEN
+  ##        value: ""
+  ##      - name: GIT_USER_NAME
+  ##        value: ""
+  ##      - name: GIT_USER_MAIL
+  ##        value: ""
+  web:
+    resourcesPreset: "medium"
+  scheduler:
+    resourcesPreset: "small"
+  dagProcessor:
+    resourcesPreset: "small"
+  worker:
+    resourcesPreset: "large"
+  postgresql:
+    primary:
+      resourcesPreset: "nano"
+  redis:
+    master:
+      resourcesPreset: "nano"
+  ingress:
+    enabled: false
+
+ingress:
+  host: "chart-example.local"
+  ingressClassName: ""
+  usecertManager: false
+  certManagerClusterIssuer: ""
+  tls: true
+  annotations: []
+
+route:
+  enabled: false
+    # route.openshift.io/termination: "reencrypt"
+  hostname: chart-example.local
+  tls:
+    termination: edge
+    # key:
+    # certificate:
+    # caCertificate:
+    # destinationCACertificate:
+  wildcardPolicy: None
+  annotations: []
+
+security:
+  allowlist:
+    enabled: false
+  networkPolicy:
+    enabled: false
+    from: []
+
+userPreferences:
+  language: "en"
