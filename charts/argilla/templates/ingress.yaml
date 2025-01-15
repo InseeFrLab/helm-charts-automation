@@ -29,6 +29,6 @@ spec:
             backend:
               service:
                 name: {{ include "library-chart.fullname" . }}
-                port: 
+                port:
                   number: 6900
 {{- end }}
