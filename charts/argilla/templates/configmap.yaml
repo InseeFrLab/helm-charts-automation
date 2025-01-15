@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hosts-file
+data:
+  hosts: |
+    127.0.0.1 localhost
+    ::1 localhost
