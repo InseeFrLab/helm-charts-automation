@@ -1,0 +1,71 @@
+{{- $pvcList := list -}}
+{{- if .Values.airflow.postgresql.enabled }}
+{{- $pvcList = append $pvcList (printf "%s-%s-0" .Values.airflow.postgresql.primary.persistence.volumeName (include "postgresql.v1.primary.fullname" .Subcharts.airflow.Subcharts.postgresql)) -}}
+{{- end -}}
+{{- if .Values.airflow.redis.enabled }}
+{{- $pvcList = append $pvcList (printf "redis-data-%s-master-0" (include "common.names.fullname" .Subcharts.airflow.Subcharts.redis)) -}}
+{{- end -}}
+
+{{- if eq .Values.userPreferences.language "fr" -}}
+
+**Informations de connexion :**
+- Votre nom d'utilisateur: **{{ .Values.airflow.auth.username }}**
+- Votre password: **{{ .Values.airflow.auth.password }}**
+{{- if .Values.ingress.enabled }}
+- Vous pouvez vous connecter à Apache Airflow avec votre navigateur à ce [lien](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end }}
+
+**Synchronisation git des DAGs :**
+{{- if not (and .Values.airflow.dags.enabled .Values.airflow.dags.repositories) }}
+- **La synchronisation git est désactivée !**
+  Pour une utilisation optimale de ce service, il est recommandé d'activer la synchronisation git de dossiers de DAG.
+  Depuis la page de configuration de votre service, vous pouvez renseigner des identifiants git (si nécessaire) et lister des dépôts git à utiliser pour alimenter des dossiers de DAG.
+{{- else }}
+- La synchronisation git est configurée pour synchroniser les repertoires de DAGs suivants:
+  {{- range .Values.airflow.dags.repositories }}
+  - `{{ .repository }}{{ .path }}` (branche `{{ .branch }}`){{ with .name }} dans le dossier `{{ . }}`{{ end }}
+  {{- end -}}
+{{- end -}}
+
+{{- if not (empty $pvcList) }}
+
+**REMARQUES concernant la suppression :**
+- Vous pouvez supprimer ce service sans risque, ses volumes de données ne sont pas effacées automatiquement
+- Un nouveau service Airflow pourra les réutiliser en indiquant leurs noms (`{{ join "`, `" $pvcList }}`) dans la configuration du service
+- Si vous souhaitez supprimer définitivement ces volumes : `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+
+{{- else -}}
+  {{- if ne .Values.userPreferences.language "en" -}}
+    *NOTES are not supported for language `{{ .Values.userPreferences.language }}`... Defaulting to english.*
+
+  {{ end -}}
+
+**Connection information:**
+- Your username: **{{ .Values.airflow.auth.username }}**
+- Your password: **{{ .Values.airflow.auth.password }}**
+{{- if .Values.ingress.enabled }}
+- You can connect to Apache Airflow with your browser on this [link](http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }})
+{{- end }}
+
+**DAG git sync:**
+{{- if not (and .Values.airflow.dags.enabled .Values.airflow.dags.repositories) }}
+- **git sync is disabled!**
+  For optimal use of this service, it is recommended to synchronize DAG folders using git.
+  In the configuration page of your service you can specify git credentials and list repositories that will be used to fill in the DAG folders.
+{{- else }}
+- git synchronizaton is configured to synchronize the following DAG directories:
+  {{- range .Values.airflow.dags.repositories }}
+  - `{{ .repository }}{{ .path }}` (branch `{{ .branch }}`){{ with .name }} in folder `{{ . }}`{{ end }}
+  {{- end -}}
+{{- end -}}
+
+{{- if not (empty $pvcList) }}
+
+**NOTES about deletion:**
+- You can safely delete this service, its data volumes are not automatically erased
+- A new Airflow service can reuse them by specifying their names (`{{ join "`, `" $pvcList }}`) in the service configuration
+- If you want to delete those volumes definitely: `kubectl delete pvc {{ join " " $pvcList }}`
+{{- end -}}
+
+{{- end -}}
