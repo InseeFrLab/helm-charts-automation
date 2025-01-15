@@ -56,7 +56,7 @@ argo-workflows:
         memory: 200Mi
       limits:
         cpu: 2000m
-        memory: 2000Mi   
+        memory: 2000Mi
     workflowNamespaces: []
     replicas: 1
     #containerRuntimeExecutor: k8sapi
@@ -70,7 +70,7 @@ argo-workflows:
         memory: 200Mi
       limits:
         cpu: 2000m
-        memory: 2000Mi 
+        memory: 2000Mi
     enabled: true
     clusterWorkflowTemplates:
       enabled: false

@@ -39,8 +39,8 @@ spec:
               until printf "." && nc -z -w 2 {{ .Values.postgresql.fullnameOverride }} 5432; do
                   sleep 2;
               done;
-              echo 'PostgreSQL OK ✓' 
-              
+              echo 'PostgreSQL OK ✓'
+
         - name: db-migrations
           image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
           command:
@@ -51,7 +51,7 @@ spec:
           {{- end }}
           env:
             {{- include "metaflow-service.metadatadbEnvVars" . | nindent 12 }}
-            
+
       {{- end }}
       containers:
         - name: {{ include "metaflow-service.fullname" . }}
@@ -88,7 +88,7 @@ spec:
               value: "{{ .Values.s3.endpoint }}"
             - name: AWS_S3_DEFAULT_REGION
               value: "{{ .Values.s3.defaultRegion}}"
-            - name: AWS_SESSION_TOKEN 
+            - name: AWS_SESSION_TOKEN
               value: "{{ .Values.s3.sessionToken }}"
       {{- with .Values.nodeSelector }}
       nodeSelector:

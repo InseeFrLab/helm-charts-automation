@@ -16,4 +16,4 @@ spec:
   policyTypes:
   - Ingress
 {{- end }}
-{{- end }} 
+{{- end }}

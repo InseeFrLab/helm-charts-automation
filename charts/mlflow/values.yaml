@@ -6,7 +6,7 @@ replicaCount: 1
 
 service:
   image:
-    version: ""
+    version: "inseefrlab/mlflow:v2.11.3"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
@@ -30,11 +30,8 @@ s3:
   secretAccessKey: ""
   sessionToken: ""
 
-discoverable:
-  allow: true
-
-liveness:
-  enabled: "true"
+discovery:
+  enabled: true
 
 security:
   # should be configured https://mlflow.org/docs/latest/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access
@@ -96,7 +93,7 @@ ingress:
   #      - chart-example.local
   useCertManager: false
   certManagerClusterIssuer: ""
-  
+
 route:
   enabled: false
   annotations:
@@ -110,9 +107,6 @@ route:
     # caCertificate:
     # destinationCACertificate:
   wildcardPolicy: None
-
-readiness:
-  enabled: "true"
 
 imagePullSecrets: []
 nameOverride: ""

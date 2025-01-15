@@ -55,7 +55,7 @@ spec:
             - {{ . }}
             {{- end }}
           imagePullPolicy: {{ .Values.service.image.pullPolicy }}
-          envFrom: 
+          envFrom:
             {{- if .Values.s3.enabled }}
             - secretRef:
                 name: {{ include "library-chart.secretNameS3" . }}
@@ -64,7 +64,7 @@ spec:
           volumeMounts:
           - name: secret-auth-ini-volume
             mountPath: /home/oyxia/work/basic_auth.ini
-            subPath: basic_auth.ini 
+            subPath: basic_auth.ini
           {{- end }}
           env:
             - name: MLFLOW_S3_ENDPOINT_URL
@@ -90,7 +90,7 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 20
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}         
+            {{- toYaml .Values.resources | nindent 12 }}
 
       initContainers:
         - name: wait-for-postgresql

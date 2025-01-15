@@ -1,5 +1,5 @@
 apiVersion: v2
-description: Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes. 
+description: Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes.
 home: https://github.com/bentoml/yatai
 sources:
 - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
@@ -20,4 +20,3 @@ dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 13.1.5
-

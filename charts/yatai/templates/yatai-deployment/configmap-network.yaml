@@ -21,4 +21,3 @@ data:
   {{- if .Values.layers.network.domainSuffix }}
   domain-suffix: {{ .Values.layers.network.domainSuffix }}
   {{- end }}
-

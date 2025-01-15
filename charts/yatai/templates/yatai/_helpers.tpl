@@ -80,4 +80,3 @@ Generate inititalization token
     {{- $secretData := (get $secretObj "data") | default dict }}
     {{- (get $secretData "YATAI_INITIALIZATION_TOKEN") | default (randAlphaNum 16 | nospace | b64enc) | b64dec }}
 {{- end -}}
-
