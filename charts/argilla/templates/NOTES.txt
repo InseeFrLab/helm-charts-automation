@@ -23,7 +23,7 @@
 - Vous pouvez vous connecter à Argilla avec votre navigateur à ce [lien](https://{{ .Values.route.hostname }})
 {{- end }}
 - Vous pouvez vous connectez à Argilla depuis l'intérieur du datalab à cette URL : **http://{{ include "library-chart.fullname" . }}:6900**
-- Example using the Python client API :
+- Exemple avec l'API client en Python :
 
 ```
 import argilla as rg
@@ -55,7 +55,7 @@ rg.Workspace(name="my_workspace", client=client).create()
 - You can connect to Argilla with your browser on this [link](https://{{ .Values.route.hostname }})
 {{- end }}
 - You can connect to Argilla from inside the datalab at this url : **http://{{ include "library-chart.fullname" . }}:6900**
-- Example using the Python client API :
+- Example using the Python client API:
 
 ```
 import argilla as rg
