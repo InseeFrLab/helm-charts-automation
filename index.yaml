@@ -32,6 +32,41 @@ entries:
   argilla:
   - apiVersion: v2
     appVersion: 2.3.0
+    created: "2025-01-15T16:54:50.199516194Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.2.0
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    - name: elasticsearch
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.3.21
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.25
+    description: Argilla is a data annotation and curation platform designed to streamline
+      the process of creating, managing, and labeling datasets for machine learning
+      and natural language processing (NLP) tasks
+    digest: c23c827095f84b6e4f00bf03796e3566e016e6fba2f1f1d76fac4acc0ae352ed
+    home: https://argilla.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argilla.svg
+    keywords:
+    - Data Annotation
+    - Data Curation
+    - Machine Learning
+    - NLP
+    name: argilla
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
+    - https://github.com/argilla-io/argilla/
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argilla-1.0.1/argilla-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 2.3.0
     created: "2025-01-15T16:13:36.150266212Z"
     dependencies:
     - name: redis
@@ -3205,4 +3240,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2025-01-15T16:13:36.150493365Z"
+generated: "2025-01-15T16:54:50.199756093Z"
