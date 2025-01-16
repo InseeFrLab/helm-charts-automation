@@ -38,7 +38,7 @@ spec:
               until printf "." && nc -z -w 2 {{ .Values.postgresql.fullnameOverride }} 5432; do
                   sleep 2;
               done;
-              echo 'PostgreSQL OK ✓' 
+              echo 'PostgreSQL OK ✓'
       containers:
         - name: {{ include "metaflow-ui.fullname" . }}
           securityContext:
@@ -85,7 +85,7 @@ spec:
               value: "{{ .Values.s3.endpoint }}"
             - name: AWS_S3_DEFAULT_REGION
               value: "{{ .Values.s3.defaultRegion}}"
-            - name: AWS_SESSION_TOKEN 
+            - name: AWS_SESSION_TOKEN
               value: "{{ .Values.s3.sessionToken }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

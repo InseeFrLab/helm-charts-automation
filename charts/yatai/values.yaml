@@ -7,21 +7,21 @@ security:
   username: ""
   email: ""
   password: ""
-  networkPolicy: 
+  networkPolicy:
     enabled: true
     from: []
   allowlist:
     enabled: true
-    ip: "0.0.0.0/0" 
-    
+    ip: "0.0.0.0/0"
+
 
 image:
-  yatai: 
+  yatai:
     repository: aminehub/yatai
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: "1.1.3.v2"
-  yataiDeployment: 
+  yataiDeployment:
     repository: quay.io/bentoml/yatai-deployment
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.

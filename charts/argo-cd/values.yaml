@@ -109,7 +109,7 @@ argo-cd:
       requests:
         cpu: 100m
         memory: 64Mi
-  
+
   redis-ha:
     enabled: false
 

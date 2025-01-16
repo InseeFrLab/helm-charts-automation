@@ -190,6 +190,7 @@
             "repositories": {
               "description": "List of git repositories to synchronize DAGs with",
               "type": "array",
+              "default": [],
               "items": {
                 "type": "object",
                 "properties": {
@@ -377,8 +378,12 @@
               }
             },
             "from": {
+              "description": "Array of sources allowed to have network access to your service",
               "type": "array",
-              "description": "Array of source allowed to have network access to your service",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
               "default": [],
               "x-onyxia": {
                 "hidden": true,

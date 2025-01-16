@@ -13,8 +13,8 @@ spec:
   to:
     kind: Service
     name: {{ template "argo.server.fullname" . }}
-  port: 
-    targetPort: {{ index .Values "argo-cd" "server" "service" "servicePortHttps"}} 
+  port:
+    targetPort: {{ index .Values "argo-cd" "server" "service" "servicePortHttps"}}
   tls:
     termination: {{ .Values.route.tls.termination }}
     {{- if .Values.route.tls.key }}

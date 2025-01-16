@@ -13,7 +13,7 @@ spec:
   to:
     kind: Service
     name: {{ .Release.Name }}-server
-  port: 
+  port:
     targetPort: {{ index .Values "argo-workflows" "server" "servicePort" }}
   tls:
     termination: {{ .Values.route.tls.termination }}

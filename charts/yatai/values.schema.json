@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "security": {
@@ -34,27 +34,31 @@
           "type": "object",
           "description": "Define access policy to the service",
           "x-onyxia": {
-              "overwriteSchemaWith": "network-policy.json"
+            "overwriteSchemaWith": "network-policy.json"
           },
           "properties": {
-              "enabled": {
-                  "type": "boolean",
-                  "title": "Enable network policy",
-                  "description": "Only pod from the same namespace will be allowed",
-                  "default": false,
-                  "x-onyxia": {
-                      "overwriteDefaultWith": "region.defaultNetworkPolicy"
-                  }
-              },
-              "from": {
-                  "type": "array",
-                  "description": "Array of source allowed to have network access to your service",
-                  "default": [],
-                  "x-onyxia": {
-                      "hidden": true,
-                      "overwriteDefaultWith": "region.from"
-                  }
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
               }
+            },
+            "from": {
+              "description": "Array of sources allowed to have network access to your service",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
           }
         }
       }
@@ -101,32 +105,35 @@
       }
     },
     "dockerRegistry": {
-      "server": {
-        "type": "string",
-        "description": "Docker Hub Server",
-        "default": "https://index.docker.io/v1/"
-      },
-      "username": {
-        "type": "string",
-        "description": "Docker Hub account username",
-        "default": ""
-      },
-      "password": {
-        "type": "string",
-        "description": "Docker Hub account token",
-        "title": "token",
-        "default": ""
-      },
-      "mail": {
-        "type": "string",
-        "description": "Docker Hub account mail",
-        "default": ""
-      },
-      "bentoRepositoryName": {
-        "type": "string",
-        "description": "Images will be pushed to this repo, e.g: inseefrlab/onyxia-web",
-        "title": "Docker Hub Repository",
-        "default": ""
+      "type": "object",
+      "properties": {
+        "server": {
+          "type": "string",
+          "description": "Docker Hub Server",
+          "default": "https://index.docker.io/v1/"
+        },
+        "username": {
+          "type": "string",
+          "description": "Docker Hub account username",
+          "default": ""
+        },
+        "password": {
+          "type": "string",
+          "description": "Docker Hub account token",
+          "title": "token",
+          "default": ""
+        },
+        "mail": {
+          "type": "string",
+          "description": "Docker Hub account mail",
+          "default": ""
+        },
+        "bentoRepositoryName": {
+          "type": "string",
+          "description": "Images will be pushed to this repo, e.g: inseefrlab/onyxia-web",
+          "title": "Docker Hub Repository",
+          "default": ""
+        }
       }
     },
     "resources": {

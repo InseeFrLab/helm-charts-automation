@@ -12,7 +12,7 @@ sources:
   - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
   - https://github.com/argilla-io/argilla/
 type: application
-version: 1.0.1
+version: 1.0.2
 appVersion: "2.3.0"
 dependencies:
 - name: redis

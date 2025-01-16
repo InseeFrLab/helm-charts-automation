@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "ingress": {
@@ -67,31 +67,35 @@
       "type": "object",
       "properties": {
         "networkPolicy": {
-            "type": "object",
-            "description": "Define access policy to the service",
-            "x-onyxia": {
-                "overwriteSchemaWith": "network-policy.json"
+          "type": "object",
+          "description": "Define access policy to the service",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
             },
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "title": "Enable network policy",
-                    "description": "Only pod from the same namespace will be allowed",
-                    "default": false,
-                    "x-onyxia": {
-                        "overwriteDefaultWith": "region.defaultNetworkPolicy"
-                    }
-                },
-                "from": {
-                    "type": "array",
-                    "description": "Array of source allowed to have network access to your service",
-                    "default": [],
-                    "x-onyxia": {
-                        "hidden": true,
-                        "overwriteDefaultWith": "region.from"
-                    }
-                }
+            "from": {
+              "description": "Array of sources allowed to have network access to your service",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
             }
+          }
         }
       }
     },
@@ -119,8 +123,12 @@
           "title": "controller",
           "properties": {
             "tolerations": {
-              "type": "array",
               "description": "Array of tolerations",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
               "default": [],
               "x-onyxia": {
                 "hidden": true,
@@ -129,9 +137,12 @@
               }
             },
             "nodeSelector": {
+              "title": "Node selector",
               "type": "object",
-              "description": "NodeSelector",
               "default": {},
+              "additionalProperties": {
+                "type": "string"
+              },
               "x-onyxia": {
                 "hidden": true,
                 "overwriteDefaultWith": "region.nodeSelector",
@@ -149,78 +160,82 @@
               "type": "object",
               "properties": {
                 "requests": {
-                    "description": "Guaranteed resources",
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "description": "The amount of cpu guaranteed",
-                            "title": "CPU",
-                            "type": "string",
-                            "default": "100m",
-                            "render": "slider",
-                            "sliderMin": 50,
-                            "sliderMax": 16000,
-                            "sliderStep": 50,
-                            "sliderUnit": "m",
-                            "sliderExtremity": "down",
-                            "sliderExtremitySemantic": "guaranteed",
-                            "sliderRangeId": "cpu"
-                        },
-                        "memory": {
-                            "description": "The amount of memory guaranteed",
-                            "title": "memory",
-                            "type": "string",
-                            "default": "200Mi",
-                            "render": "slider",
-                            "sliderMin": 100,
-                            "sliderMax": 8000,
-                            "sliderStep": 100,
-                            "sliderUnit": "Mi",
-                            "sliderExtremity": "down",
-                            "sliderExtremitySemantic": "guaranteed",
-                            "sliderRangeId": "memory"
-                        }
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "100m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 16000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "200Mi",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 8000,
+                      "sliderStep": 100,
+                      "sliderUnit": "Mi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory"
                     }
+                  }
                 },
                 "limits": {
-                    "description": "max resources",
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "description": "The maximum amount of cpu",
-                            "title": "CPU",
-                            "type": "string",
-                            "default": "2000m",
-                            "render": "slider",
-                            "sliderMin": 50,
-                            "sliderMax": 16000,
-                            "sliderStep": 50,
-                            "sliderUnit": "m",
-                            "sliderExtremity": "up",
-                            "sliderExtremitySemantic": "Maximum",
-                            "sliderRangeId": "cpu"
-                        },
-                        "memory": {
-                            "description": "The maximum amount of memory",
-                            "title": "Memory",
-                            "type": "string",
-                            "default": "2000Mi",
-                            "render": "slider",
-                            "sliderMin": 100,
-                            "sliderMax": 8000,
-                            "sliderStep": 100,
-                            "sliderUnit": "Mi",
-                            "sliderExtremity": "up",
-                            "sliderExtremitySemantic": "Maximum",
-                            "sliderRangeId": "memory"
-                        }
+                  "description": "max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "2000m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 16000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2000Mi",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 8000,
+                      "sliderStep": 100,
+                      "sliderUnit": "Mi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory"
                     }
+                  }
                 }
-            }
+              }
             },
             "tolerations": {
-              "type": "array",
               "description": "Array of tolerations",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
               "default": [],
               "x-onyxia": {
                 "hidden": true,
@@ -229,9 +244,12 @@
               }
             },
             "nodeSelector": {
+              "title": "Node selector",
               "type": "object",
-              "description": "NodeSelector",
               "default": {},
+              "additionalProperties": {
+                "type": "string"
+              },
               "x-onyxia": {
                 "hidden": true,
                 "overwriteDefaultWith": "region.nodeSelector",
@@ -249,78 +267,82 @@
               "type": "object",
               "properties": {
                 "requests": {
-                    "description": "Guaranteed resources",
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "description": "The amount of cpu guaranteed",
-                            "title": "CPU",
-                            "type": "string",
-                            "default": "100m",
-                            "render": "slider",
-                            "sliderMin": 50,
-                            "sliderMax": 16000,
-                            "sliderStep": 50,
-                            "sliderUnit": "m",
-                            "sliderExtremity": "down",
-                            "sliderExtremitySemantic": "guaranteed",
-                            "sliderRangeId": "cpu"
-                        },
-                        "memory": {
-                            "description": "The amount of memory guaranteed",
-                            "title": "memory",
-                            "type": "string",
-                            "default": "200Mi",
-                            "render": "slider",
-                            "sliderMin": 100,
-                            "sliderMax": 8000,
-                            "sliderStep": 100,
-                            "sliderUnit": "Mi",
-                            "sliderExtremity": "down",
-                            "sliderExtremitySemantic": "guaranteed",
-                            "sliderRangeId": "memory"
-                        }
+                  "description": "Guaranteed resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The amount of cpu guaranteed",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "100m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 16000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The amount of memory guaranteed",
+                      "title": "memory",
+                      "type": "string",
+                      "default": "200Mi",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 8000,
+                      "sliderStep": 100,
+                      "sliderUnit": "Mi",
+                      "sliderExtremity": "down",
+                      "sliderExtremitySemantic": "guaranteed",
+                      "sliderRangeId": "memory"
                     }
+                  }
                 },
                 "limits": {
-                    "description": "max resources",
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "description": "The maximum amount of cpu",
-                            "title": "CPU",
-                            "type": "string",
-                            "default": "2000m",
-                            "render": "slider",
-                            "sliderMin": 50,
-                            "sliderMax": 16000,
-                            "sliderStep": 50,
-                            "sliderUnit": "m",
-                            "sliderExtremity": "up",
-                            "sliderExtremitySemantic": "Maximum",
-                            "sliderRangeId": "cpu"
-                        },
-                        "memory": {
-                            "description": "The maximum amount of memory",
-                            "title": "Memory",
-                            "type": "string",
-                            "default": "2000Mi",
-                            "render": "slider",
-                            "sliderMin": 100,
-                            "sliderMax": 8000,
-                            "sliderStep": 100,
-                            "sliderUnit": "Mi",
-                            "sliderExtremity": "up",
-                            "sliderExtremitySemantic": "Maximum",
-                            "sliderRangeId": "memory"
-                        }
+                  "description": "max resources",
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "description": "The maximum amount of cpu",
+                      "title": "CPU",
+                      "type": "string",
+                      "default": "2000m",
+                      "render": "slider",
+                      "sliderMin": 50,
+                      "sliderMax": 16000,
+                      "sliderStep": 50,
+                      "sliderUnit": "m",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "cpu"
+                    },
+                    "memory": {
+                      "description": "The maximum amount of memory",
+                      "title": "Memory",
+                      "type": "string",
+                      "default": "2000Mi",
+                      "render": "slider",
+                      "sliderMin": 100,
+                      "sliderMax": 8000,
+                      "sliderStep": 100,
+                      "sliderUnit": "Mi",
+                      "sliderExtremity": "up",
+                      "sliderExtremitySemantic": "Maximum",
+                      "sliderRangeId": "memory"
                     }
+                  }
                 }
-            }
+              }
             },
             "tolerations": {
-              "type": "array",
               "description": "Array of tolerations",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
               "default": [],
               "x-onyxia": {
                 "hidden": true,
@@ -329,9 +351,12 @@
               }
             },
             "nodeSelector": {
+              "title": "Node selector",
               "type": "object",
-              "description": "NodeSelector",
               "default": {},
+              "additionalProperties": {
+                "type": "string"
+              },
               "x-onyxia": {
                 "hidden": true,
                 "overwriteDefaultWith": "region.nodeSelector",
@@ -345,8 +370,12 @@
           "title": "controller",
           "properties": {
             "tolerations": {
-              "type": "array",
               "description": "Array of tolerations",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
               "default": [],
               "x-onyxia": {
                 "hidden": true,
@@ -355,9 +384,12 @@
               }
             },
             "nodeSelector": {
+              "title": "Node selector",
               "type": "object",
-              "description": "NodeSelector",
               "default": {},
+              "additionalProperties": {
+                "type": "string"
+              },
               "x-onyxia": {
                 "hidden": true,
                 "overwriteDefaultWith": "region.nodeSelector",
