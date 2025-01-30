@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -27,7 +27,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| discoverable.allow | bool | `true` |  |
+| discovery.enabled | bool | `true` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
@@ -37,7 +37,6 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | ingress.ingressClassName | string | `""` |  |
 | ingress.tls | bool | `true` |  |
 | ingress.useCertManager | bool | `false` |  |
-| liveness.enabled | string | `"true"` |  |
 | nameOverride | string | `""` |  |
 | networkPolicy.enabled | bool | `false` |  |
 | networking.service.port | int | `80` |  |
@@ -57,7 +56,6 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | postgresql.primary.resources.limits.memory | string | `"2000Mi"` |  |
 | postgresql.primary.resources.requests.cpu | string | `"250m"` |  |
 | postgresql.primary.resources.requests.memory | string | `"256Mi"` |  |
-| readiness.enabled | string | `"true"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | resources_init.limits.cpu | string | `"100m"` |  |
@@ -90,7 +88,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | service.image.custom.enabled | bool | `false` |  |
 | service.image.custom.version | string | `""` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
-| service.image.version | string | `""` |  |
+| service.image.version | string | `"inseefrlab/mlflow:v2.11.3"` |  |
 | service.proxyArtifact.enabled | bool | `true` |  |
 | tolerations | list | `[]` |  |
 
