@@ -1203,6 +1203,26 @@ entries:
     version: 0.0.1
   label-studio:
   - apiVersion: v2
+    created: "2025-02-21T16:50:43.35123189Z"
+    dependencies:
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.45
+    description: Data Science starts with data. Label Studio removes the pain of labeling
+      it.
+    digest: c96520df7e6849b9070b13664351caa29ec75aa6daa22d5e7aa9e856afec0e9d
+    home: https://labelstud.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/labelStudio.png
+    keywords:
+    - ML
+    name: label-studio
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/label-studio
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-3.0.8/label-studio-3.0.8.tgz
+    version: 3.0.8
+  - apiVersion: v2
     created: "2025-02-21T16:39:23.058753359Z"
     dependencies:
     - name: library-chart
@@ -3487,4 +3507,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2025-02-21T16:39:23.059143282Z"
+generated: "2025-02-21T16:50:43.351886832Z"
