@@ -226,7 +226,7 @@
           "type": "string",
           "listEnum": ["READ", "EDIT", "MANAGE", "NO_PERMISSIONS"],
           "default": "READ",
-          "description": "[Learn more about about it](https://mlflow.org/docs/latest/auth/index.html#permissions)"
+          "description": "[Specify mlflow users permissions. Learn more about about it](https://mlflow.org/docs/latest/auth/index.html#permissions)"
         },
         "networkPolicy": {
           "type": "object",
