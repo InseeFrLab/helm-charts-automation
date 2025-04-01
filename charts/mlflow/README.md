@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -16,13 +16,17 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 13.1.5 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.21 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.6.11 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| auth.adminPassword | string | `""` |  |
+| auth.adminUsername | string | `""` |  |
+| auth.defaultPermission | string | `"READ"` | Default permission for all users. More details: https://mlflow.org/docs/latest/auth/index.html#permissions |
+| auth.enabled | bool | `false` | Specifies if you want to enable mlflow authentication. auth and ldapAuth can't be enabled at same time. |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
