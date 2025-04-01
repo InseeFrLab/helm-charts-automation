@@ -201,6 +201,10 @@
       "description": "security specific configuration",
       "type": "object",
       "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
         "password": {
           "type": "string",
           "description": "Password",
@@ -209,6 +213,20 @@
           "x-onyxia": {
             "overwriteDefaultWith": "{{project.password}}"
           }
+        },
+        "username": {
+          "type": "string",
+          "default": "admin",
+          "x-onyxia": {
+            "overwriteDefaultWith": "{{project.id}}"
+          }
+        },
+        "defaultPermission": {
+          "title": "Default permissions",
+          "type": "string",
+          "listEnum": ["READ", "EDIT", "MANAGE", "NO_PERMISSIONS"],
+          "default": "READ",
+          "description": "[Learn more about about it](https://mlflow.org/docs/latest/auth/index.html#permissions)"
         },
         "networkPolicy": {
           "type": "object",

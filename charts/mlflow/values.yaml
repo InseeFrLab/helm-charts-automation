@@ -159,3 +159,11 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+auth:
+  # -- Specifies if you want to enable mlflow authentication. auth and ldapAuth can't be enabled at same time.
+  enabled: false
+  adminUsername: ""
+  adminPassword: ""
+  # -- Default permission for all users. More details: https://mlflow.org/docs/latest/auth/index.html#permissions
+  defaultPermission: READ
