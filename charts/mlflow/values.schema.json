@@ -236,7 +236,8 @@
           "x-onyxia": {
             "overwriteDefaultWith": "{{project.password}}"
           },
-          "description": "[Specify a secret key for flask server. Learn more about about it](https://mlflow.org/docs/latest/auth)"
+          "description": "[Specify a secret key for flask server. Learn more about about it](https://mlflow.org/docs/latest/auth)",
+          "render": "password"
         },
         "networkPolicy": {
           "type": "object",
