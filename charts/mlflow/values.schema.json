@@ -24,6 +24,7 @@
               "description": "supported versions",
               "type": "string",
               "listEnum": [
+                "inseefrlab/mlflow:v2.21.3",
                 "inseefrlab/mlflow:v2.11.3",
                 "inseefrlab/mlflow:v2.10.2",
                 "inseefrlab/mlflow:v2.9.1"
@@ -34,7 +35,7 @@
                 "value": true,
                 "path": "service/image/custom/enabled"
               },
-              "default": "inseefrlab/mlflow:v2.11.3"
+              "default": "inseefrlab/mlflow:v2.21.3"
             },
             "custom": {
               "description": "use a custom docker image",
@@ -49,7 +50,7 @@
                 "version": {
                   "description": "unsupported version",
                   "type": "string",
-                  "default": "inseefrlab/mlflow:v2.11.3",
+                  "default": "inseefrlab/mlflow:v2.21.3",
                   "hidden": {
                     "value": false,
                     "path": "service/image/custom/enabled"
@@ -227,6 +228,15 @@
           "listEnum": ["READ", "EDIT", "MANAGE", "NO_PERMISSIONS"],
           "default": "READ",
           "description": "[Specify mlflow users permissions. Learn more about about it](https://mlflow.org/docs/latest/auth/index.html#permissions)"
+        },
+        "flaskServerSecretKey": {
+          "title": "Flask server secret key",
+          "type": "string",
+          "default": "changeme",
+          "x-onyxia": {
+            "overwriteDefaultWith": "{{project.password}}"
+          },
+          "description": "[Specify a secret key for flask server. Learn more about about it](https://mlflow.org/docs/latest/auth)"
         },
         "networkPolicy": {
           "type": "object",

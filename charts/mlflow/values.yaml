@@ -6,7 +6,7 @@ replicaCount: 1
 
 service:
   image:
-    version: "inseefrlab/mlflow:v2.11.3"
+    version: "inseefrlab/mlflow:v2.21.3"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
@@ -41,6 +41,7 @@ security:
   password: "changeme"
   # see https://www.mlflow.org/docs/latest/auth/index.html#permissions for default_permission possibilities
   defaultPermission: "READ"
+  flaskServerSecretKey: "changeme"
   networkPolicy:
     enabled: false
     from:
@@ -51,8 +52,6 @@ security:
   allowlist:
     enabled: true
     ip: "0.0.0.0/0"
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 postgresql:
   image:

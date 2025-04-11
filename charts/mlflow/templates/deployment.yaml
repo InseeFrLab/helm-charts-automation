@@ -67,6 +67,10 @@ spec:
             subPath: basic_auth.ini
           {{- end }}
           env:
+            {{- if and .Values.security.enabled .Values.security.flaskServerSecretKey }}
+            - name: MLFLOW_FLASK_SERVER_SECRET_KEY
+              value: {{ .Values.security.flaskServerSecretKey}}
+            {{- end }}
             - name: MLFLOW_S3_ENDPOINT_URL
               value: "https://{{ .Values.s3.endpoint }}"
             {{- if .Values.security.enabled  }}
