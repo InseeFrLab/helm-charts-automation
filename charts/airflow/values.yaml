@@ -50,7 +50,7 @@ airflow:
       resourcesPreset: "nano"
   redis:
     networkPolicy:
-      enabled: true
+      enabled: false
     master:
       resourcesPreset: "nano"
   ingress:
