@@ -5,6 +5,8 @@ airflow:
     secretKey: "THIS IS UNSAFE!"
   dags:
     enabled: false
+    networkPolicy:
+      enabled: false
     repositories: []
     ## - repository: https://github.com/myuser/myrepo
     ##   branch: main
@@ -19,18 +21,36 @@ airflow:
   ##        value: ""
   ##      - name: GIT_USER_MAIL
   ##        value: ""
+  triggerer:
+    networkPolicy:
+      enabled: false
   web:
     resourcesPreset: "medium"
+    networkPolicy:
+      enabled: false
   scheduler:
     resourcesPreset: "small"
+    networkPolicy:
+      enabled: false
   dagProcessor:
     resourcesPreset: "small"
+    networkPolicy:
+      enabled: false
+  metrics:
+    networkPolicy:
+      enabled: false
   worker:
     resourcesPreset: "large"
+    networkPolicy:
+      enabled: false
   postgresql:
     primary:
+      networkPolicy:
+        enabled: false
       resourcesPreset: "nano"
   redis:
+    networkPolicy:
+      enabled: true
     master:
       resourcesPreset: "nano"
   ingress:
