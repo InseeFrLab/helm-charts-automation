@@ -1,6 +1,6 @@
 # airflow
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.3](https://img.shields.io/badge/AppVersion-2.10.3-informational?style=flat-square)
+![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.3](https://img.shields.io/badge/AppVersion-2.10.3-informational?style=flat-square)
 
 Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
 
@@ -24,14 +24,23 @@ Apache Airflow is a tool to express and execute workflows as directed acyclic gr
 | airflow.auth.password | string | `"changeme"` |  |
 | airflow.auth.secretKey | string | `"THIS IS UNSAFE!"` |  |
 | airflow.auth.username | string | `"admin"` |  |
+| airflow.dagProcessor.networkPolicy.enabled | bool | `false` |  |
 | airflow.dagProcessor.resourcesPreset | string | `"small"` |  |
 | airflow.dags.enabled | bool | `false` |  |
+| airflow.dags.networkPolicy.enabled | bool | `false` |  |
 | airflow.dags.repositories | list | `[]` |  |
 | airflow.ingress.enabled | bool | `false` |  |
+| airflow.metrics.networkPolicy.enabled | bool | `false` |  |
+| airflow.postgresql.primary.networkPolicy.enabled | bool | `false` |  |
 | airflow.postgresql.primary.resourcesPreset | string | `"nano"` |  |
 | airflow.redis.master.resourcesPreset | string | `"nano"` |  |
+| airflow.redis.networkPolicy.enabled | bool | `true` |  |
+| airflow.scheduler.networkPolicy.enabled | bool | `false` |  |
 | airflow.scheduler.resourcesPreset | string | `"small"` |  |
+| airflow.triggerer.networkPolicy.enabled | bool | `false` |  |
+| airflow.web.networkPolicy.enabled | bool | `false` |  |
 | airflow.web.resourcesPreset | string | `"medium"` |  |
+| airflow.worker.networkPolicy.enabled | bool | `false` |  |
 | airflow.worker.resourcesPreset | string | `"large"` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
