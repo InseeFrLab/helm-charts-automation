@@ -1,0 +1,130 @@
+langfuse:
+  langfuse:
+    # Logging configuration
+    logging:
+      # -- Set the log level for the application (trace, debug, info, warn, error, fatal)
+      level: info
+      # -- Set the log format for the application (text or json)
+      format: text
+    encryptionKey:
+      secretKeyRef:
+        name: "langfuse-encryption"
+        key: "encryption-key"
+    salt:
+      value: "change-this-salt"
+    # Feature flags
+    features:
+      # -- Whether or not to report basic usage statistics to a centralized server.
+      telemetryEnabled: true
+      # -- Disable public sign up
+      signUpDisabled: false
+      # -- Enable experimental features
+      experimentalFeaturesEnabled: false
+    ingress:
+      enabled: false
+    replicas: 1
+    # -- Resources for all langfuse deployments. Can be overridden by the individual deployments
+    resources: {}
+    image:
+      tag: Null
+      pullPolicy: IfNotPresent # Defaults to appVersion
+    web:
+      resources: {} # Defaults to the global resources
+      replicas: null # Defaults to the global replicas
+      keda:
+        enabled: false
+      hpa:
+        enabled: false
+      vpa:
+        enabled: false
+    worker:
+      resources: {} # Defaults to the global resources
+      replicas: null # Defaults to the global replicas
+      keda:
+        enabled: false
+      hpa:
+        enabled: false
+      vpa:
+        enabled: false
+    nextauth:
+      secret:
+        value: "change-me"
+    additionalEnv:
+      - name: "LANGFUSE_INIT_ORG_ID"
+        value: "onyxia"
+      - name: "LANGFUSE_INIT_USER_EMAIL"
+        value: "test@langfuse.com"
+      - name: "LANGFUSE_INIT_USER_NAME"
+        value: "langfuse"
+      - name: "LANGFUSE_INIT_USER_PASSWORD"
+        value: "changeme"
+
+  postgresql:
+    # If you want to use an external Postgres server (or a managed one), set this to false
+    deploy: true
+    auth:
+      password: "change-me"
+    fullnameOverride: "langfuse-postgresql"
+    primary:
+      persistentVolumeClaimRetentionPolicy:
+        enabled: true
+        whenScaled: Retain
+        whenDeleted: Delete
+
+  redis:
+    # If you want to use a Redis or Valkey server already deployed, set to false.
+    deploy: true
+    auth:
+      password: "change-me"
+    fullnameOverride: "langfuse-redis"
+    primary:
+      persistentVolumeClaimRetentionPolicy:
+        enabled: true
+        whenScaled: Retain
+        whenDeleted: Delete
+
+  clickhouse:
+    deploy: true
+    auth:
+      password: "change-me"
+    fullnameOverride: "langfuse-clickhouse"
+
+  s3:
+    # If you want to use a custom BlobStorage, e.g. S3, set to false.
+    deploy: true
+    auth:
+      rootPassword: "change-me"
+    fullnameOverride: "langfuse-s3"
+
+ingress:
+  hostname: "chart-example.local"
+  ingressClassName: ""
+  usecertManager: false
+  certManagerClusterIssuer: ""
+  tls: true
+  annotations: []
+
+route:
+  enabled: false
+  hostname: chart-example.local
+  tls:
+    termination: edge
+  wildcardPolicy: None
+  annotations: []
+
+security:
+  allowlist:
+    enabled: false
+  networkPolicy:
+    enabled: false
+    from: []
+
+discovery:
+  enabled: true
+
+userPreferences:
+  language: "en"
+
+nameOverride: ""
+fullnameOverride: ""
+savePersistentVolume: false
