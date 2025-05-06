@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.51.2](https://img.shields.io/badge/AppVersion-3.51.2-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.51.2](https://img.shields.io/badge/AppVersion-3.51.2-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -68,13 +68,13 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.postgresql.auth.password | string | `"change-me"` |  |
 | langfuse.postgresql.deploy | bool | `true` |  |
 | langfuse.postgresql.fullnameOverride | string | `"langfuse-postgresql"` |  |
-| langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `true` |  |
+| langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `false` |  |
 | langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.whenDeleted | string | `"Delete"` |  |
 | langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.whenScaled | string | `"Retain"` |  |
 | langfuse.redis.auth.password | string | `"change-me"` |  |
 | langfuse.redis.deploy | bool | `true` |  |
 | langfuse.redis.fullnameOverride | string | `"langfuse-redis"` |  |
-| langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `true` |  |
+| langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `false` |  |
 | langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.whenDeleted | string | `"Delete"` |  |
 | langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.whenScaled | string | `"Retain"` |  |
 | langfuse.s3.auth.rootPassword | string | `"change-me"` |  |
