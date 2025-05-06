@@ -217,7 +217,7 @@
                   "default": "change-me",
                   "x-onyxia": {
                     "hidden": true,
-                    "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                    "overwriteDefaultWith": "{{project.password}}"
                   }
                 }
               }
