@@ -238,7 +238,7 @@
                     "enabled": {
                       "title": "Customize retention policy",
                       "type": "boolean",
-                      "default": true
+                      "default": false
                     },
                     "whenScaled": {
                       "type": "string",
@@ -312,7 +312,7 @@
                     "enabled": {
                       "title": "Customize retention policy",
                       "type": "boolean",
-                      "default": true
+                      "default": false
                     },
                     "whenScaled": {
                       "type": "string",

@@ -64,10 +64,10 @@ langfuse:
     deploy: true
     auth:
       password: "change-me"
-    fullnameOverride: "langfuse-postgresql"
+    fullnameOverride: "langfuse-postgresql" # Leave empty to generate name (and activate clean up)
     primary:
       persistentVolumeClaimRetentionPolicy:
-        enabled: true
+        enabled: false # Enable to clean up on service deletion
         whenScaled: Retain
         whenDeleted: Delete
 
@@ -76,10 +76,10 @@ langfuse:
     deploy: true
     auth:
       password: "change-me"
-    fullnameOverride: "langfuse-redis"
+    fullnameOverride: "langfuse-redis" # Leave empty to generate name (and activate clean up)
     primary:
       persistentVolumeClaimRetentionPolicy:
-        enabled: true
+        enabled: false # Enable to clean up on service deletion
         whenScaled: Retain
         whenDeleted: Delete
 
