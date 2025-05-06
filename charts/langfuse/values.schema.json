@@ -116,7 +116,7 @@
                       "default": "change-me",
                       "x-onyxia": {
                         "hidden": true,
-                        "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                        "overwriteDefaultWith": "{{project.password}}"
                       }
                     }
                   }
@@ -142,7 +142,7 @@
                   },
                   {
                     "name": "LANGFUSE_INIT_USER_PASSWORD",
-                    "value": "{{service.oneTimePassword}}"
+                    "value": "{{project.password}}"
                   }
                 ]
               },
@@ -291,7 +291,7 @@
                   "default": "change-me",
                   "x-onyxia": {
                     "hidden": true,
-                    "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                    "overwriteDefaultWith": "{{project.password}}"
                   }
                 }
               }
@@ -365,7 +365,7 @@
                   "default": "change-me",
                   "x-onyxia": {
                     "hidden": true,
-                    "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                    "overwriteDefaultWith": "{{project.password}}"
                   }
                 }
               }
@@ -391,7 +391,7 @@
                   "default": "change-me",
                   "x-onyxia": {
                     "hidden": true,
-                    "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                    "overwriteDefaultWith": "{{project.password}}"
                   }
                 }
               }
