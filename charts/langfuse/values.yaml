@@ -49,15 +49,11 @@ langfuse:
     nextauth:
       secret:
         value: "change-me"
-    additionalEnv:
-      - name: "LANGFUSE_INIT_ORG_ID"
-        value: "onyxia"
-      - name: "LANGFUSE_INIT_USER_EMAIL"
-        value: "test@langfuse.com"
-      - name: "LANGFUSE_INIT_USER_NAME"
-        value: "langfuse"
-      - name: "LANGFUSE_INIT_USER_PASSWORD"
-        value: "changeme"
+    initConfig:
+      LANGFUSE_INIT_ORG_ID: onyxia
+      LANGFUSE_INIT_USER_EMAIL: langfuse@onyxia.fr
+      LANGFUSE_INIT_USER_NAME: langfuse
+      LANGFUSE_INIT_USER_PASSWORD: changeme
 
   postgresql:
     # If you want to use an external Postgres server (or a managed one), set this to false

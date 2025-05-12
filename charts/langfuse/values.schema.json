@@ -123,78 +123,37 @@
                 }
               }
             },
-            "additionalEnv": {
-              "type": "array",
-              "x-onyxia": {
-                "hidden": true,
-                "overwriteDefaultWith": [
-                  {
-                    "name": "LANGFUSE_INIT_ORG_ID",
-                    "value": "onyxia"
-                  },
-                  {
-                    "name": "LANGFUSE_INIT_USER_EMAIL",
-                    "value": "{{git.email}}"
-                  },
-                  {
-                    "name": "LANGFUSE_INIT_USER_NAME",
-                    "value": "langfuse"
-                  },
-                  {
-                    "name": "LANGFUSE_INIT_USER_PASSWORD",
-                    "value": "{{project.password}}"
-                  }
-                ]
-              },
-              "items": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              },
-              "prefixItems": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "const": "LANGFUSE_INIT_USER_EMAIL"
-                    },
-                    "value": {
-                      "type": "string",
-                      "default": ""
-                    }
+            "initConfig": {
+              "title": "Service access configuration",
+              "type": "object",
+              "properties": {
+                "LANGFUSE_INIT_ORG_ID": {
+                  "title": "Organization",
+                  "type": "string",
+                  "default": "onyxia"
+                },
+                "LANGFUSE_INIT_USER_EMAIL": {
+                  "title": "User email",
+                  "type": "string",
+                  "default": "onyxia",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{git.email}}"
                   }
                 },
-                {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "const": "LANGFUSE_INIT_USER_NAME"
-                    },
-                    "value": {
-                      "type": "string",
-                      "default": "langfuse"
-                    }
-                  }
+                "LANGFUSE_INIT_USER_NAME": {
+                  "title": "User name",
+                  "type": "string",
+                  "default": "langfuse"
                 },
-                {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "const": "LANGFUSE_INIT_USER_PASSWORD"
-                    },
-                    "value": {
-                      "type": "string",
-                      "default": "changeme"
-                    }
+                "LANGFUSE_INIT_USER_PASSWORD": {
+                  "title": "Password",
+                  "type": "string",
+                  "default": "changeme",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{project.password}}"
                   }
                 }
-              ]
+              }
             }
           }
         },

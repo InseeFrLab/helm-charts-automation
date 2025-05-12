@@ -37,8 +37,10 @@ kubectl port-forward service/{{ include "langfuse.fullname" .Subcharts.langfuse 
 ```
 {{ else -}}
 - Your service is available at the following URI: [{{ $hostname }}]({{ $hostname }})
-- Your email: `{{ $email }}`
-- Your password: `{{ $password }}`
-- Your username: `{{ $username }}`
-- Your organisation ID: `{{ $orgid }}`
+{{- with (.Values.langfuse.langfuse).initConfig }}
+- Your email: **`{{ .LANGFUSE_INIT_USER_EMAIL | default "langfuse@onyxia.fr" }}`**
+- Your password: **`{{ .LANGFUSE_INIT_USER_PASSWORD }}`**
+- Your username: **`{{ .LANGFUSE_INIT_USER_NAME  }}`**
+- Your organisation ID: **`{{ .LANGFUSE_INIT_ORG_ID  }}`**
+{{ end -}}
 {{ end -}}
