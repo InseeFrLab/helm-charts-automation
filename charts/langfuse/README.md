@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.51.2](https://img.shields.io/badge/AppVersion-3.51.2-informational?style=flat-square)
+![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.51.2](https://img.shields.io/badge/AppVersion-3.51.2-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -33,14 +33,6 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.clickhouse.auth.password | string | `"change-me"` |  |
 | langfuse.clickhouse.deploy | bool | `true` |  |
 | langfuse.clickhouse.fullnameOverride | string | `"langfuse-clickhouse"` |  |
-| langfuse.langfuse.additionalEnv[0].name | string | `"LANGFUSE_INIT_ORG_ID"` |  |
-| langfuse.langfuse.additionalEnv[0].value | string | `"onyxia"` |  |
-| langfuse.langfuse.additionalEnv[1].name | string | `"LANGFUSE_INIT_USER_EMAIL"` |  |
-| langfuse.langfuse.additionalEnv[1].value | string | `"test@langfuse.com"` |  |
-| langfuse.langfuse.additionalEnv[2].name | string | `"LANGFUSE_INIT_USER_NAME"` |  |
-| langfuse.langfuse.additionalEnv[2].value | string | `"langfuse"` |  |
-| langfuse.langfuse.additionalEnv[3].name | string | `"LANGFUSE_INIT_USER_PASSWORD"` |  |
-| langfuse.langfuse.additionalEnv[3].value | string | `"changeme"` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.key | string | `"encryption-key"` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.name | string | `"langfuse-encryption"` |  |
 | langfuse.langfuse.features.experimentalFeaturesEnabled | bool | `false` | Enable experimental features |
@@ -49,6 +41,10 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.langfuse.image.pullPolicy | string | `"IfNotPresent"` |  |
 | langfuse.langfuse.image.tag | string | `nil` |  |
 | langfuse.langfuse.ingress.enabled | bool | `false` |  |
+| langfuse.langfuse.initConfig.LANGFUSE_INIT_ORG_ID | string | `"onyxia"` |  |
+| langfuse.langfuse.initConfig.LANGFUSE_INIT_USER_EMAIL | string | `"langfuse@onyxia.fr"` |  |
+| langfuse.langfuse.initConfig.LANGFUSE_INIT_USER_NAME | string | `"langfuse"` |  |
+| langfuse.langfuse.initConfig.LANGFUSE_INIT_USER_PASSWORD | string | `"changeme"` |  |
 | langfuse.langfuse.logging.format | string | `"text"` | Set the log format for the application (text or json) |
 | langfuse.langfuse.logging.level | string | `"info"` | Set the log level for the application (trace, debug, info, warn, error, fatal) |
 | langfuse.langfuse.nextauth.secret.value | string | `"change-me"` |  |
