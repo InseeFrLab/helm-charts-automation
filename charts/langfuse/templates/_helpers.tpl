@@ -57,3 +57,34 @@ Return S3/MinIO endpoint -- if not set uses auto-discovery
 {{- else }}
 {{- end }}
 {{- end }}
+
+{{/*
+Headless init configuration (cf https://langfuse.com/self-hosting/headless-initialization)
+*/}}
+{{- define "langfuse.initConfigEnv" -}}
+{{- with .Values.langfuse.initConfig }}
+- name: LANGFUSE_INIT_ORG_ID
+  value: {{ .LANGFUSE_INIT_ORG_ID | quote }}
+- name: LANGFUSE_INIT_USER_EMAIL
+  value: {{ .LANGFUSE_INIT_USER_EMAIL | default "langfuse@onyxia.fr" | quote }}
+- name: LANGFUSE_INIT_USER_NAME
+  value: {{ .LANGFUSE_INIT_USER_NAME | quote }}
+- name: LANGFUSE_INIT_USER_PASSWORD
+  value: {{ .LANGFUSE_INIT_USER_PASSWORD | quote }}
+{{- end }}
+{{- end }}
+
+{{/*
+Overriding the environment variables template common for all deployments
+to add headless init configuration.
+(cf https://langfuse.com/self-hosting/headless-initialization)
+*/}}
+{{- define "langfuse.commonEnv" -}}
+{{ include "langfuse.serverEnv" . }}
+{{ include "langfuse.nextauthEnv" . }}
+{{ include "langfuse.databaseEnv" . }}
+{{ include "langfuse.redisEnv" . }}
+{{ include "langfuse.clickhouseEnv" . }}
+{{ include "langfuse.s3Env" . }}
+{{ include "langfuse.initConfigEnv" . }}
+{{- end -}}
