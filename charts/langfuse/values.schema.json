@@ -139,7 +139,7 @@
                   "type": "string",
                   "default": "onyxia",
                   "x-onyxia": {
-                    "overwriteDefaultWith": "{{git.email}}"
+                    "overwriteDefaultWith": "{{user.email}}"
                   }
                 },
                 "LANGFUSE_INIT_USER_NAME": {
