@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.51.2](https://img.shields.io/badge/AppVersion-3.51.2-informational?style=flat-square)
+![Version: 1.0.8](https://img.shields.io/badge/Version-1.0.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.58.0](https://img.shields.io/badge/AppVersion-3.58.0-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -16,7 +16,7 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | Repository | Name | Version |
 |------------|------|---------|
 | https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.7.0 |
-| https://langfuse.github.io/langfuse-k8s | langfuse | 1.2.5 |
+| https://langfuse.github.io/langfuse-k8s | langfuse | 1.2.10 |
 
 ## Values
 
@@ -64,6 +64,14 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.postgresql.auth.password | string | `"change-me"` |  |
 | langfuse.postgresql.deploy | bool | `true` |  |
 | langfuse.postgresql.fullnameOverride | string | `"langfuse-postgresql"` |  |
+| langfuse.postgresql.primary.customStartupProbe.exec.command[0] | string | `"/bin/sh"` |  |
+| langfuse.postgresql.primary.customStartupProbe.exec.command[1] | string | `"-c"` |  |
+| langfuse.postgresql.primary.customStartupProbe.exec.command[2] | string | `"exec pg_isready -U \"postgres\" -h 127.0.0.1 -p 5432 && sleep 5"` |  |
+| langfuse.postgresql.primary.customStartupProbe.failureThreshold | int | `15` |  |
+| langfuse.postgresql.primary.customStartupProbe.initialDelaySeconds | int | `30` |  |
+| langfuse.postgresql.primary.customStartupProbe.periodSeconds | int | `10` |  |
+| langfuse.postgresql.primary.customStartupProbe.successThreshold | int | `1` |  |
+| langfuse.postgresql.primary.customStartupProbe.timeoutSeconds | int | `6` |  |
 | langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `false` |  |
 | langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.whenDeleted | string | `"Delete"` |  |
 | langfuse.postgresql.primary.persistentVolumeClaimRetentionPolicy.whenScaled | string | `"Retain"` |  |
