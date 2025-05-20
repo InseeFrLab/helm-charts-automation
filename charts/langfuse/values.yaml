@@ -62,6 +62,17 @@ langfuse:
       password: "change-me"
     fullnameOverride: "langfuse-postgresql" # Leave empty to generate name (and activate clean up)
     primary:
+      customStartupProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 6
+        failureThreshold: 15
+        successThreshold: 1
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432 && sleep 5
       persistentVolumeClaimRetentionPolicy:
         enabled: false # Enable to clean up on service deletion
         whenScaled: Retain
