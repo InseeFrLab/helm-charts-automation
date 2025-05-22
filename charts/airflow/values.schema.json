@@ -279,6 +279,9 @@
       "title": "Ingress Details",
       "type": "object",
       "form": true,
+      "x-onyxia": {
+        "overwriteSchemaWith": "airflow/ingress.json"
+      },
       "properties": {
         "enabled": {
           "description": "Enable Ingress",

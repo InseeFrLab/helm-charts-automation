@@ -142,6 +142,9 @@
       "type": "object",
       "form": true,
       "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "mlflow/ingress.json"
+      },
       "properties": {
         "enabled": {
           "description": "Enable Ingress",

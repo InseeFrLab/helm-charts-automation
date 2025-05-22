@@ -6,6 +6,9 @@
       "type": "object",
       "form": true,
       "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "argo-workflows/ingress.json"
+      },
       "properties": {
         "enabled": {
           "description": "Enable Ingress",
