@@ -162,6 +162,9 @@
     "ingress": {
       "type": "object",
       "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "label-studio/ingress.json"
+      },
       "properties": {
         "enabled": {
           "description": "Enable Ingress",
