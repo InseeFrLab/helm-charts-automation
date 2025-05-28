@@ -97,6 +97,9 @@
       "type": "object",
       "form": true,
       "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "metaflow/ingress.json"
+      },
       "properties": {
         "hostname": {
           "type": "string",

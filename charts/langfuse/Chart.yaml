@@ -1,0 +1,24 @@
+apiVersion: v2
+name: langfuse
+description: LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/langfuse.png
+keywords:
+  - langfuse
+  - llm
+  - observability
+  - prompt management
+  - metrics
+home: https://langfuse.com/
+sources:
+  - https://github.com/langfuse/langfuse
+  - https://github.com/langfuse/langfuse-k8s
+type: application
+version: 1.0.9
+appVersion: "3.58.0"
+dependencies:
+- name: langfuse
+  version: 1.2.10
+  repository: https://langfuse.github.io/langfuse-k8s
+- name: library-chart
+  version: 1.7.0
+  repository: https://inseefrlab.github.io/helm-charts-interactive-services

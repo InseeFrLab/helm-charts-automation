@@ -1,0 +1,541 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "langfuse": {
+      "title": "LangFuse",
+      "type": "object",
+      "properties": {
+        "langfuse": {
+          "title": "LangFuse",
+          "type": "object",
+          "properties": {
+            "logging": {
+              "title": "Logging",
+              "type": "object",
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "description": "Log level",
+                  "default": "info",
+                  "enum": [
+                    "trace",
+                    "debug",
+                    "info",
+                    "warn",
+                    "error",
+                    "fatal"
+                  ]
+                },
+                "format": {
+                  "type": "string",
+                  "description": "Log format",
+                  "default": "text",
+                  "enum": [
+                    "text",
+                    "json"
+                  ]
+                }
+              }
+            },
+            "encryptionKey": {
+              "title": "Encryption key",
+              "type": "object",
+              "properties": {
+                "secretKeyRef": {
+                  "title": "Secret for encryption key",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "default": "langfuse-encryption",
+                      "x-onyxia": {
+                        "hidden": true,
+                        "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-enc"
+                      }
+                    },
+                    "key": {
+                      "type": "string",
+                      "default": "encryption-key",
+                      "hidden": true
+                    }
+                  }
+                }
+              }
+            },
+            "salt": {
+              "title": "Salt",
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "default": "change-this-salt",
+                  "render": "password",
+                  "x-onyxia": {
+                    "hidden": true,
+                    "overwriteDefaultWith": "{{service.oneTimePassword}}"
+                  }
+                }
+              }
+            },
+            "features": {
+              "title": "Features flags",
+              "type": "object",
+              "properties": {
+                "telemetryEnabled": {
+                  "title": "Report basic usage statistics to a centralized server",
+                  "type": "boolean",
+                  "default": true
+                },
+                "signUpDisabled": {
+                  "title": "Disable public sign up",
+                  "type": "boolean",
+                  "default": true
+                },
+                "experimentalFeaturesEnabled": {
+                  "title": "Enable experimental features",
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            },
+            "replicas": {
+              "title": "Replica count",
+              "type": "integer",
+              "default": 1
+            },
+            "nextauth": {
+              "title": "Nextauth authentication",
+              "type": "object",
+              "properties": {
+                "secret": {
+                  "title": "Nextauth secret",
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "default": "change-me",
+                      "render": "password",
+                      "x-onyxia": {
+                        "hidden": true,
+                        "overwriteDefaultWith": "{{project.password}}"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "initConfig": {
+              "title": "Service access configuration",
+              "type": "object",
+              "properties": {
+                "LANGFUSE_INIT_ORG_ID": {
+                  "title": "Organization",
+                  "type": "string",
+                  "default": "onyxia"
+                },
+                "LANGFUSE_INIT_USER_EMAIL": {
+                  "title": "User email",
+                  "type": "string",
+                  "default": "onyxia",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{user.email}}"
+                  }
+                },
+                "LANGFUSE_INIT_USER_NAME": {
+                  "title": "User name",
+                  "type": "string",
+                  "default": "langfuse"
+                },
+                "LANGFUSE_INIT_USER_PASSWORD": {
+                  "title": "Password",
+                  "type": "string",
+                  "default": "changeme",
+                  "render": "password",
+                  "x-onyxia": {
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "postgresql": {
+          "title": "PostgreSQL",
+          "type": "object",
+          "properties": {
+            "deploy": {
+              "title": "Deploy a dedicated PostgreSQL instance",
+              "type": "boolean",
+              "default": true
+            },
+            "auth": {
+              "title": "PostgreSQL authentication",
+              "type": "object",
+              "properties": {
+                "password": {
+                  "title": "PostgreSQL password",
+                  "type": "string",
+                  "default": "change-me",
+                  "render": "password",
+                  "x-onyxia": {
+                    "hidden": true,
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                }
+              }
+            },
+            "fullnameOverride": {
+              "title": "Name of the backend PostgreSQL service",
+              "description": "Reuse retained data from a previous PostgreSQL service with the same name",
+              "type": "string",
+              "default": "langfuse-postgresql"
+            },
+            "primary": {
+              "type": "object",
+              "properties": {
+                "persistentVolumeClaimRetentionPolicy": {
+                  "title": "PVC Retention Policy",
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "title": "Customize retention policy",
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "whenScaled": {
+                      "type": "string",
+                      "default": "Retain",
+                      "enum": [
+                        "Retain",
+                        "Delete"
+                      ],
+                      "hidden": {
+                        "value": false,
+                        "path": "enabled",
+                        "isPathRelative": true
+                      }
+                    },
+                    "whenDeleted": {
+                      "type": "string",
+                      "default": "Delete",
+                      "enum": [
+                        "Retain",
+                        "Delete"
+                      ],
+                      "hidden": {
+                        "value": false,
+                        "path": "enabled",
+                        "isPathRelative": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "redis": {
+          "title": "Redis",
+          "type": "object",
+          "properties": {
+            "deploy": {
+              "title": "Deploy a dedicated Redis instance",
+              "type": "boolean",
+              "default": true
+            },
+            "auth": {
+              "title": "Redis authentication",
+              "type": "object",
+              "properties": {
+                "password": {
+                  "title": "Redis password",
+                  "type": "string",
+                  "default": "change-me",
+                  "render": "password",
+                  "x-onyxia": {
+                    "hidden": true,
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                }
+              }
+            },
+            "fullnameOverride": {
+              "title": "Name of the backend Redis service",
+              "description": "Reuse retained data from a previous Redis service with the same name",
+              "type": "string",
+              "default": "langfuse-redis"
+            },
+            "primary": {
+              "type": "object",
+              "properties": {
+                "persistentVolumeClaimRetentionPolicy": {
+                  "title": "PVC Retention Policy",
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "title": "Customize retention policy",
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "whenScaled": {
+                      "type": "string",
+                      "default": "Retain",
+                      "enum": [
+                        "Retain",
+                        "Delete"
+                      ],
+                      "hidden": {
+                        "value": false,
+                        "path": "enabled",
+                        "isPathRelative": true
+                      }
+                    },
+                    "whenDeleted": {
+                      "type": "string",
+                      "default": "Delete",
+                      "enum": [
+                        "Retain",
+                        "Delete"
+                      ],
+                      "hidden": {
+                        "value": false,
+                        "path": "enabled",
+                        "isPathRelative": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "clickhouse": {
+          "title": "ClickHouse",
+          "type": "object",
+          "properties": {
+            "deploy": {
+              "title": "Deploy a dedicated ClickHouse instance",
+              "type": "boolean",
+              "default": true
+            },
+            "auth": {
+              "title": "ClickHouse authentication",
+              "type": "object",
+              "properties": {
+                "password": {
+                  "title": "ClickHouse password",
+                  "type": "string",
+                  "default": "change-me",
+                  "render": "password",
+                  "x-onyxia": {
+                    "hidden": true,
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "s3": {
+          "title": "S3",
+          "type": "object",
+          "properties": {
+            "deploy": {
+              "title": "Deploy a dedicated MinIO S3 instance",
+              "type": "boolean",
+              "default": true
+            },
+            "auth": {
+              "title": "MinIO authentication",
+              "type": "object",
+              "properties": {
+                "rootPassword": {
+                  "title": "MinIO root password",
+                  "type": "string",
+                  "default": "change-me",
+                  "render": "password",
+                  "x-onyxia": {
+                    "hidden": true,
+                    "overwriteDefaultWith": "{{project.password}}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "form": true,
+      "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "langfuse/ingress.json"
+      },
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-0.{{k8s.domain}}"
+          }
+        },
+        "userHostname": {
+          "title": "Hostname",
+          "type": "string",
+          "form": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-user.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        },
+        "useCertManager": {
+          "type": "boolean",
+          "description": "Whether CertManager should be used to generate a certificate",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.useCertManager"
+          }
+        },
+        "certManagerClusterIssuer": {
+          "type": "string",
+          "description": "certManager cluster issuer",
+          "title": "CertManager Cluster Issuer",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.certManagerClusterIssuer"
+          }
+        },
+        "useTlsSecret": {
+          "type": "boolean",
+          "description": "Whether you want to use the specified secretName in ingress tls",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "form": true,
+      "title": "Route details",
+      "properties": {
+        "enabled": {
+          "description": "Enable route",
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.route"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-0.{{k8s.domain}}"
+          }
+        },
+        "userHostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}-user.{{k8s.domain}}"
+          }
+        }
+      }
+    },
+    "security": {
+      "title": "Security",
+      "type": "object",
+      "properties": {
+        "networkPolicy": {
+          "title": "Network access policy",
+          "type": "object",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "title": "Only allow access from the same namespace",
+              "type": "boolean",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
+            },
+            "from": {
+              "description": "Array of sources allowed to have network access to your service",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
+          }
+        }
+      }
+    },
+    "discovery": {
+      "title": "Database discovery",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Enable discovery of this database",
+          "description": "Allows clients to automatically preconfigure a connection to this database",
+          "default": true
+        }
+      }
+    },
+    "userPreferences": {
+      "description": "User Preferences",
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Preferred language",
+          "default": "en",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "user.lang"
+          }
+        }
+      }
+    }
+  }
+}

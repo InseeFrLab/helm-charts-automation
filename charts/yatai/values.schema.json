@@ -276,6 +276,9 @@
       "type": "object",
       "form": true,
       "title": "Ingress Details",
+      "x-onyxia": {
+        "overwriteSchemaWith": "yatai/ingress.json"
+      },
       "properties": {
         "host": {
           "type": "string",
