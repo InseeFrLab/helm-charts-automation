@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.9](https://img.shields.io/badge/Version-1.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.58.0](https://img.shields.io/badge/AppVersion-3.58.0-informational?style=flat-square)
+![Version: 1.0.10](https://img.shields.io/badge/Version-1.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.63.1](https://img.shields.io/badge/AppVersion-3.63.1-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -15,8 +15,8 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.7.0 |
-| https://langfuse.github.io/langfuse-k8s | langfuse | 1.2.10 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.7.3 |
+| https://langfuse.github.io/langfuse-k8s | langfuse | 1.2.13 |
 
 ## Values
 
