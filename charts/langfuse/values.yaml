@@ -95,6 +95,7 @@ langfuse:
     auth:
       password: "change-me"
     fullnameOverride: "langfuse-clickhouse"
+    replicaCount: 1
 
   s3:
     # If you want to use a custom BlobStorage, e.g. S3, set to false.
