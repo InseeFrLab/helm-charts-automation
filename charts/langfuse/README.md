@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.10](https://img.shields.io/badge/Version-1.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.63.1](https://img.shields.io/badge/AppVersion-3.63.1-informational?style=flat-square)
+![Version: 1.0.11](https://img.shields.io/badge/Version-1.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.63.1](https://img.shields.io/badge/AppVersion-3.63.1-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -33,6 +33,7 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.clickhouse.auth.password | string | `"change-me"` |  |
 | langfuse.clickhouse.deploy | bool | `true` |  |
 | langfuse.clickhouse.fullnameOverride | string | `"langfuse-clickhouse"` |  |
+| langfuse.clickhouse.replicaCount | int | `1` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.key | string | `"encryption-key"` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.name | string | `"langfuse-encryption"` |  |
 | langfuse.langfuse.features.experimentalFeaturesEnabled | bool | `false` | Enable experimental features |
