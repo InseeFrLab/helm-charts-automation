@@ -2129,6 +2129,35 @@ entries:
   langfuse:
   - apiVersion: v2
     appVersion: 3.63.1
+    created: "2025-06-05T07:53:40.644687758Z"
+    dependencies:
+    - name: langfuse
+      repository: https://langfuse.github.io/langfuse-k8s
+      version: 1.2.13
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.7.3
+    description: LLM engineering platform - LLM observability, metrics, evaluations,
+      prompt management.
+    digest: 80306890c219246315b0f04a89342b4685b65fd9fd10da80416c6fbdf7549536
+    home: https://langfuse.com/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/langfuse.png
+    keywords:
+    - langfuse
+    - llm
+    - observability
+    - prompt management
+    - metrics
+    name: langfuse
+    sources:
+    - https://github.com/langfuse/langfuse
+    - https://github.com/langfuse/langfuse-k8s
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/langfuse-1.0.11/langfuse-1.0.11.tgz
+    version: 1.0.11
+  - apiVersion: v2
+    appVersion: 3.63.1
     created: "2025-06-03T14:13:23.538885899Z"
     dependencies:
     - name: langfuse
@@ -4154,4 +4183,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2025-06-03T14:13:23.539137044Z"
+generated: "2025-06-05T07:53:40.644939169Z"
