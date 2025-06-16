@@ -854,6 +854,32 @@ entries:
   argo-workflows:
   - apiVersion: v2
     appVersion: "1"
+    created: "2025-06-16T08:42:31.332261549Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.45.18
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.7.5
+    description: Argo Workflows is an open source container-native workflow engine
+      for orchestrating parallel jobs on Kubernetes.
+    digest: 11d4aa878741f38927637d10798d796af72ef0784752108b2570eecf55dd3efa
+    home: https://argoproj.github.io/argo-workflows/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - Worklow
+    - Job
+    - Task
+    name: argo-workflows
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-1.0.6/argo-workflows-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: "1"
     created: "2025-05-22T13:26:20.77281689Z"
     dependencies:
     - name: argo-workflows
@@ -4209,4 +4235,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2025-06-06T11:47:57.030180315Z"
+generated: "2025-06-16T08:42:31.332562615Z"
