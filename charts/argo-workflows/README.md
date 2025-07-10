@@ -1,6 +1,6 @@
 # argo-workflows
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
+![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1](https://img.shields.io/badge/AppVersion-1-informational?style=flat-square)
 
 Argo Workflows is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes.
 
@@ -14,7 +14,7 @@ Argo Workflows is an open source container-native workflow engine for orchestrat
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://argoproj.github.io/argo-helm | argo-workflows | 0.45.18 |
+| https://argoproj.github.io/argo-helm | argo-workflows | 0.45.19 |
 | https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.7.5 |
 
 ## Values
