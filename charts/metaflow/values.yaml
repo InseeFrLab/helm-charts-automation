@@ -42,7 +42,7 @@ service:
     repository: netflixoss/metaflow_metadata_service
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "v2.3.7"
+    tag: "v2.5.0"
 
   uiImage:
     repository: public.ecr.aws/outerbounds/metaflow_ui
