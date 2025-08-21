@@ -1,3 +1,6 @@
+global:
+  security:
+    allowInsecureImages: true
 langfuse:
   langfuse:
     # Logging configuration
@@ -56,6 +59,8 @@ langfuse:
       LANGFUSE_INIT_USER_PASSWORD: changeme
 
   postgresql:
+    image:
+      repository: bitnamilegacy/postgresql
     # If you want to use an external Postgres server (or a managed one), set this to false
     deploy: true
     auth:
@@ -79,6 +84,8 @@ langfuse:
         whenDeleted: Delete
 
   redis:
+    image:
+      repository: bitnamilegacy/valkey
     # If you want to use a Redis or Valkey server already deployed, set to false.
     deploy: true
     auth:
@@ -91,15 +98,21 @@ langfuse:
         whenDeleted: Delete
 
   clickhouse:
+    image:
+      repository: bitnamilegacy/clickhouse
     deploy: true
     auth:
       password: "change-me"
     fullnameOverride: "langfuse-clickhouse"
     replicaCount: 1
-
+    zookeeper:
+      image:
+        repository: bitnamilegacy/zookeeper
   s3:
     # If you want to use a custom BlobStorage, e.g. S3, set to false.
     deploy: true
+    image:
+      repository: bitnamilegacy/minio
     auth:
       rootPassword: "change-me"
     fullnameOverride: "langfuse-s3"

@@ -4,10 +4,12 @@ global:
       username: "metaflow"
       password: "metaflow"
       database: "metaflow"
-
+  security:
+    allowInsecureImages: true
 postgresql:
   image:
     tag: "12"
+    repository: "bitnamilegacy/postgresql"
   fullnameOverride: "metaflow-db"
 
 discovery:
