@@ -47,6 +47,8 @@ internalImages:
 ############# postgresql #############
 
 global:
+  security:
+    allowInsecureImages: true
   postgresql:
     auth:
       postgresPassword: "changeme"
@@ -55,6 +57,7 @@ global:
 postgresql:
   image:
     tag: "12"
+    repository: "bitnamilegacy/postgresql"
   fullnameOverride: "yatai-postgresql"
 
 ############# yatai #############

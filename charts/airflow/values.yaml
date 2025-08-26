@@ -1,4 +1,9 @@
+global:
+  security:
+    allowInsecureImages: true
 airflow:
+  image:
+    repository: bitnamilegacy/airflow
   auth:
     username: "admin"
     password: "changeme"
@@ -30,11 +35,18 @@ airflow:
   postgresql:
     primary:
       resourcesPreset: "nano"
+    image:
+      repository: bitnamilegacy/postgresql
   redis:
     master:
       resourcesPreset: "nano"
+    image:
+      repository: bitnamilegacy/redis
   ingress:
     enabled: false
+  metrics:
+    image:
+      repository: bitnamilegacy/statsd-exporter
 
 ingress:
   host: "chart-example.local"

@@ -1,5 +1,7 @@
 
 global:
+  security:
+    allowInsecureImages: true
   #defaultStorageClass: "rook-ceph-block"
   kibanaEnabled: false
   postgresql:
@@ -7,7 +9,6 @@ global:
       username: "postgres"
       password: "changeme"
       database: "argilla"
-
 argilla:
   image:
     registry: docker.io
@@ -39,7 +40,7 @@ elasticsearch:
   fullnameOverride: argilla-elasticsearch
   image:
     registry: docker.io
-    repository: bitnami/elasticsearch
+    repository: bitnamilegacy/elasticsearch
     tag: 8.15.2-debian-12-r4
     pullPolicy: IfNotPresent
   master:
@@ -80,6 +81,8 @@ elasticsearch:
       value: "false"
 
 redis:
+  image:
+    repository: bitnamilegacy/redis
   fullnameOverride: argilla-redis
   architecture: standalone
   replica:
@@ -98,7 +101,7 @@ postgresql:
   fullnameOverride: argilla-postgresql
   image:
     registry: docker.io
-    repository: bitnami/postgresql
+    repository: bitnamilegacy/postgresql
     tag: "14"
     pullPolicy: IfNotPresent
   primary:
