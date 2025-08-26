@@ -3,6 +3,34 @@ entries:
   airflow:
   - apiVersion: v2
     appVersion: 2.10.3
+    created: "2025-08-26T09:45:21.194699729Z"
+    dependencies:
+    - name: airflow
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.4.1
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.34
+    description: Apache Airflow is a tool to express and execute workflows as directed
+      acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task
+      progress and handle task dependencies.
+    digest: bfbe4e1c256b6d93969735ecda2e21ee58eb215770bf85a2bf4dd3d3517de7c5
+    home: https://airflow.apache.org/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/airflow.svg
+    keywords:
+    - apache
+    - airflow
+    - workflow
+    - dag
+    name: airflow
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/airflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/airflow-0.0.4/airflow-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 2.10.3
     created: "2025-05-22T13:26:20.295612606Z"
     dependencies:
     - name: airflow
@@ -86,6 +114,41 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/airflow-0.0.1/airflow-0.0.1.tgz
     version: 0.0.1
   argilla:
+  - apiVersion: v2
+    appVersion: 2.3.0
+    created: "2025-08-26T09:45:21.520199198Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.2.0
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    - name: elasticsearch
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.3.21
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.25
+    description: Argilla is a data annotation and curation platform designed to streamline
+      the process of creating, managing, and labeling datasets for machine learning
+      and natural language processing (NLP) tasks
+    digest: 0fc40cee019737c16527f6d2929e1544a17463165659fd08a78dae6dd9a47660
+    home: https://argilla.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argilla.svg
+    keywords:
+    - Data Annotation
+    - Data Curation
+    - Machine Learning
+    - NLP
+    name: argilla
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
+    - https://github.com/argilla-io/argilla/
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argilla-1.0.4/argilla-1.0.4.tgz
+    version: 1.0.4
   - apiVersion: v2
     appVersion: 2.3.0
     created: "2025-05-22T13:26:20.465856092Z"
@@ -2207,6 +2270,35 @@ entries:
   langfuse:
   - apiVersion: v2
     appVersion: 3.63.1
+    created: "2025-08-26T09:45:21.835505487Z"
+    dependencies:
+    - name: langfuse
+      repository: https://langfuse.github.io/langfuse-k8s
+      version: 1.2.13
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.7.3
+    description: LLM engineering platform - LLM observability, metrics, evaluations,
+      prompt management.
+    digest: b567d61486f99ee7cbb9645ea63a785b6c6f39b3d5f41ac12b2f3736f62a3b05
+    home: https://langfuse.com/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/langfuse.png
+    keywords:
+    - langfuse
+    - llm
+    - observability
+    - prompt management
+    - metrics
+    name: langfuse
+    sources:
+    - https://github.com/langfuse/langfuse
+    - https://github.com/langfuse/langfuse-k8s
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/langfuse-1.0.12/langfuse-1.0.12.tgz
+    version: 1.0.12
+  - apiVersion: v2
+    appVersion: 3.63.1
     created: "2025-06-05T07:53:40.644687758Z"
     dependencies:
     - name: langfuse
@@ -2554,6 +2646,29 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/langfuse-1.0.0/langfuse-1.0.0.tgz
     version: 1.0.0
   metaflow:
+  - apiVersion: v2
+    created: "2025-08-26T09:45:22.118633235Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Metaflow is a human-friendly Python/R library that helps scientists
+      and engineers build and manage real-life data science projects.
+    digest: faddb31fa6881dfc7ce683637154922844dbbd74a7457e56554d46895522071b
+    home: https://metaflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/metaflow.png
+    keywords:
+    - mlops
+    name: metaflow
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/metaflow
+    - https://github.com/Netflix/metaflow
+    - https://github.com/outerbounds/metaflow-tools
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-1.0.3/metaflow-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     created: "2025-05-22T13:26:21.339357239Z"
     dependencies:
@@ -2911,6 +3026,30 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-0.0.1/metaflow-0.0.1.tgz
     version: 0.0.1
   mlflow:
+  - apiVersion: v2
+    created: "2025-08-26T09:45:22.44569271Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.6.11
+    description: MLflow is an open source platform to manage the ML lifecycle, including
+      experimentation, reproducibility, deployment, and a central model registry.
+    digest: 9f0802a76953913303e53141fe59c8b45525a61f23ab1c19b024870c7bfa9847
+    home: https://mlflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/mlflow.png
+    keywords:
+    - ML
+    name: mlflow
+    sources:
+    - https://github.com/InseeFrLab/mlflow
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/mlflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-2.0.9/mlflow-2.0.9.tgz
+    version: 2.0.9
   - apiVersion: v2
     created: "2025-08-18T07:22:29.299717254Z"
     dependencies:
@@ -4018,6 +4157,31 @@ entries:
     version: 0.0.1
   yatai:
   - apiVersion: v2
+    created: "2025-08-26T09:45:22.711172513Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Yatai lets you deploy, operate and scale Machine Learning services
+      on Kubernetes.
+    digest: fe91ba2e41a4f7031b6417aad16b44b2275ca3f0e5a74e7eac931e607c4693ea
+    home: https://github.com/bentoml/yatai
+    name: yatai
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+    - https://github.com/bentoml/yatai
+    - https://github.com/bentoml/yatai-deployment
+    - https://github.com/bentoml/yatai-image-builder
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-2.0.3/yatai-2.0.3.tgz
+    version: 2.0.3
+  - apiVersion: v2
     created: "2025-05-22T13:26:21.663391987Z"
     dependencies:
     - name: common
@@ -4285,4 +4449,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2025-08-18T07:22:29.300158833Z"
+generated: "2025-08-26T09:45:22.711670564Z"
