@@ -1,6 +1,6 @@
 # argilla
 
-![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=flat-square)
+![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=flat-square)
 
 Argilla is a data annotation and curation platform designed to streamline the process of creating, managing, and labeling datasets for machine learning and natural language processing (NLP) tasks
 
@@ -55,7 +55,7 @@ Argilla is a data annotation and curation platform designed to streamline the pr
 | elasticsearch.fullnameOverride | string | `"argilla-elasticsearch"` |  |
 | elasticsearch.image.pullPolicy | string | `"IfNotPresent"` |  |
 | elasticsearch.image.registry | string | `"docker.io"` |  |
-| elasticsearch.image.repository | string | `"bitnami/elasticsearch"` |  |
+| elasticsearch.image.repository | string | `"bitnamilegacy/elasticsearch"` |  |
 | elasticsearch.image.tag | string | `"8.15.2-debian-12-r4"` |  |
 | elasticsearch.ingest.replicaCount | int | `0` |  |
 | elasticsearch.ingress.enabled | bool | `false` |  |
@@ -76,6 +76,7 @@ Argilla is a data annotation and curation platform designed to streamline the pr
 | global.postgresql.auth.database | string | `"argilla"` |  |
 | global.postgresql.auth.password | string | `"changeme"` |  |
 | global.postgresql.auth.username | string | `"postgres"` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
@@ -86,7 +87,7 @@ Argilla is a data annotation and curation platform designed to streamline the pr
 | postgresql.fullnameOverride | string | `"argilla-postgresql"` |  |
 | postgresql.image.pullPolicy | string | `"IfNotPresent"` |  |
 | postgresql.image.registry | string | `"docker.io"` |  |
-| postgresql.image.repository | string | `"bitnami/postgresql"` |  |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | postgresql.image.tag | string | `"14"` |  |
 | postgresql.primary.networkPolicy.allowExternal | bool | `false` |  |
 | postgresql.primary.networkPolicy.enabled | bool | `true` |  |
@@ -99,6 +100,7 @@ Argilla is a data annotation and curation platform designed to streamline the pr
 | redis.architecture | string | `"standalone"` |  |
 | redis.auth.enabled | bool | `false` |  |
 | redis.fullnameOverride | string | `"argilla-redis"` |  |
+| redis.image.repository | string | `"bitnamilegacy/redis"` |  |
 | redis.master.persistence.enabled | bool | `true` |  |
 | redis.master.persistence.size | string | `"2Gi"` |  |
 | redis.networkPolicy.allowExternal | bool | `false` |  |

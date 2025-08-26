@@ -1,6 +1,6 @@
 # metaflow
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Metaflow is a human-friendly Python/R library that helps scientists and engineers build and manage real-life data science projects.
 
@@ -36,6 +36,7 @@ Metaflow is a human-friendly Python/R library that helps scientists and engineer
 | global.postgresql.auth.database | string | `"metaflow"` |  |
 | global.postgresql.auth.password | string | `"metaflow"` |  |
 | global.postgresql.auth.username | string | `"metaflow"` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.enabled | bool | `true` |  |
@@ -56,6 +57,7 @@ Metaflow is a human-friendly Python/R library that helps scientists and engineer
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.fullnameOverride | string | `"metaflow-db"` |  |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | postgresql.image.tag | string | `"12"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |

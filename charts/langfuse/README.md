@@ -1,6 +1,6 @@
 # langfuse
 
-![Version: 1.0.11](https://img.shields.io/badge/Version-1.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.63.1](https://img.shields.io/badge/AppVersion-3.63.1-informational?style=flat-square)
+![Version: 1.0.12](https://img.shields.io/badge/Version-1.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.63.1](https://img.shields.io/badge/AppVersion-3.63.1-informational?style=flat-square)
 
 LLM engineering platform - LLM observability, metrics, evaluations, prompt management.
 
@@ -24,6 +24,7 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 |-----|------|---------|-------------|
 | discovery.enabled | bool | `true` |  |
 | fullnameOverride | string | `""` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.hostname | string | `"chart-example.local"` |  |
@@ -33,7 +34,9 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.clickhouse.auth.password | string | `"change-me"` |  |
 | langfuse.clickhouse.deploy | bool | `true` |  |
 | langfuse.clickhouse.fullnameOverride | string | `"langfuse-clickhouse"` |  |
+| langfuse.clickhouse.image.repository | string | `"bitnamilegacy/clickhouse"` |  |
 | langfuse.clickhouse.replicaCount | int | `1` |  |
+| langfuse.clickhouse.zookeeper.image.repository | string | `"bitnamilegacy/zookeeper"` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.key | string | `"encryption-key"` |  |
 | langfuse.langfuse.encryptionKey.secretKeyRef.name | string | `"langfuse-encryption"` |  |
 | langfuse.langfuse.features.experimentalFeaturesEnabled | bool | `false` | Enable experimental features |
@@ -65,6 +68,7 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.postgresql.auth.password | string | `"change-me"` |  |
 | langfuse.postgresql.deploy | bool | `true` |  |
 | langfuse.postgresql.fullnameOverride | string | `"langfuse-postgresql"` |  |
+| langfuse.postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | langfuse.postgresql.primary.customStartupProbe.exec.command[0] | string | `"/bin/sh"` |  |
 | langfuse.postgresql.primary.customStartupProbe.exec.command[1] | string | `"-c"` |  |
 | langfuse.postgresql.primary.customStartupProbe.exec.command[2] | string | `"exec pg_isready -U \"postgres\" -h 127.0.0.1 -p 5432 && sleep 5"` |  |
@@ -79,12 +83,14 @@ LLM engineering platform - LLM observability, metrics, evaluations, prompt manag
 | langfuse.redis.auth.password | string | `"change-me"` |  |
 | langfuse.redis.deploy | bool | `true` |  |
 | langfuse.redis.fullnameOverride | string | `"langfuse-redis"` |  |
+| langfuse.redis.image.repository | string | `"bitnamilegacy/valkey"` |  |
 | langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.enabled | bool | `false` |  |
 | langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.whenDeleted | string | `"Delete"` |  |
 | langfuse.redis.primary.persistentVolumeClaimRetentionPolicy.whenScaled | string | `"Retain"` |  |
 | langfuse.s3.auth.rootPassword | string | `"change-me"` |  |
 | langfuse.s3.deploy | bool | `true` |  |
 | langfuse.s3.fullnameOverride | string | `"langfuse-s3"` |  |
+| langfuse.s3.image.repository | string | `"bitnamilegacy/minio"` |  |
 | nameOverride | string | `""` |  |
 | route.annotations | list | `[]` |  |
 | route.enabled | bool | `false` |  |

@@ -1,6 +1,6 @@
 # airflow
 
-![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.3](https://img.shields.io/badge/AppVersion-2.10.3-informational?style=flat-square)
+![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.3](https://img.shields.io/badge/AppVersion-2.10.3-informational?style=flat-square)
 
 Apache Airflow is a tool to express and execute workflows as directed acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task progress and handle task dependencies.
 
@@ -27,12 +27,17 @@ Apache Airflow is a tool to express and execute workflows as directed acyclic gr
 | airflow.dagProcessor.resourcesPreset | string | `"small"` |  |
 | airflow.dags.enabled | bool | `false` |  |
 | airflow.dags.repositories | list | `[]` |  |
+| airflow.image.repository | string | `"bitnamilegacy/airflow"` |  |
 | airflow.ingress.enabled | bool | `false` |  |
+| airflow.metrics.image.repository | string | `"bitnamilegacy/statsd-exporter"` |  |
+| airflow.postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | airflow.postgresql.primary.resourcesPreset | string | `"nano"` |  |
+| airflow.redis.image.repository | string | `"bitnamilegacy/redis"` |  |
 | airflow.redis.master.resourcesPreset | string | `"nano"` |  |
 | airflow.scheduler.resourcesPreset | string | `"small"` |  |
 | airflow.web.resourcesPreset | string | `"medium"` |  |
 | airflow.worker.resourcesPreset | string | `"large"` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
 | ingress.host | string | `"chart-example.local"` |  |

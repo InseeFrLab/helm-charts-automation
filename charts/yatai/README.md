@@ -1,6 +1,6 @@
 # yatai
 
-![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes.
 
@@ -59,6 +59,7 @@ Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes
 | fullnameOverride | string | `""` |  |
 | global.postgresql.auth.database | string | `"yatai"` |  |
 | global.postgresql.auth.postgresPassword | string | `"changeme"` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | image.yatai.pullPolicy | string | `"IfNotPresent"` |  |
 | image.yatai.repository | string | `"aminehub/yatai"` |  |
 | image.yatai.tag | string | `"1.1.3.v2"` |  |
@@ -91,6 +92,7 @@ Yatai lets you deploy, operate and scale Machine Learning services on Kubernetes
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.fullnameOverride | string | `"yatai-postgresql"` |  |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | postgresql.image.tag | string | `"12"` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |

@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 2.0.8](https://img.shields.io/badge/Version-2.0.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.0.9](https://img.shields.io/badge/Version-2.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -33,6 +33,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | discovery.enabled | bool | `true` |  |
 | fullnameOverride | string | `""` |  |
+| global.security.allowInsecureImages | bool | `true` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
 | ingress.certManagerClusterIssuer | string | `""` |  |
@@ -53,6 +54,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | postgresql.auth.postgresPassword | string | `"changeme"` |  |
 | postgresql.auth.username | string | `"admin"` |  |
 | postgresql.fullnameOverride | string | `"mlflow-db"` |  |
+| postgresql.image.repository | string | `"bitnamilegacy/postgresql"` |  |
 | postgresql.image.tag | string | `"15"` |  |
 | postgresql.primary.persistence.enabled | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"8Gi"` |  |
