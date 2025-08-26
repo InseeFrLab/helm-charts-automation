@@ -35,20 +35,18 @@ airflow:
   postgresql:
     primary:
       resourcesPreset: "nano"
+    image:
+      repository: bitnamilegacy/postgresql
   redis:
     master:
       resourcesPreset: "nano"
+    image:
+      repository: bitnamilegacy/redis
   ingress:
     enabled: false
   metrics:
     image:
       repository: bitnamilegacy/statsd-exporter
-  postgresql:
-    image:
-      repository: bitnamilegacy/postgresql
-  redis: 
-    image:
-      repository: bitnamilegacy/redis
 
 ingress:
   host: "chart-example.local"

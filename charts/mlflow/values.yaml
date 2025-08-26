@@ -59,7 +59,7 @@ security:
 postgresql:
   image:
     tag: "15"
-    repository: "bitnamilegacy/postgresql" 
+    repository: "bitnamilegacy/postgresql"
   auth:
     username: "admin"
     password: "changeme"
