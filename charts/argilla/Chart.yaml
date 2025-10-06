@@ -12,14 +12,14 @@ sources:
   - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
   - https://github.com/argilla-io/argilla/
 type: application
-version: 1.0.4
+version: 1.0.5
 appVersion: "2.3.0"
 dependencies:
 - name: redis
   version: 20.2.0
   repository:  https://charts.bitnami.com/bitnami
 - name: postgresql
-  version: 16.0.1
+  version: 16.7.27
   repository:  https://charts.bitnami.com/bitnami
 - name: elasticsearch
   version: 21.3.21
