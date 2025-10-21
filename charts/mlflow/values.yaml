@@ -55,6 +55,7 @@ security:
   allowlist:
     enabled: true
     ip: "0.0.0.0/0"
+  enableSecurityMiddleware: false
 
 postgresql:
   image:

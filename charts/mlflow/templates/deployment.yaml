@@ -39,10 +39,17 @@ spec:
           {{- else }}
           image: "{{ .Values.service.image.version }}"
           {{- end }}
+          {{/*
+            - --allowed-hosts='https://user-inesh-mlflow.user.lab.sspcloud.fr,user-inesh-mlflow.user.lab.sspcloud.fr,user-inesh-mlflow.user.lab.sspcloud.fr:443'
+            - --cors-allowed-origins='*'
+          */}}
           args:
             - --host=0.0.0.0
             - --port=8000
             - --backend-store-uri=postgresql://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ .Values.postgresql.fullnameOverride }}:5432/{{ .Values.postgresql.auth.database}}
+            {{ if not .Values.security.enableSecurityMiddleware -}}
+            - --disable-security-middleware
+            {{- end }}
             {{ if .Values.service.proxyArtifact.enabled -}}
             - --artifacts-destination={{ .Values.service.directory }}
             {{- else -}}
