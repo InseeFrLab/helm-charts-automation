@@ -9,7 +9,7 @@ replicaCount: 1
 
 service:
   image:
-    version: "inseefrlab/mlflow:v3.2.0"
+    version: "inseefrlab/mlflow:v3.5.1"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
@@ -55,7 +55,7 @@ security:
   allowlist:
     enabled: true
     ip: "0.0.0.0/0"
-  enableSecurityMiddleware: false
+  disableSecurityMiddleware: true
 
 postgresql:
   image:
