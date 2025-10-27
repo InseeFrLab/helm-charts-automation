@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 2.0.9](https://img.shields.io/badge/Version-2.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 2.0.10](https://img.shields.io/badge/Version-2.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -16,7 +16,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 13.1.5 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.6.11 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 2.0.0 |
 
 ## Values
 
@@ -81,6 +81,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | security.allowlist.enabled | bool | `true` |  |
 | security.allowlist.ip | string | `"0.0.0.0/0"` |  |
 | security.defaultPermission | string | `"READ"` |  |
+| security.disableSecurityMiddleware | bool | `true` |  |
 | security.enabled | bool | `false` |  |
 | security.flaskServerSecretKey | string | `"changeme"` |  |
 | security.networkPolicy.enabled | bool | `false` |  |
@@ -95,7 +96,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | service.image.custom.enabled | bool | `false` |  |
 | service.image.custom.version | string | `""` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
-| service.image.version | string | `"inseefrlab/mlflow:v3.2.0"` |  |
+| service.image.version | string | `"inseefrlab/mlflow:v3.5.1"` |  |
 | service.proxyArtifact.enabled | bool | `true` |  |
 | tolerations | list | `[]` |  |
 
