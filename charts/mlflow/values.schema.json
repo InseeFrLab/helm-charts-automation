@@ -24,12 +24,10 @@
               "description": "supported versions",
               "type": "string",
               "listEnum": [
+                "inseefrlab/mlflow:v3.6.0",
                 "inseefrlab/mlflow:v3.5.1",
                 "inseefrlab/mlflow:v3.2.0",
-                "inseefrlab/mlflow:v2.21.3",
-                "inseefrlab/mlflow:v2.11.3",
-                "inseefrlab/mlflow:v2.10.2",
-                "inseefrlab/mlflow:v2.9.1"
+                "inseefrlab/mlflow:v2.21.3"
               ],
               "render": "list",
               "pattern": "^[a-z0-9-_./]+(:[a-z0-9-_.]+)?$",
@@ -37,7 +35,7 @@
                 "value": true,
                 "path": "service/image/custom/enabled"
               },
-              "default": "inseefrlab/mlflow:v3.5.1"
+              "default": "inseefrlab/mlflow:v3.6.0"
             },
             "custom": {
               "description": "use a custom docker image",
@@ -52,7 +50,7 @@
                 "version": {
                   "description": "unsupported version",
                   "type": "string",
-                  "default": "inseefrlab/mlflow:v3.5.1",
+                  "default": "inseefrlab/mlflow:v3.6.0",
                   "hidden": {
                     "value": false,
                     "path": "service/image/custom/enabled"
