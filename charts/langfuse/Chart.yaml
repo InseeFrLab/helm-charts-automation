@@ -13,12 +13,12 @@ sources:
   - https://github.com/langfuse/langfuse
   - https://github.com/langfuse/langfuse-k8s
 type: application
-version: 1.0.12
+version: 1.0.13
 appVersion: "3.63.1"
 dependencies:
 - name: langfuse
   version: 1.2.13
   repository: https://langfuse.github.io/langfuse-k8s
 - name: library-chart
-  version: 1.7.3
+  version: 1.7.14
   repository: https://inseefrlab.github.io/helm-charts-interactive-services
