@@ -56,6 +56,8 @@ security:
     enabled: true
     ip: "0.0.0.0/0"
   disableSecurityMiddleware: true
+  allowedHosts: ""
+  corsAllowedOrigins: ""
 
 postgresql:
   image:
