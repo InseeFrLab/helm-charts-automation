@@ -247,7 +247,7 @@
           "description": "Security middleware",
           "type": "object",
           "properties": {
-            "enabled":{
+            "disabled":{
               "title": "disableSecurityMiddleware",
               "type": "boolean",
               "default": true,
@@ -260,7 +260,7 @@
               "hidden": {
                 "value": true,
                 "isPathRelative": true,
-                "path": "enabled"
+                "path": "disabled"
               }
             },
             "corsAllowedOrigins" :{
@@ -270,7 +270,7 @@
               "hidden": {
                 "value": true,
                 "isPathRelative": true,
-                "path": "enabled"
+                "path": "disabled"
               }
             }
           }
