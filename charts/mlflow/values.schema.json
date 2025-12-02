@@ -242,10 +242,38 @@
           "description": "[Specify a secret key for flask server. Learn more about about it](https://mlflow.org/docs/latest/auth)",
           "render": "password"
         },
-        "disableSecurityMiddleware":{
-          "type": "boolean",
-          "default": true,
-          "description": "Disable all security middleware including CORS protection and host validation, do not disable in production"
+        "securityMiddleware":{
+          "title": "Security middleware",
+          "description": "Security middleware",
+          "type": "object",
+          "properties": {
+            "enabled":{
+              "title": "disableSecurityMiddleware",
+              "type": "boolean",
+              "default": true,
+              "description": "Disable all security middleware including CORS protection and host validation, do not disable in production"
+              },
+            "allowedHosts" :{
+              "description": "Controls which Host headers the server accepts. This prevents DNS rebinding attacks by validating incoming requests:",
+              "type": "string",
+              "default": "localhost",
+              "hidden": {
+                "value": true,
+                "isPathRelative": true,
+                "path": "enabled"
+              }
+            },
+            "corsAllowedOrigins" :{
+              "description": "Specifies which web applications can make API requests from browsers:",
+              "type": "string",
+              "default": "localhost:*",
+              "hidden": {
+                "value": true,
+                "isPathRelative": true,
+                "path": "enabled"
+              }
+            }
+          }
         },
         "networkPolicy": {
           "type": "object",

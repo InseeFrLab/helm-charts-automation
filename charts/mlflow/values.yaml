@@ -55,7 +55,12 @@ security:
   allowlist:
     enabled: true
     ip: "0.0.0.0/0"
-  disableSecurityMiddleware: true
+  securityMiddleware:
+    disableSecurityMiddleware: true
+    allowedHosts: ""
+    corsAllowedOrigins: ""
+  allowedHosts: ""
+  corsAllowedOrigins: ""
 
 postgresql:
   image:
