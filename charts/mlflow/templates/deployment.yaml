@@ -47,10 +47,10 @@ spec:
             - --disable-security-middleware
             {{- else }}
             {{- if .Values.security.securityMiddleware.allowedHosts }}
-            - --allowed-hosts={{ .Values.security.allowedHosts }}
+            - --allowed-hosts={{ .Values.security.securityMiddleware.allowedHosts }}
             {{- end }}
             {{- if .Values.security.securityMiddleware.corsAllowedOrigins }}
-            - --cors-allowed-origins={{ .Values.security.corsAllowedOrigins }}
+            - --cors-allowed-origins={{ .Values.security.securityMiddleware.corsAllowedOrigins }}
             {{- end }}
             {{- end }}
             {{ if .Values.service.proxyArtifact.enabled -}}
