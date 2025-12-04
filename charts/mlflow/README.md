@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 2.0.11](https://img.shields.io/badge/Version-2.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -16,7 +16,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 13.1.5 |
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 2.0.0 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 2.0.1 |
 
 ## Values
 
@@ -81,9 +81,11 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | security.allowlist.enabled | bool | `true` |  |
 | security.allowlist.ip | string | `"0.0.0.0/0"` |  |
 | security.defaultPermission | string | `"READ"` |  |
-| security.disableSecurityMiddleware | bool | `true` |  |
 | security.enabled | bool | `false` |  |
 | security.flaskServerSecretKey | string | `"changeme"` |  |
+| security.middleware.allowedHosts | string | `"localhost"` |  |
+| security.middleware.corsAllowedOrigins | string | `"localhost:*"` |  |
+| security.middleware.disabled | bool | `true` |  |
 | security.networkPolicy.enabled | bool | `false` |  |
 | security.networkPolicy.from[0].ipBlock.cidr | string | `"10.233.103.0/32"` |  |
 | security.networkPolicy.from[1].ipBlock.cidr | string | `"10.233.111.0/32"` |  |
