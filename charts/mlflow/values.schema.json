@@ -242,13 +242,12 @@
           "description": "[Specify a secret key for flask server. Learn more about about it](https://mlflow.org/docs/latest/auth)",
           "render": "password"
         },
-        "securityMiddleware":{
+        "middleware":{
           "title": "Security middleware",
-          "description": "Security middleware",
           "type": "object",
           "properties": {
             "disabled":{
-              "title": "disableSecurityMiddleware",
+              "title": "Disable security middleware",
               "type": "boolean",
               "default": true,
               "description": "Disable all security middleware including CORS protection and host validation, do not disable in production"

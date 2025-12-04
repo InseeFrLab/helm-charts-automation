@@ -43,14 +43,14 @@ spec:
             - --host=0.0.0.0
             - --port=8000
             - --backend-store-uri=postgresql://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ .Values.postgresql.fullnameOverride }}:5432/{{ .Values.postgresql.auth.database}}
-            {{- if .Values.security.securityMiddleware.disabled }}
+            {{- if .Values.security.middleware.disabled }}
             - --disable-security-middleware
             {{- else }}
-            {{- if .Values.security.securityMiddleware.allowedHosts }}
-            - --allowed-hosts={{ .Values.security.securityMiddleware.allowedHosts }}
+            {{- if .Values.security.middleware.allowedHosts }}
+            - --allowed-hosts={{ .Values.security.middleware.allowedHosts }}
             {{- end }}
-            {{- if .Values.security.securityMiddleware.corsAllowedOrigins }}
-            - --cors-allowed-origins={{ .Values.security.securityMiddleware.corsAllowedOrigins }}
+            {{- if .Values.security.middleware.corsAllowedOrigins }}
+            - --cors-allowed-origins={{ .Values.security.middleware.corsAllowedOrigins }}
             {{- end }}
             {{- end }}
             {{ if .Values.service.proxyArtifact.enabled -}}
