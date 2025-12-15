@@ -9,7 +9,7 @@ replicaCount: 1
 
 service:
   image:
-    version: "inseefrlab/mlflow:v3.6.0"
+    version: "inseefrlab/mlflow:v3.7.0"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
