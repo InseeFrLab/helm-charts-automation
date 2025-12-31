@@ -12,7 +12,7 @@ sources:
   - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
   - https://github.com/argilla-io/argilla/
 type: application
-version: 1.0.4
+version: 1.0.5
 appVersion: "2.3.0"
 dependencies:
 - name: redis
@@ -22,7 +22,7 @@ dependencies:
   version: 16.0.1
   repository:  https://charts.bitnami.com/bitnami
 - name: elasticsearch
-  version: 21.3.21
+  version: 21.6.3
   repository: https://charts.bitnami.com/bitnami
 - name: library-chart
   version: 1.5.25
