@@ -8,6 +8,9 @@ global:
 replicaCount: 1
 
 service:
+  initContainer:
+    image: alpine
+    pullPolicy: IfNotPresent
   image:
     version: "inseefrlab/mlflow:v3.7.0"
     pullPolicy: IfNotPresent

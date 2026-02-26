@@ -108,8 +108,8 @@ spec:
 
       initContainers:
         - name: wait-for-postgresql
-          image: "alpine"
-          imagePullPolicy: IfNotPresent
+          image: {{ .Values.service.initContainer.image }}
+          imagePullPolicy: {{ .Values.service.initContainer.pullPolicy }}
           command:
             - sh
             - -c
