@@ -25,7 +25,7 @@
               "type": "string",
               "listEnum": [
                 "inseefrlab/mlflow:v3.10.1",
-                "inseefrlab/mlflow:v3.8.0",
+                "inseefrlab/mlflow:v3.8.1",
                 "inseefrlab/mlflow:v3.7.0",
                 "inseefrlab/mlflow:v3.2.0",
                 "inseefrlab/mlflow:v2.21.3"
