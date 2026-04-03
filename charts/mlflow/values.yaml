@@ -12,7 +12,7 @@ service:
     image: alpine
     pullPolicy: IfNotPresent
   image:
-    version: "inseefrlab/mlflow:v3.7.0"
+    version: "inseefrlab/mlflow:v3.10.1"
     pullPolicy: IfNotPresent
     custom:
       enabled: false
