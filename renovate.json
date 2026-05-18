@@ -1,10 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "bumpVersion": "patch",
-  "helmv3": {
-    "enabled": true
-  }
+  "ignorePresets": ["group:monorepos", "group:recommended"],
+  "prHourlyLimit": 30,
+  "prConcurrentLimit": 100
 }
