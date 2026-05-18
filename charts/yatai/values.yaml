@@ -56,7 +56,7 @@ global:
 
 postgresql:
   image:
-    tag: "12"
+    tag: "17"
     repository: "bitnamilegacy/postgresql"
   fullnameOverride: "yatai-postgresql"
 
