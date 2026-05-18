@@ -35,5 +35,5 @@ dependencies:
     version: 0.45.19
     repository: https://argoproj.github.io/argo-helm
   - name: library-chart
-    version: 1.7.5
+    version: 2.0.4
     repository: https://inseefrlab.github.io/helm-charts-interactive-services
