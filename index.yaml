@@ -292,6 +292,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: "1"
+    created: "2026-05-19T18:20:00.096047992Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.5.14
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 2.0.4
+    description: Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
+    digest: fd791f5378e81f137ad4acb3ab5397e607f923890fb9eb9cbcbd69dcaa15db60
+    home: https://argo-cd.readthedocs.io/en/stable/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - gitops
+    - deployment
+    - delivery
+    name: argo-cd
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/blob/master/charts/argo-cd
+    - https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-cd-3.4.2/argo-cd-3.4.2.tgz
+    version: 3.4.2
+  - apiVersion: v2
+    appVersion: "1"
     created: "2025-06-06T11:47:57.029735754Z"
     dependencies:
     - name: argo-cd
@@ -4665,4 +4691,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2026-04-03T08:12:39.524902512Z"
+generated: "2026-05-19T18:20:00.096371668Z"
