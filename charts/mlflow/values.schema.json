@@ -25,6 +25,7 @@
               "type": "string",
               "listEnum": [
                 "inseefrlab/mlflow:v3.13.0",
+                "inseefrlab/mlflow:v3.15.1",
                 "inseefrlab/mlflow:v3.10.1",
                 "inseefrlab/mlflow:v3.8.1",
                 "inseefrlab/mlflow:v3.7.0",
@@ -37,7 +38,7 @@
                 "value": true,
                 "path": "service/image/custom/enabled"
               },
-              "default": "inseefrlab/mlflow:v3.13.0"
+              "default": "inseefrlab/mlflow:v3.15.1"
             },
             "custom": {
               "description": "use a custom docker image",
