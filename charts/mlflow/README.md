@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 3.1.5](https://img.shields.io/badge/Version-3.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 3.1.6](https://img.shields.io/badge/Version-3.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.
 
@@ -98,7 +98,7 @@ MLflow is an open source platform to manage the ML lifecycle, including experime
 | service.image.custom.enabled | bool | `false` |  |
 | service.image.custom.version | string | `""` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
-| service.image.version | string | `"inseefrlab/mlflow:v3.13.0"` |  |
+| service.image.version | string | `"inseefrlab/mlflow:v3.15.1"` |  |
 | service.initContainer.image | string | `"alpine"` |  |
 | service.initContainer.pullPolicy | string | `"IfNotPresent"` |  |
 | service.proxyArtifact.enabled | bool | `true` |  |
