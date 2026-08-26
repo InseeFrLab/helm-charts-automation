@@ -19,4 +19,4 @@ dependencies:
   version: 2.x
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 13.1.5
+  version: 13.4.4
