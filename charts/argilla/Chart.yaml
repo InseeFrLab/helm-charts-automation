@@ -22,7 +22,7 @@ dependencies:
   version: 16.0.1
   repository:  https://charts.bitnami.com/bitnami
 - name: elasticsearch
-  version: 21.3.21
+  version: 21.6.3
   repository: https://charts.bitnami.com/bitnami
 - name: library-chart
   version: 1.5.25
