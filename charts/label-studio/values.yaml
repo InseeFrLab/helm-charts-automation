@@ -3,7 +3,7 @@ service:
     repository: "heartexlabs/label-studio"
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.16.0"
+    tag: "1.22.0"
 
 replicaCount: 1
 
@@ -21,6 +21,10 @@ s3:
   defaultRegion: ""
   secretAccessKey: ""
   sessionToken: ""
+
+# Custom CA certificates injected by Onyxia
+certificates: {}
+  # cacerts: ""
 
 security:
   password: changeme
