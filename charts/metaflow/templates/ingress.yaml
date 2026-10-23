@@ -11,7 +11,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName | quote }}
   labels:
     {{- include "metaflow-ui.labels" . | nindent 4 }}
   annotations:
@@ -36,12 +36,12 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: {{ $fullName | quote }}
                 port:
-                  number: {{ $svcPort }}
+                  number: {{ $svcPort | int }}
               {{- else }}
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
+              serviceName: {{ $fullName | quote }}
+              servicePort: {{ $svcPort | int }}
               {{- end }}
           - path: "/"
             {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
@@ -50,12 +50,12 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullNameStatic }}
+                name: {{ $fullNameStatic | quote }}
                 port:
-                  number: {{ $svcPortStatic }}
+                  number: {{ $svcPortStatic | int }}
               {{- else }}
-              serviceName: {{ $fullNameStatic }}
-              servicePort: {{ $svcPortStatic }}
+              serviceName: {{ $fullNameStatic | quote }}
+              servicePort: {{ $svcPortStatic | int }}
               {{- end }}
           - path: "/static"
             {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
@@ -64,11 +64,11 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullNameStatic }}
+                name: {{ $fullNameStatic | quote }}
                 port:
-                  number: {{ $svcPortStatic }}
+                  number: {{ $svcPortStatic | int }}
               {{- else }}
-              serviceName: {{ $fullNameStatic }}
-              servicePort: {{ $svcPortStatic }}
+              serviceName: {{ $fullNameStatic | quote }}
+              servicePort: {{ $svcPortStatic | int }}
               {{- end }}
 {{- end }}

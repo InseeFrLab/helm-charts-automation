@@ -5,11 +5,11 @@ metadata:
   labels:
     {{- include "yatai.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.service.type | quote }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.port | int }}
       targetPort: http
-      nodePort: {{ .Values.service.nodePort}}
+      nodePort: {{ .Values.service.nodePort | int }}
       protocol: TCP
       name: http
   selector:

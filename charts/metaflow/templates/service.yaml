@@ -9,10 +9,10 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: {{ .Values.networking.serviceMetadata.type }}
+  type: {{ .Values.networking.serviceMetadata.type | quote }}
   ports:
     - name: metadata
-      port: {{ .Values.networking.serviceMetadata.port }}
+      port: {{ .Values.networking.serviceMetadata.port | int }}
       protocol: TCP
       targetPort: 8080
     - name: upgrades

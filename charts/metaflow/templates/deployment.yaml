@@ -6,7 +6,7 @@ metadata:
     {{- include "metaflow-service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | int }}
   {{- end }}
   selector:
     matchLabels:
@@ -59,7 +59,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
           command: ["/opt/latest/bin/python3", "-m", "services.metadata_service.server" ]
-          imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.service.image.pullPolicy | quote }}
           ports:
             - name: http
               containerPort: 8080
@@ -81,15 +81,15 @@ spec:
           env:
             {{- include "metaflow-service.metadatadbEnvVars" . | nindent 12 }}
             - name: AWS_SECRET_ACCESS_KEY
-              value: "{{ .Values.s3.secretAccessKey }}"
+              value: {{ .Values.s3.secretAccessKey | quote }}
             - name: AWS_ACCESS_KEY_IDD
-              value: "{{ .Values.s3.accessKeyId }}"
+              value: {{ .Values.s3.accessKeyId | quote }}
             - name: AWS_S3_ENDPOINT
-              value: "{{ .Values.s3.endpoint }}"
+              value: {{ .Values.s3.endpoint | quote }}
             - name: AWS_S3_DEFAULT_REGION
-              value: "{{ .Values.s3.defaultRegion}}"
+              value: {{ .Values.s3.defaultRegion | quote }}
             - name: AWS_SESSION_TOKEN
-              value: "{{ .Values.s3.sessionToken }}"
+              value: {{ .Values.s3.sessionToken | quote }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

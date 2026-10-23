@@ -6,7 +6,7 @@ metadata:
     {{- include "yatai.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | int }}
 {{- end }}
   selector:
     matchLabels:
@@ -32,7 +32,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.yatai.repository }}:{{ .Values.image.yatai.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.yatai.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.yatai.pullPolicy | quote }}
           command:
             - sh
             - -c

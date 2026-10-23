@@ -48,6 +48,7 @@
                   "properties": {
                     "name": {
                       "type": "string",
+                      "pattern": "^[^\\n\\r]*$",
                       "default": "langfuse-encryption",
                       "x-onyxia": {
                         "hidden": true,
@@ -56,6 +57,7 @@
                     },
                     "key": {
                       "type": "string",
+                      "pattern": "^[^\\n\\r]*$",
                       "default": "encryption-key",
                       "hidden": true
                     }
@@ -189,6 +191,7 @@
               "title": "Name of the backend PostgreSQL service",
               "description": "Reuse retained data from a previous PostgreSQL service with the same name",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "langfuse-postgresql"
             },
             "primary": {
@@ -264,6 +267,7 @@
               "title": "Name of the backend Redis service",
               "description": "Reuse retained data from a previous Redis service with the same name",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "langfuse-redis"
             },
             "primary": {

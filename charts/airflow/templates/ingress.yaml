@@ -29,5 +29,5 @@ spec:
               service:
                 name: {{ include "common.names.fullname" .Subcharts.airflow }}
                 port:
-                  number: {{ .Values.airflow.service.ports.http }}
+                  number: {{ .Values.airflow.service.ports.http | int }}
 {{- end }}

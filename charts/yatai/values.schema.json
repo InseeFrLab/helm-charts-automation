@@ -236,6 +236,7 @@
                 "database": {
                   "description": "Name for the default database that is created when the image is first started.",
                   "type": "string",
+                  "pattern": "^[^\\n\\r]*$",
                   "title": "Database",
                   "default": "yatai"
                 }
