@@ -11,8 +11,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "library-chart.fullname" . }}
-  minReplicas: {{ .Values.replicas.min }}
-  maxReplicas: {{ .Values.replicas.max }}
+  minReplicas: {{ .Values.replicas.min | int }}
+  maxReplicas: {{ .Values.replicas.max | int }}
   metrics:
   - type: Resource
     resource:

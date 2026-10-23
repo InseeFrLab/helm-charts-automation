@@ -14,6 +14,7 @@
               "title": "User name",
               "description": "Name of the admin user for the web interface",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "admin",
               "x-form": {
                 "value": "{{project.id}}"

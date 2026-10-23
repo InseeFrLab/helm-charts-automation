@@ -210,7 +210,7 @@ Create the name of the service account to use
     {{- toYaml . }}
 {{- end }}
 {{- if .Values.security.allowlist.enabled }}
-nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.security.allowlist.ip }}
+nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.security.allowlist.ip | quote }}
 {{- end }}
 {{- end }}
 

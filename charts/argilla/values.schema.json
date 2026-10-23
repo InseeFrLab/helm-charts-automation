@@ -15,6 +15,7 @@
               "properties": {
                 "username": {
                   "type": "string",
+                  "pattern": "^[^\\n\\r]*$",
                   "title": "Argilla's postgres user",
                   "default": "postgres"
                 },
@@ -29,6 +30,7 @@
                 },
                 "database": {
                   "type": "string",
+                  "pattern": "^[^\\n\\r]*$",
                   "title": "Database",
                   "description": "Name for Argilla's default database to create.",
                   "default": "argilla",
@@ -256,6 +258,7 @@
             "registry": {
               "description": "registry",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "docker.io",
               "x-onyxia": {
                 "hidden": true
@@ -264,6 +267,7 @@
             "repository": {
               "description": "repository",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "bitnami/elasticsearch",
               "x-onyxia": {
                 "hidden": true
@@ -506,6 +510,7 @@
             "registry": {
               "description": "registry",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "docker.io",
               "x-onyxia": {
                 "hidden": true
@@ -514,6 +519,7 @@
             "repository": {
               "description": "repository",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "default": "bitnami/postgresql",
               "x-onyxia": {
                 "hidden": true

@@ -6,7 +6,7 @@ metadata:
     {{- include "library-chart.labels" . | nindent 4 }}
     app.kubernetes.io/component: server
 spec:
-  replicas: {{ .Values.argilla.replicaCount }}
+  replicas: {{ .Values.argilla.replicaCount | int }}
   selector:
     matchLabels:
       {{- include "library-chart.selectorLabels" . | nindent 6 }}
@@ -96,7 +96,7 @@ spec:
               memory: 50Mi
       containers:
         - name: argilla-server
-          image: {{ printf "%s/%s:%s" .Values.argilla.image.registry .Values.argilla.image.repository .Values.argilla.image.tag }}
+          image: {{ printf "%s/%s:%s" .Values.argilla.image.registry .Values.argilla.image.repository .Values.argilla.image.tag | quote }}
           imagePullPolicy: {{ .Values.argilla.image.pullPolicy | quote }}
           env:
             - name: USERNAME
@@ -161,7 +161,7 @@ spec:
       {{- if (eq "-" .Values.global.defaultStorageClass) }}
       storageClassName: ""
       {{- else }}
-      storageClassName: "{{ .Values.global.defaultStorageClass }}"
+      storageClassName: {{ .Values.global.defaultStorageClass | quote }}
       {{- end }}
     {{- end }}
 {{- end }}
