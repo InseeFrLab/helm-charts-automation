@@ -47,7 +47,7 @@ spec:
               import os, urllib.request, certifi
               if os.path.exists("/cacerts/ca-certs.url"):
                   url = open("/cacerts/ca-certs.url").read().strip()
-                  custom = urllib.request.urlopen(url).read().decode()
+                  custom = urllib.request.urlopen(url, timeout=30).read().decode()
               else:
                   custom = open("/cacerts/ca.pem").read()
               with open("/ca-bundle/ca-bundle.crt", "w") as f:
@@ -98,9 +98,9 @@ spec:
             - name: S3_region
               value: {{ .Values.s3.defaultRegion | quote }}
             {{- end }}
-            # Show detailed S3 errors for the endpoint domain
+            # Show detailed S3 errors for the endpoint host
             - name: S3_TRUSTED_STORAGE_DOMAINS
-              value: {{ .Values.s3.endpoint | regexFind "[^.]+\\.[^.:/]+(:[0-9]+)?/?$" | regexFind "^[^:/]+" | quote }}
+              value: {{ .Values.s3.endpoint | regexFind "^[^:/]+" | quote }}
             {{- end }}
             {{- if (.Values.certificates).cacerts }}
             - name: REQUESTS_CA_BUNDLE
