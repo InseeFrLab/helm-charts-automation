@@ -14,26 +14,70 @@ spec:
       {{- include "library-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+        {{- if (.Values.certificates).cacerts }}
+        checksum/cacerts: {{ .Values.certificates.cacerts | sha256sum }}
+        {{- end }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+        {{- end }}
       labels:
         {{- include "library-chart.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if (.Values.certificates).cacerts }}
+      volumes:
+        - name: cacerts
+          secret:
+            secretName: {{ include "library-chart.secretNameCacerts" . }}
+        - name: ca-bundle
+          emptyDir: {}
+      initContainers:
+        # Append the custom CAs to the default certifi bundle
+        - name: build-ca-bundle
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          command:
+            - python3
+            - -c
+            - |
+              import os, urllib.request, certifi
+              if os.path.exists("/cacerts/ca-certs.url"):
+                  url = open("/cacerts/ca-certs.url").read().strip()
+                  custom = urllib.request.urlopen(url, timeout=30).read().decode()
+              else:
+                  custom = open("/cacerts/ca.pem").read()
+              with open("/ca-bundle/ca-bundle.crt", "w") as f:
+                  f.write(open(certifi.where()).read() + "\n" + custom + "\n")
+          volumeMounts:
+            - name: cacerts
+              mountPath: /cacerts
+            - name: ca-bundle
+              mountPath: /ca-bundle
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.service.image.pullPolicy | quote }}
-          {{- if .Values.persistence.enabled }}
           volumeMounts:
+            {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: /label-studio/data
-          {{- end }}
+            {{- end }}
+            {{- if (.Values.certificates).cacerts }}
+            - name: ca-bundle
+              mountPath: /ca-bundle
+              readOnly: true
+            {{- end }}
           envFrom:
             {{- if .Values.s3.enabled }}
             - secretRef:
@@ -46,8 +90,26 @@ spec:
               value: {{ .Values.security.username | quote }}
             - name: LABEL_STUDIO_PASSWORD
               value: {{ .Values.security.password | quote }}
+            {{- if .Values.s3.enabled }}
             - name: AWS_ENDPOINT_URL
               value: {{ printf "https://%s" .Values.s3.endpoint | quote }}
+            {{- if .Values.s3.defaultRegion }}
+            # Label Studio reads S3_region, not AWS_DEFAULT_REGION
+            - name: S3_region
+              value: {{ .Values.s3.defaultRegion | quote }}
+            {{- end }}
+            # Show detailed S3 errors for the endpoint host
+            - name: S3_TRUSTED_STORAGE_DOMAINS
+              value: {{ .Values.s3.endpoint | regexFind "^[^:/]+" | quote }}
+            {{- end }}
+            {{- if (.Values.certificates).cacerts }}
+            - name: REQUESTS_CA_BUNDLE
+              value: /ca-bundle/ca-bundle.crt
+            - name: AWS_CA_BUNDLE
+              value: /ca-bundle/ca-bundle.crt
+            - name: SSL_CERT_FILE
+              value: /ca-bundle/ca-bundle.crt
+            {{- end }}
             - name: CSRF_TRUSTED_ORIGINS
               value: {{ printf "%v://%v" (ternary "https" "http" (not (empty .Values.ingress.tls))) .Values.ingress.hostname | quote }}
           ports:
