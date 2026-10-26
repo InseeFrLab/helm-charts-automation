@@ -1,6 +1,6 @@
 # label-studio
 
-![Version: 3.0.10](https://img.shields.io/badge/Version-3.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Data Science starts with data. Label Studio removes the pain of labeling it.
 
@@ -14,7 +14,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 1.5.45 |
+| https://inseefrlab.github.io/helm-charts-interactive-services | library-chart | 2.1.10 |
 
 ## Values
 
@@ -25,6 +25,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| certificates | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | list | `[]` |  |
@@ -67,7 +68,7 @@ Data Science starts with data. Label Studio removes the pain of labeling it.
 | securityContext | object | `{}` |  |
 | service.image.pullPolicy | string | `"IfNotPresent"` |  |
 | service.image.repository | string | `"heartexlabs/label-studio"` |  |
-| service.image.tag | string | `"1.16.0"` |  |
+| service.image.tag | string | `"1.22.0"` |  |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
