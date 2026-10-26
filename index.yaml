@@ -3,6 +3,34 @@ entries:
   airflow:
   - apiVersion: v2
     appVersion: 2.10.3
+    created: "2026-10-26T09:34:48.540945692Z"
+    dependencies:
+    - name: airflow
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.4.1
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.34
+    description: Apache Airflow is a tool to express and execute workflows as directed
+      acyclic graphs (DAGs). It includes utilities to schedule tasks, monitor task
+      progress and handle task dependencies.
+    digest: a51bbb1b601a88eef04e1568a091115daba0a2b905c592b16ee9e5ad508a3190
+    home: https://airflow.apache.org/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/airflow.svg
+    keywords:
+    - apache
+    - airflow
+    - workflow
+    - dag
+    name: airflow
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/airflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/airflow-0.0.5/airflow-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 2.10.3
     created: "2025-08-26T09:45:21.194699729Z"
     dependencies:
     - name: airflow
@@ -114,6 +142,41 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/airflow-0.0.1/airflow-0.0.1.tgz
     version: 0.0.1
   argilla:
+  - apiVersion: v2
+    appVersion: 2.3.0
+    created: "2026-10-26T09:34:48.741172919Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.2.0
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    - name: elasticsearch
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.3.21
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.25
+    description: Argilla is a data annotation and curation platform designed to streamline
+      the process of creating, managing, and labeling datasets for machine learning
+      and natural language processing (NLP) tasks
+    digest: ae5328bb096c1076f96d5716aa03a9ab39af1c2ed00ea75cb6330efe13854dbf
+    home: https://argilla.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argilla.svg
+    keywords:
+    - Data Annotation
+    - Data Curation
+    - Machine Learning
+    - NLP
+    name: argilla
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-miscellaneous/tree/master/charts/argilla
+    - https://github.com/argilla-io/argilla/
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argilla-1.0.5/argilla-1.0.5.tgz
+    version: 1.0.5
   - apiVersion: v2
     appVersion: 2.3.0
     created: "2025-08-26T09:45:21.520199198Z"
@@ -290,6 +353,32 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argilla-1.0.0/argilla-1.0.0.tgz
     version: 1.0.0
   argo-cd:
+  - apiVersion: v2
+    appVersion: "1"
+    created: "2026-10-26T09:34:48.941689844Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.5.14
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 2.0.4
+    description: Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
+    digest: 3aefb5f506e945e8d86ecd6f44f9953eab06e834746ded05a43cb5ce6e95ce85
+    home: https://argo-cd.readthedocs.io/en/stable/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - gitops
+    - deployment
+    - delivery
+    name: argo-cd
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/blob/master/charts/argo-cd
+    - https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-cd-3.4.3/argo-cd-3.4.3.tgz
+    version: 3.4.3
   - apiVersion: v2
     appVersion: "1"
     created: "2026-05-19T18:20:00.096047992Z"
@@ -943,6 +1032,32 @@ entries:
   argo-workflows:
   - apiVersion: v2
     appVersion: "1"
+    created: "2026-10-26T09:34:49.179279946Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.45.19
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.7.5
+    description: Argo Workflows is an open source container-native workflow engine
+      for orchestrating parallel jobs on Kubernetes.
+    digest: b6a857280461705a279b2001cb132e4a0e55aa7062e0509f29e323f36cf645e8
+    home: https://argoproj.github.io/argo-workflows/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/argo.png
+    keywords:
+    - Worklow
+    - Job
+    - Task
+    name: argo-workflows
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-1.0.8/argo-workflows-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: "1"
     created: "2025-07-10T17:50:46.048304256Z"
     dependencies:
     - name: argo-workflows
@@ -1484,6 +1599,26 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/argo-workflows-0.0.1/argo-workflows-0.0.1.tgz
     version: 0.0.1
   label-studio:
+  - apiVersion: v2
+    created: "2026-10-26T09:34:49.374105636Z"
+    dependencies:
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.5.45
+    description: Data Science starts with data. Label Studio removes the pain of labeling
+      it.
+    digest: 6c6f5ca181b6d2061d4c7a60d2e3dca5b8f12aff39ea5a8e7aceebe4f49b98af
+    home: https://labelstud.io/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/labelStudio.png
+    keywords:
+    - ML
+    name: label-studio
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/label-studio
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/label-studio-3.0.10/label-studio-3.0.10.tgz
+    version: 3.0.10
   - apiVersion: v2
     created: "2025-05-22T13:26:20.89127049Z"
     dependencies:
@@ -2296,6 +2431,35 @@ entries:
   langfuse:
   - apiVersion: v2
     appVersion: 3.63.1
+    created: "2026-10-26T09:34:49.582758544Z"
+    dependencies:
+    - name: langfuse
+      repository: https://langfuse.github.io/langfuse-k8s
+      version: 1.2.13
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 1.7.3
+    description: LLM engineering platform - LLM observability, metrics, evaluations,
+      prompt management.
+    digest: f85f062a71f85ee9c48fb8aab4387b9b246f42223197838ac04e0a3125601c4a
+    home: https://langfuse.com/
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/langfuse.png
+    keywords:
+    - langfuse
+    - llm
+    - observability
+    - prompt management
+    - metrics
+    name: langfuse
+    sources:
+    - https://github.com/langfuse/langfuse
+    - https://github.com/langfuse/langfuse-k8s
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/langfuse-1.0.13/langfuse-1.0.13.tgz
+    version: 1.0.13
+  - apiVersion: v2
+    appVersion: 3.63.1
     created: "2025-08-26T09:45:21.835505487Z"
     dependencies:
     - name: langfuse
@@ -2672,6 +2836,29 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/langfuse-1.0.0/langfuse-1.0.0.tgz
     version: 1.0.0
   metaflow:
+  - apiVersion: v2
+    created: "2026-10-26T09:34:49.770471212Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Metaflow is a human-friendly Python/R library that helps scientists
+      and engineers build and manage real-life data science projects.
+    digest: c68691207e29fea2d7b72ec53fcd04d05c97f47745219995f22d5b6f830d3364
+    home: https://metaflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/metaflow.png
+    keywords:
+    - mlops
+    name: metaflow
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/metaflow
+    - https://github.com/Netflix/metaflow
+    - https://github.com/outerbounds/metaflow-tools
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-1.0.4/metaflow-1.0.4.tgz
+    version: 1.0.4
   - apiVersion: v2
     created: "2025-08-26T09:45:22.118633235Z"
     dependencies:
@@ -3052,6 +3239,30 @@ entries:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/metaflow-0.0.1/metaflow-0.0.1.tgz
     version: 0.0.1
   mlflow:
+  - apiVersion: v2
+    created: "2026-10-26T09:34:50.098737642Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    - name: library-chart
+      repository: https://inseefrlab.github.io/helm-charts-interactive-services
+      version: 2.0.3
+    description: MLflow is an open source platform to manage the ML lifecycle, including
+      experimentation, reproducibility, deployment, and a central model registry.
+    digest: 9e7fa176deecae758172676aea5acd48dcc7bd105117c2da13a3700f4c6c2cf1
+    home: https://mlflow.org
+    icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/mlflow.png
+    keywords:
+    - ML
+    name: mlflow
+    sources:
+    - https://github.com/InseeFrLab/mlflow
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/mlflow
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/mlflow-3.1.7/mlflow-3.1.7.tgz
+    version: 3.1.7
   - apiVersion: v2
     created: "2026-08-19T13:31:07.293634522Z"
     dependencies:
@@ -4447,6 +4658,31 @@ entries:
     version: 0.0.1
   yatai:
   - apiVersion: v2
+    created: "2026-10-26T09:34:50.282125634Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.1.5
+    description: Yatai lets you deploy, operate and scale Machine Learning services
+      on Kubernetes.
+    digest: 9c0c6431158c0275ddd510142634a49eb34fb6551e95e4b52f80de764e682340
+    home: https://github.com/bentoml/yatai
+    name: yatai
+    sources:
+    - https://github.com/InseeFrLab/helm-charts-automation/tree/master/charts/argo-workflows
+    - https://github.com/bentoml/yatai
+    - https://github.com/bentoml/yatai-deployment
+    - https://github.com/bentoml/yatai-image-builder
+    type: application
+    urls:
+    - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-2.0.4/yatai-2.0.4.tgz
+    version: 2.0.4
+  - apiVersion: v2
     created: "2025-08-26T09:45:22.711172513Z"
     dependencies:
     - name: common
@@ -4739,4 +4975,4 @@ entries:
     urls:
     - https://github.com/InseeFrLab/helm-charts-automation/releases/download/yatai-1.1.3/yatai-1.1.3.tgz
     version: 1.1.3
-generated: "2026-08-19T13:31:07.293999327Z"
+generated: "2026-10-26T09:34:50.282654259Z"
