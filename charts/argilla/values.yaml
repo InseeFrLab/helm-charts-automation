@@ -102,7 +102,7 @@ postgresql:
   image:
     registry: docker.io
     repository: bitnamilegacy/postgresql
-    tag: "14"
+    tag: "17"
     pullPolicy: IfNotPresent
   primary:
     resources:
