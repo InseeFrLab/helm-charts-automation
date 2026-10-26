@@ -5,9 +5,9 @@ metadata:
   labels:
     {{- include "metaflow-ui.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.networking.serviceBackend.type }}
+  type: {{ .Values.networking.serviceBackend.type | quote }}
   ports:
-    - port: {{ .Values.networking.serviceBackend.port }}
+    - port: {{ .Values.networking.serviceBackend.port | int }}
       targetPort: http
       protocol: TCP
       name: http

@@ -214,6 +214,7 @@
         },
         "password": {
           "type": "string",
+          "pattern": "^[^\\n\\r]*$",
           "description": "Password",
           "default": "changeme",
           "render": "password",
@@ -223,6 +224,7 @@
         },
         "username": {
           "type": "string",
+          "pattern": "^[^\\n\\r]*$",
           "default": "admin",
           "x-onyxia": {
             "overwriteDefaultWith": "{{project.id}}"
@@ -231,6 +233,7 @@
         "defaultPermission": {
           "title": "Default permissions",
           "type": "string",
+          "pattern": "^[^\\n\\r]*$",
           "listEnum": ["READ", "EDIT", "MANAGE", "NO_PERMISSIONS"],
           "default": "READ",
           "description": "[Specify mlflow users permissions. Learn more about about it](https://mlflow.org/docs/latest/auth/index.html#permissions)"
@@ -416,6 +419,7 @@
           "properties": {
             "username": {
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "title": "User",
               "default": "user",
               "x-onyxia": {
@@ -441,6 +445,7 @@
             "database": {
               "description": "Name for the default database that is created when the image is first started.",
               "type": "string",
+              "pattern": "^[^\\n\\r]*$",
               "title": "Database",
               "default": "mlflow"
             }

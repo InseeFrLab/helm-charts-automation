@@ -7,7 +7,7 @@ metadata:
     {{- include "library-chart.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | int }}
 {{- end }}
   selector:
     matchLabels:
@@ -28,7 +28,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.service.image.repository }}:{{ .Values.service.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.service.image.pullPolicy | quote }}
           {{- if .Values.persistence.enabled }}
           volumeMounts:
             - name: data
@@ -43,13 +43,13 @@ spec:
             - name: LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK
               value: "true"
             - name: LABEL_STUDIO_USERNAME
-              value: {{ .Values.security.username }}
+              value: {{ .Values.security.username | quote }}
             - name: LABEL_STUDIO_PASSWORD
-              value: {{ .Values.security.password }}
+              value: {{ .Values.security.password | quote }}
             - name: AWS_ENDPOINT_URL
-              value: "https://{{ .Values.s3.endpoint }}"
+              value: {{ printf "https://%s" .Values.s3.endpoint | quote }}
             - name: CSRF_TRUSTED_ORIGINS
-              value: "http{{ if .Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.hostname }}"
+              value: {{ printf "%v://%v" (ternary "https" "http" (not (empty .Values.ingress.tls))) .Values.ingress.hostname | quote }}
           ports:
             - name: http
               containerPort: 8080
@@ -88,10 +88,10 @@ spec:
       {{- if (eq "-" .Values.persistence.storageClass) }}
       storageClassName: ""
       {{- else }}
-      storageClassName: "{{ .Values.persistence.storageClass }}"
+      storageClassName: {{ .Values.persistence.storageClass | quote }}
       {{- end }}
       {{- end }}
       resources:
         requests:
-          storage: "{{ .Values.persistence.size }}"
+          storage: {{ .Values.persistence.size | quote }}
   {{- end }}

@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ .Values.serviceAccount.role}}
+  name: {{ .Values.serviceAccount.role | quote }}
   labels:
     {{- include "library-chart.labels" . | nindent 4 }}
 rules:

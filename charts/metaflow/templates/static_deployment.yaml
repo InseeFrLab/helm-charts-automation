@@ -6,7 +6,7 @@ metadata:
     {{- include "metaflow-ui.labelsStatic" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | int }}
   {{- end }}
   selector:
     matchLabels:
@@ -32,7 +32,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.service.uiImage.repository }}:{{ .Values.service.uiImage.tag }}"
-          imagePullPolicy: {{ .Values.service.uiImage.pullPolicy }}
+          imagePullPolicy: {{ .Values.service.uiImage.pullPolicy | quote }}
           ports:
             - name: http
               containerPort: 3000

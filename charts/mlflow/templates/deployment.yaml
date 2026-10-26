@@ -8,7 +8,7 @@ metadata:
     {{- include "library-chart.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | int }}
 {{- end }}
   selector:
     matchLabels:
@@ -35,14 +35,14 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- if .Values.service.image.custom.enabled }}
-          image: "{{ .Values.service.image.custom.version }}"
+          image: {{ .Values.service.image.custom.version | quote }}
           {{- else }}
-          image: "{{ .Values.service.image.version }}"
+          image: {{ .Values.service.image.version | quote }}
           {{- end }}
           args:
             - --host=0.0.0.0
             - --port=8000
-            - --backend-store-uri=postgresql://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ .Values.postgresql.fullnameOverride }}:5432/{{ .Values.postgresql.auth.database}}
+            - {{ printf "--backend-store-uri=postgresql://%v:%v@%v:5432/%v" .Values.postgresql.auth.username .Values.postgresql.auth.password .Values.postgresql.fullnameOverride .Values.postgresql.auth.database | quote }}
             {{- if .Values.security.middleware.disabled }}
             - --disable-security-middleware
             {{- else }}
@@ -54,9 +54,9 @@ spec:
             {{- end }}
             {{- end }}
             {{ if .Values.service.proxyArtifact.enabled -}}
-            - --artifacts-destination={{ .Values.service.directory }}
+            - {{ printf "--artifacts-destination=%v" .Values.service.directory | quote }}
             {{- else -}}
-            - --default-artifact-root={{ .Values.service.directory }}
+            - {{ printf "--default-artifact-root=%v" .Values.service.directory | quote }}
             {{- end }}
             {{- if .Values.security.enabled }}
             - --app-name=basic-auth
@@ -64,7 +64,7 @@ spec:
             {{  range .Values.service.customArgs }}
             - {{ . }}
             {{- end }}
-          imagePullPolicy: {{ .Values.service.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.service.image.pullPolicy | quote }}
           envFrom:
             {{- if .Values.s3.enabled }}
             - secretRef:
@@ -79,16 +79,16 @@ spec:
           env:
             {{- if and .Values.security.enabled .Values.security.flaskServerSecretKey }}
             - name: MLFLOW_FLASK_SERVER_SECRET_KEY
-              value: {{ .Values.security.flaskServerSecretKey}}
+              value: {{ .Values.security.flaskServerSecretKey | quote }}
             {{- end }}
             - name: MLFLOW_S3_ENDPOINT_URL
-              value: "https://{{ .Values.s3.endpoint }}"
+              value: {{ printf "https://%s" .Values.s3.endpoint | quote }}
             {{- if .Values.security.enabled  }}
             - name: MLFLOW_AUTH_CONFIG_PATH
               value: /home/oyxia/work/basic_auth.ini
             {{- end }}
             - name: GUNICORN_CMD_ARGS
-              value: "--timeout {{ .Values.service.gunicornTimeout }}"
+              value: {{ printf "--timeout %s" .Values.service.gunicornTimeout | quote }}
           ports:
             - name: http
               containerPort: 8000
@@ -108,8 +108,8 @@ spec:
 
       initContainers:
         - name: wait-for-postgresql
-          image: {{ .Values.service.initContainer.image }}
-          imagePullPolicy: {{ .Values.service.initContainer.pullPolicy }}
+          image: {{ .Values.service.initContainer.image | quote }}
+          imagePullPolicy: {{ .Values.service.initContainer.pullPolicy | quote }}
           command:
             - sh
             - -c
